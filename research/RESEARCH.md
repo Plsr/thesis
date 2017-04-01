@@ -6,7 +6,7 @@ For a list of papers yet to be read, see [the issues](https://github.com/Plsr/th
 ### [Interactive Genetic Algorithms for User Interface Design](http://ieeexplore.ieee.org/document/4424630/)
 
 #### Summary
-* Use Genetic algorithms to help lowering user fatigue (by building interfaces in the XUL Interface language). 
+* Use Genetic algorithms to help lowering user fatigue (by building interfaces in the XUL Interface language).
 * Fitness of individual calculated based on combination of user input and design guidelines.
 * User only chooses best and worst solution from a subset of nine proposals one every _t_ generations (_t_ was varied)
 * First step in the field, there is ambition to improve on the findings of the study
@@ -42,3 +42,14 @@ For a list of papers yet to be read, see [the issues](https://github.com/Plsr/th
 * The user can choose which designs he likes, but maybe the user does not have any knowledge about design
 * End results are not that pretty, even though they are very limited in layout and styling
 
+### [Imagine: a tool for generating HTML style sheets with an interactive genetic algorithm based on genes frequencies](http://ieeexplore.ieee.org/document/823287/)
+
+#### Summary
+* Use IGA to show user stylesheets for a website and let them choose the one that looks best
+* User can set the Diversity and Importance of choices
+* User can edit one result directly if they just want to alter one specific element and all the other elements are already fine
+
+#### Critique
+* You can sense from the way web pages are built that this study is pretty old and may not have to much impact nowadays (i.e. usage of  `.gif` files for almost all website elements)
+* Only five elements are used to define the design of a webpage, which is way to less for today’s standards
+* For text styling, many values are possible where most of the can be ruled out rather simply (i.e. text size, color, …)##
