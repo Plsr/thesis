@@ -1,7 +1,7 @@
 # Research
-Notes of stdies and articles used for research
+Notes of studies and articles used for research
 
-For a list of papers yet to be read, see [the issues](https://github.com/Plsr/thesis/labels/to%20read)
+For a list of papers yet to be read, consult [the issues](https://github.com/Plsr/thesis/labels/to%20read)
 
 ### [Interactive Genetic Algorithms for User Interface Design](http://ieeexplore.ieee.org/document/4424630/)
 
@@ -52,4 +52,4 @@ For a list of papers yet to be read, see [the issues](https://github.com/Plsr/th
 #### Critique
 * You can sense from the way web pages are built that this study is pretty old and may not have to much impact nowadays (i.e. usage of  `.gif` files for almost all website elements)
 * Only five elements are used to define the design of a webpage, which is way to less for today’s standards
-* For text styling, many values are possible where most of the can be ruled out rather simply (i.e. text size, color, …)##
+* For text styling, many values are possible where most of the can be ruled out rather simply (i.e. text size, color, …)
