@@ -1,3 +1,4 @@
+# Quotes
 A list of interesting quotes found whilst doing my research. Those quotes may be of use later on, tease new topics or pinpoint a certain concept.
 
 ---
