@@ -1,4 +1,4 @@
-# Research
+# Studies
 Notes of studies and articles used for research
 
 For a list of papers yet to be read, consult [the issues](https://github.com/Plsr/thesis/labels/to%20read)
