@@ -56,12 +56,12 @@ For a list of papers yet to be read, consult [the issues](https://github.com/Pls
 
 ### [What is beautiful is usable](http://www.ise.bgu.ac.il/faculty/noam/papers/00_nt_ask_di_iwc.pdf)
 
-## Summary
+#### Summary
 * The researchers examined the affects of aesthetic design to the relationship of a user with a product as a whole, as well as the effects it had on the overall subjective usability of a user
 * The experiment was executed with different layouts of an ATM, differing both in ratings of usability and preserved aesthetic design.
 
-## Critique
+#### Critique
 * In terms of my thesis this merely is another point emphasising the importance of aesthetics in design
 
-## [Evaluating the consistency of immediate aesthetic perceptions of web pages](http://www.sciencedirect.com/science/article/pii/S1071581906000863)
+#### [Evaluating the consistency of immediate aesthetic perceptions of web pages](http://www.sciencedirect.com/science/article/pii/S1071581906000863)
 * Same here, “just” an experiment supporting Lindgaards study.
