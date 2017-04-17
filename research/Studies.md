@@ -65,3 +65,20 @@ For a list of papers yet to be read, consult [the issues](https://github.com/Pls
 
 #### [Evaluating the consistency of immediate aesthetic perceptions of web pages](http://www.sciencedirect.com/science/article/pii/S1071581906000863)
 * Same here, “just” an experiment supporting Lindgaards study.
+
+### [How will the use of graphics affect visual aesthetics? A user-centered approach for web page design](http://www.sciencedirect.com/science/article/pii/S1071581912001656)
+#### Summary
+* The whole experiment was conducted around defining which elements on a webpage generated a certain feeling for users and then teaching a Neural Network how recommend elements that will generate a certain feeling for a user
+* This was achieved in several steps:
+	* First, a group of experts defined the seven most influential design elements on the chosen pages in different types
+	* Then, subjects were asked to apply the semantic differential on the pages.  On the three most influential pairs of emotion than a Grey Relational Analysis was applied.
+	* The relation between the web page feeling and the importance of a design element was then taught to the neural network.
+	* The Network was then able to tell a designer which elements should be designed in which way to cause a certain feeling for a user.
+
+#### Notes
+* Can graphics on a webpage be seen as whitespace?
+
+#### Related
+* Cheng, H.-I., Patterson, P.E., 2007. Iconic hyperlinks on e-commerce websites. Applied Ergonomics 38, 65–69.
+* Yeh, C.-H., Lin, Y.-C., Chang, Y.-H., 2007. A neural network approach to website design. Dynamics of Continuous, Discrete and Impulsive Systems: Series B, Applications and Algorithms (DCDIS Series B) 14
+(S2), 1598–1601.
