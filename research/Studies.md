@@ -83,7 +83,7 @@ For a list of papers yet to be read, consult [the issues](https://github.com/Pls
 * Yeh, C.-H., Lin, Y.-C., Chang, Y.-H., 2007. A neural network approach to website design. Dynamics of Continuous, Discrete and Impulsive Systems: Series B, Applications and Algorithms (DCDIS Series B) 14
 (S2), 1598–1601.
 
-###[Web aesthetics and usability: An empirical study of the effects of white space](https://www.researchgate.net/publication/269639066_Web_Aesthetics_and_Usability)
+### [Web aesthetics and usability: An empirical study of the effects of white space](https://www.researchgate.net/publication/269639066_Web_Aesthetics_and_Usability)
 
 #### Summary
 * The study aims to investigate the effects of used amount of whitespace on the users of a (fictive) travel booking website.
