@@ -107,3 +107,21 @@ For a list of papers yet to be read, consult [the issues](https://github.com/Pls
 #### Related
 * Steven J. Harrington, J. Fernando Naveda, Rhys Price Jones, Paul Roetling, and Nishant Thakkar. 2004. Aesthetic measures for automated document layout. In Proceedings of the 2004 ACM symposium on Document engineering (DocEng '04). ACM, New York, NY, USA, 109-111. DOI=http://dx.doi.org/10.1145/1030397.1030419
 * Jinwoo Kim, Jooeun Lee, and Dongseong Choi. 2003. Designing emotionally evocative homepages: an empirical study of the quantitative relations between design factors and emotional dimensions. Int. J. Hum.-Comput. Stud. 59, 6 (December 2003), 899-940. DOI=http://dx.doi.org/10.1016/j.ijhcs.2003.06.002
+
+### [Aesthetic Measures for Automated Document Layout](https://pdfs.semanticscholar.org/76ef/ec77f1f277ac52f52bdd42dd9231a7554af6.pdf)
+
+#### Summary
+* A number of different calculations used to define artistic measures for Automated Document Layout
+* Calculations are from the following areas:
+  * alignment
+  * regularity
+  * separation
+  * balance
+  * white-space fraction
+  * white-space free flow
+  * proportion
+  * uniformity
+  * page security
+
+#### Critique
+* Most of it is pretty diffuse, unfortunately there are no real applications of the formulas in the paper
