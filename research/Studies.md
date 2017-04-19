@@ -82,3 +82,28 @@ For a list of papers yet to be read, consult [the issues](https://github.com/Pls
 * Cheng, H.-I., Patterson, P.E., 2007. Iconic hyperlinks on e-commerce websites. Applied Ergonomics 38, 65–69.
 * Yeh, C.-H., Lin, Y.-C., Chang, Y.-H., 2007. A neural network approach to website design. Dynamics of Continuous, Discrete and Impulsive Systems: Series B, Applications and Algorithms (DCDIS Series B) 14
 (S2), 1598–1601.
+
+###[Web aesthetics and usability: An empirical study of the effects of white space](https://www.researchgate.net/publication/269639066_Web_Aesthetics_and_Usability)
+
+#### Summary
+* The study aims to investigate the effects of used amount of whitespace on the users of a (fictive) travel booking website.
+* The study looked at the relative amount of whitespace used in the webpage.
+* The researchers aimed to prove 7 hypothesises regarding the amount of whitespace used:
+* Perceived attractiveness, efficiency, effectiveness and satisfaction of a webpage will be grater when the total amount of whitespace approaches 50%.
+* The greater the level of perceived attractiveness of a website is, the grater its perceived efficiency, effectiveness and satisfaction will be.
+* The results suggest that
+* There is a general difference of Perceived attractiveness, efficiency, effectiveness and satisfaction regarding whitespace
+* All the above dropped when the amount of whitespace was raised from 50% (and 25%) to 75%
+* There was no significant drop when the amount of whitespace was reduced from 50% to 25%
+* The above suggests that there is a certain amount of whitespace that is perceived as “good” by users. Reducing that amount is not perceived as bad as increasing it.
+
+#### Notes
+* High number of test participants (94)
+
+#### Critique
+* Manipulation of whitespace was done by reducing the amount of information and by shrinking font-sizes, buttons etc. This may not be the best approach to gain more Whitespace in an document.
+* There are no images of the used designs included.
+
+#### Related
+* Steven J. Harrington, J. Fernando Naveda, Rhys Price Jones, Paul Roetling, and Nishant Thakkar. 2004. Aesthetic measures for automated document layout. In Proceedings of the 2004 ACM symposium on Document engineering (DocEng '04). ACM, New York, NY, USA, 109-111. DOI=http://dx.doi.org/10.1145/1030397.1030419
+* Jinwoo Kim, Jooeun Lee, and Dongseong Choi. 2003. Designing emotionally evocative homepages: an empirical study of the quantitative relations between design factors and emotional dimensions. Int. J. Hum.-Comput. Stud. 59, 6 (December 2003), 899-940. DOI=http://dx.doi.org/10.1016/j.ijhcs.2003.06.002
