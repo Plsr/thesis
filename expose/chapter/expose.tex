@@ -1,8 +1,107 @@
 \section{Thema der Abschlussarbeit}
-sadfsdf
-\section{Relevanz des Themas}
-Beispiel für eine Tabelle:
+Die Abschlussarbeit soll sich mit der Umsetzung der im Praxisprojekt bereits erstellten Konzepte für ein Tool zum helfen bei Designlösungen beschäftigen. Ziel der Abschlussarbeit ist es, auf Basis der bestehenden Konzepte ein funktionierendes Produkt zu erstellen.
+Dabei stellen sowohl der Weg vom Konzept und Proof of Concept zum fertigen Produkt als planerische Tätigkeit, als auch die Umsetzung in den verschiedenen Bereichen die Themengebiete dar, die in der Abschlussarbeit behandelt werden sollen.
 
-\noindent{}Dies ist lediglich ein Beispiel. Je nach beabsichtigter Aussage, können Tabellen ganz unterschiedlich aussehen. Allerdings haben Tabellen eine \emph{Über}schrift, während es sich bei Abbildungen um \emph{Unter}schriften handelt.
+[Hier vielleicht nochmal kurz erklären, was im PP gemacht wurde]
+
+Im Folgenden sollen die sich ergebenden Themengebiete kurz erläutert werden.
+
+\subsection{Genereller Aufbau der Anwendung}
+Auch wenn im Rahmen des Praxisprojektes bereits grundlegende Konzepte zu Funktionalitäten der Anwendung erstellt wurden muss zunächst der generelle Aufbau der Anwendung definiert werden.
+Hier gilt es mögliche noch fehlende oder unzureichend definierte Bereiche zu identifizieren, eine Auswahl von Themengebieten zu treffen und deren Reihenfolge zu definieren.
+
+Die wichtigsten Beispiele für nicht hinreichend defineirte Bereich stellen hier der Einstiegspunkt und das Outcome der Anwendung dar.
+Viele der Kernbereiche der Anwendung greifen auf die verschiedenen Limitationen zurück, die mit derm Gestaltungsziel des Nuzters (Plattform, Medium etc.) einher gehen. Diese müssen im ersten Schritt vom Nutzer definiert werden.
+Auch muss geklärt werden, in welcher Form die Anwendung Informationen an den Nutzer weiter gibt. So werden dem Nuzter bereits währen der Nutzung Informationen mitgeteilt, jedoch besteht bisher kein Konzept, nach dem diese dem Nutzer am Ende der Anewenugn noch einmal gebündelt zur weiterverwendung angeboten werden.
+
+In einer ersten funktionierenden Version der Anwednung sollten die folgenden Bereiche enthalten sein:
+
+\begin{itemize}
+  \item Einstieg
+  \item Typographie
+  \item Layout \& Grid
+  \item Farben
+  \item Outcomes
+\end{itemize}
+
+Je nach Zeitlichem verlauf können diese noch um weitere Themengebiete erweitert werden.
+
+\subsection{Technologien und Architektur}
+Auch die Architektur der Anwendung und die verwendete Technologie [Technologie hier das richtige Wort?] soll diskutiert werden.
+
+Die Anwendung soll mit Hilfe des Framework React.js umgesetzt werden.
+[Gründe]
+[In BA trotzdem diskutieren]
+[Mögliche Vergleiche?]
+
+Da für die Anwendung keine persistente Datenhaltung benötigt wird, kann auf eine klassische Client-Server-Architektur verzichtet werden, die komplette Logik kann auf dem Client ausgeführt werden.
+Trotzdem sollte auch im Client eine Architektur entworfen werden. Wie oben bereits erwähnt hängen Teile der Anwendung voneinander ab und frühere Schritte beeinflussen spätere. Deshalb soll zu beginn ein Modell der Anwendung und der Datenhaltung angefertigt werden.
+
+\subsection{Gestaltung und Information Architecture}
+Auch die Gestaltung der Anwendung soll Teil der Bachelorarbeit sein. Hier soll dauf geachtet werden, dass die Gestaltung der Anwendung möglichst passiv ist und in den Hintergrund tritt, um den Nutzer nicht von seinem Ziel abzulenken.
+
+[Wort zu Designprozess?]
+
+Bei der Umsetzung bietet sich aufgrund der Verwendung von React.js ein Komponentenbasiertes Design-System an. Dafür soll auf React-Storybook zurück gegriffen werden, was es ermöglicht, einen living styleguide für die Verwendung in der Anwendung zu erstellen.
+
+\section{Relevanz des Themas}
+Die Relevanz der Anwendung an sich wurde bereits im Praxisprojekt erläutert, daher soll hier nur eine Kurzfassung der Beweisführung folgen:
+[Lindgaard et al] haben gezeigt, dass Menschen sich in nur 50ms ein Urteil über die Gestaltung einer Website bilden. Der erste Eindruck spielt bei Menschen auch bei der späteren Bewertung einer Sache noch eine wichtige Rolle.  Von diesem ersten Eindruck lassen sich Menschen nicht ohne weiteres wieder abbringen.
+Daher ist es wichtig, dass auch Artefakte in Modulen, in denen die Gestaltung nicht bewertet wird, ein solides Design aufweise, um den ersten Eindruck so positiv wie möglich zu gestalten.
+
+Hier seien aber noch zwei weitere Quellen aufgeführt, die die korrektheit dieser These [ist das eine These?] weiter stützen.
+[Hier noch die zwei Quellen vorstellen]
+
+Neben der Relevanz des Produktes, das in Rahmen der Arbeit entstehen soll ist aber auch das Meta-Thema der Arbeit zu rechtfertigen: Die Entwicklung von einem Konzept oder PoC zu einem fertigen Produkt.
+Dieses Thema ist meiner Meinung nach für einen Studenten der Medieninformatik sehr passend, da in diesem Thema viele Aspekte das gesamten Studiums vereint werden. In den weiter oben genannten Bereichen kommen Inhalte aus den Modulen AP 1\&2, GdvK, WBA 1, ST,  PM und EIS vor. Daher bietet das Thema eine gute Verbindung zwischen den verschiedenen Disziplinen innerhalb des Studiums, verbunde mit einer wissenschaftlichen Disukssion verschiedener Vorgehensweisen und Abläufe.
 
 \section{Durchführung der Arbeit}
+\subsection{Zielsetzung}
+Ziel der Arbeit soll es sein, ein funktionierendes Produkt zu entwickeln, das von Nutzern gewinnbringend verwendet werden kann.
+Weiterhin soll die Arbeit Abläufe und Entscheidungen für die Umsetzung eine Projektes, wie sie auch in der Industrie Anwendung finden, im kleinen Rahmen wiederspiegeln.
+
+\subsection{Erste Gliederung}
+Hier soll auch eine erste Gliederung der Arbeit erfolgen. Diese Gliederung besitzt keinen Anspruch auf Vollständigkeit und kann während der Durchführung der Arbeit noch verändert werden.
+Gerade für den zweiten Teil gestaltet es sich schwierig, konkretere Voraussagen über den Inhalt zu machen, da viele der Artefakte, auch den sich dieser bezieht, noch nicht existieren.
+
+\begin{itemize}
+  \item Einleitung
+  \item Relevanz
+  \item Zielsetzung
+  \item 1.Teil: Theoretische Grundlagen
+  \begin{itemize}
+    \item Struktur der Anwendung
+    \begin{itemize}
+      \item Stand Praxisprojekt
+      \item Einstieg
+      \item Outcome
+    \end{itemize}
+    \item Verwendete Technologie
+    \begin{itemize}
+      \item Vue.js
+      \item Angular.js
+      \item React.js
+    \end{itemize}
+    \item Architektur der Anwendung
+    \begin{itemize}
+      \item redux
+    \end{itemize}
+    \item Vorgehen bei der Gestaltung
+  \end{itemize}
+  \item 2.Teil: Umsetzung
+  \begin{itemize}
+    \item Gestaltung
+    \item React Storybooks
+    \item Redux Store
+    \item Algorithm
+  \end{itemize}
+  \item Fazit
+  \item Ausblick
+\end{itemize}
+
+\subsection{Zeitplan und Organisation}
+Die Arbeit soll so bald wie möglich, spätestens aber am 31.5.2017 angemeldet werden. Da kein erhöhter empirischer Anteil besteht, ist die reguläre Dauer von 9 Wochen zur Beendigung der Arbeit vorgesehen. Die Arbeit soll also (je nach Anmeldung) spätestens in der ersten Augustwoche 2017 abgegeben werden.
+
+Als zweitprüferin ist Dipl. Des. Liane Kirschner vorgesehen, die aktuell bei der Railslove GmbH in Köln tätig ist.Die Arbeit soll so bald wie möglich, spätestens aber am 31.5.2017 angemeldet werden. Da kein erhöhter empirischer Anteil besteht, ist die reguläre Dauer von 9 Wochen zur Beendigung der Arbeit vorgesehen. Die Arbeit soll also (je nach Anmeldung) spätestens in der ersten Augustwoche 2017 abgegeben werden.
+
+Als zweitprüferin ist Dipl. Des. Liane Kirschner vorgesehen, die aktuell bei der Railslove GmbH in Köln tätig ist.
