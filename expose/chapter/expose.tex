@@ -1,5 +1,5 @@
 \section{Thema der Abschlussarbeit}
-Die Abschlussarbeit soll sich mit der Umsetzung der im Praxisprojekt bereits erstellten Konzepte für ein Tool zum helfen bei Designlösungen beschäftigen. Ziel der Abschlussarbeit ist es, auf Basis der bestehenden Konzepte ein funktionierendes Produkt zu erstellen.
+Die Abschlussarbeit soll sich mit der Umsetzung der im Praxisprojekt bereits erstellten Konzepte für ein Tool zum helfen bei Designlösungen beschäftigen. Ziel der Abschlussarbeit ist es, auf Basis der bestehenden Konzepte ein funktionierendes Produkt zu erstellen.\\
 Dabei stellen sowohl der Weg vom Konzept und Proof of Concept zum fertigen Produkt als planerische Tätigkeit, als auch die Umsetzung in den verschiedenen Bereichen die Themengebiete dar, die in der Abschlussarbeit behandelt werden sollen.
 
 [Hier vielleicht nochmal kurz erklären, was im PP gemacht wurde]
@@ -29,20 +29,28 @@ Je nach Zeitlichem verlauf können diese noch um weitere Themengebiete erweitert
 \subsection{Technologien und Architektur}
 Auch die Architektur der Anwendung und die verwendete Technologie [Technologie hier das richtige Wort?] soll diskutiert werden.
 
-Die Anwendung soll mit Hilfe des Framework React.js umgesetzt werden.
-[Gründe]
-[In BA trotzdem diskutieren]
-[Mögliche Vergleiche?]
+Die Anwendung soll mit Hilfe des Framework React.js umgesetzt werden. React.js ist ein Javascript-Framework, das 2013 von Facebook entwickelt wurde. \cite{gackenheimer2015react} beschreibt React wie folgt:
 
-Da für die Anwendung keine persistente Datenhaltung benötigt wird, kann auf eine klassische Client-Server-Architektur verzichtet werden, die komplette Logik kann auf dem Client ausgeführt werden.
+\begin{quote}
+[...] React is a way to describe the user interface of an application and a mechanism to change that over time as data changes. React is made with declarative components that describe an interface. React uses no observable data binding when building an application. React is also easy to manipulate, because you can take the components you create and combine them to make custom components that work as you expect every time because it can scale.
+\end{quote}
+
+Der Fokus des Framworks liegt also auf interaktiven User Interfaces, in denen sich die enthaltenen Daten häufig ändern. Da die Anwenundung dem Nuzter ineraktives Feedback zu seinen eingaben geben soll und keine weiteren Ressourcen, etwa auf der Serversiete nötig sind, eigenet sich React sher gut für diese Zwecke. \\
+Im Praxisprojekt wurde der Proof of Concept bereits in React geschrieben und das funktionierte ganz wunderbar.
+
+Trotzdem sollen in der Abschlussarbeit mögliche andere Frameworks zur umsetzung diskutiert und verglichen werden. Hier bieten sich vor allem andere Javascript Frameworks wie zum Beispiel Ember.js, Angular.js, Vue,js oder Backbone.js an.
+
+Da für die Anwendung keine persistente Datenhaltung benötigt wird, kann auf eine klassische Client-Server-Architektur verzichtet werden, die komplette Logik kann auf dem Client ausgeführt werden.\\
 Trotzdem sollte auch im Client eine Architektur entworfen werden. Wie oben bereits erwähnt hängen Teile der Anwendung voneinander ab und frühere Schritte beeinflussen spätere. Deshalb soll zu beginn ein Modell der Anwendung und der Datenhaltung angefertigt werden.
 
 \subsection{Gestaltung und Information Architecture}
 Auch die Gestaltung der Anwendung soll Teil der Bachelorarbeit sein. Hier soll dauf geachtet werden, dass die Gestaltung der Anwendung möglichst passiv ist und in den Hintergrund tritt, um den Nutzer nicht von seinem Ziel abzulenken.
 
-[Wort zu Designprozess?]
+Der Designprozess soll hierbei auf das komponentenbasierte Verhalten von React.js angepasst sein. Ganze Seiten sollen also nur in Form von Wireframes erstellt werden. Die einzelnen Komponenten auf den Seiten sollen dann gestaltet werden. Am Ende des Designporzesses soll also eine Art Pattern Lab erhalten werden.
 
-Bei der Umsetzung bietet sich aufgrund der Verwendung von React.js ein Komponentenbasiertes Design-System an. Dafür soll auf React-Storybook zurück gegriffen werden, was es ermöglicht, einen living styleguide für die Verwendung in der Anwendung zu erstellen.
+Um dieses Patternlab auch in der Anwendung pflegen zu können, soll auf React-Storybook zurück gegriffen werden, was es ermöglicht, einen living styleguide für die Verwendung in der Anwendung zu erstellen.
+
+[Hier noch kurze Erklärung, was das ist und vielleicht ein Bildchen?]
 
 \section{Relevanz des Themas}
 Die Relevanz der Anwendung an sich wurde bereits im Praxisprojekt erläutert, daher soll hier nur eine Kurzfassung der Beweisführung folgen:
@@ -101,7 +109,5 @@ Gerade für den zweiten Teil gestaltet es sich schwierig, konkretere Voraussagen
 
 \subsection{Zeitplan und Organisation}
 Die Arbeit soll so bald wie möglich, spätestens aber am 31.5.2017 angemeldet werden. Da kein erhöhter empirischer Anteil besteht, ist die reguläre Dauer von 9 Wochen zur Beendigung der Arbeit vorgesehen. Die Arbeit soll also (je nach Anmeldung) spätestens in der ersten Augustwoche 2017 abgegeben werden.
-
-Als zweitprüferin ist Dipl. Des. Liane Kirschner vorgesehen, die aktuell bei der Railslove GmbH in Köln tätig ist.Die Arbeit soll so bald wie möglich, spätestens aber am 31.5.2017 angemeldet werden. Da kein erhöhter empirischer Anteil besteht, ist die reguläre Dauer von 9 Wochen zur Beendigung der Arbeit vorgesehen. Die Arbeit soll also (je nach Anmeldung) spätestens in der ersten Augustwoche 2017 abgegeben werden.
 
 Als zweitprüferin ist Dipl. Des. Liane Kirschner vorgesehen, die aktuell bei der Railslove GmbH in Köln tätig ist.
