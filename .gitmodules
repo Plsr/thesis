@@ -1,0 +1,3 @@
+[submodule "25knots"]
+	path = 25knots
+	url = git@github.com:Plsr/25knots.git
