@@ -2,11 +2,13 @@
 Die Abschlussarbeit soll sich mit der Umsetzung der im Praxisprojekt bereits erstellten Konzepte für ein Tool zum helfen bei Designlösungen beschäftigen. Ziel der Abschlussarbeit ist es, auf Basis der bestehenden Konzepte ein funktionierendes Produkt zu erstellen.\\
 Dabei stellen sowohl der Weg vom Konzept und Proof of Concept zum fertigen Produkt als planerische Tätigkeit, als auch die Umsetzung in den verschiedenen Bereichen die Themengebiete dar, die in der Abschlussarbeit behandelt werden sollen.
 
-[Hier vielleicht nochmal kurz erklären, was im PP gemacht wurde]
+Im Praxiprojekt wurde versucht, in verschiedenen Bereichen der visuellen Gerstaltung Regeln und Richtlinien zu definieren, die später von einen Computerprogramm bewertet werden können. Dieser Versuch war in verschiedenen Bereichen unterschiedlich erfolgreich. Um die Konzeptarbeit in der Abschlussarbeit möglichst gering zu halten, soll sich in dieser Hauptsächlich auf die bereit gut abgedeckten Bereiche konzentriert werden. Eine auflistung dieser Bereiche findet sich in \autoref{chapter:setting}: "\nameref{chapter:setting}".
+Weiterhin wurde im Bereich Typografie ein Proof of Concept erstellt, auf dem aufgebaut werden kann.
 
-Im Folgenden sollen die sich ergebenden Themengebiete kurz erläutert werden.
+Im Folgenden sollen die sich für die Abschlussarbeit ergebenden Themengebiete kurz erläutert werden.
 
 \subsection{Genereller Aufbau der Anwendung}
+\label{chapter:setting}
 Auch wenn im Rahmen des Praxisprojektes bereits grundlegende Konzepte zu Funktionalitäten der Anwendung erstellt wurden muss zunächst der generelle Aufbau der Anwendung definiert werden.
 Hier gilt es mögliche noch fehlende oder unzureichend definierte Bereiche zu identifizieren, eine Auswahl von Themengebieten zu treffen und deren Reihenfolge zu definieren.
 
@@ -43,14 +45,18 @@ Trotzdem sollen in der Abschlussarbeit mögliche andere Frameworks zur umsetzung
 Da für die Anwendung keine persistente Datenhaltung benötigt wird, kann auf eine klassische Client-Server-Architektur verzichtet werden, die komplette Logik kann auf dem Client ausgeführt werden.\\
 Trotzdem sollte auch im Client eine Architektur entworfen werden. Wie oben bereits erwähnt hängen Teile der Anwendung voneinander ab und frühere Schritte beeinflussen spätere. Deshalb soll zu beginn ein Modell der Anwendung und der Datenhaltung angefertigt werden.
 
+[ Hier dann noch Datenhaltung mit redux erklären ]
+
 \subsection{Gestaltung und Information Architecture}
-Auch die Gestaltung der Anwendung soll Teil der Bachelorarbeit sein. Hier soll dauf geachtet werden, dass die Gestaltung der Anwendung möglichst passiv ist und in den Hintergrund tritt, um den Nutzer nicht von seinem Ziel abzulenken.
+Auch die Gestaltung der Anwendung soll Teil der Bachelorarbeit sein. Hinnener soll dauf geachtet werden, dass die Gestaltung der Anwendung möglichst passiv ist und in den Hintergrund tritt, um den Nutzer nicht von seinem Ziel abzulenken.
 
 Der Designprozess soll hierbei auf das komponentenbasierte Verhalten von React.js angepasst sein. Ganze Seiten sollen also nur in Form von Wireframes erstellt werden. Die einzelnen Komponenten auf den Seiten sollen dann gestaltet werden. Am Ende des Designporzesses soll also eine Art Pattern Lab erhalten werden.
 
 Um dieses Patternlab auch in der Anwendung pflegen zu können, soll auf React-Storybook zurück gegriffen werden, was es ermöglicht, einen living styleguide für die Verwendung in der Anwendung zu erstellen.
 
 [Hier noch kurze Erklärung, was das ist und vielleicht ein Bildchen?]
+
+[ Außerdem: CSS in Components ]
 
 \section{Relevanz des Themas}
 Die Relevanz der Anwendung an sich wurde bereits im Praxisprojekt erläutert, daher soll hier nur eine Kurzfassung der Beweisführung folgen:
