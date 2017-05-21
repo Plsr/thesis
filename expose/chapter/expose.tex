@@ -1,6 +1,8 @@
 \section{Thema der Abschlussarbeit}
-Die Abschlussarbeit soll sich mit der Umsetzung der im Praxisprojekt bereits erstellten Konzepte für ein Tool zum helfen bei Designlösungen beschäftigen. Ziel der Abschlussarbeit ist es, auf Basis der bestehenden Konzepte ein funktionierendes Produkt zu erstellen.\\
-Dabei stellen sowohl der Weg vom Konzept und Proof of Concept zum fertigen Produkt als planerische Tätigkeit, als auch die Umsetzung in den verschiedenen Bereichen die Themengebiete dar, die in der Abschlussarbeit behandelt werden sollen.
+Thema der Abschlussarbeit soll die Umseztung und Gestaltung einer Web-App auf Basis von bereits im Praxisprojekt erarbeiteten Konzepten sein.
+Die Web-App soll vorrangig Studenten dabei unterstützen, in ihren Gestaltungen von Artefakten, die im Hochschulalltag benötigt werden, eine Grundqualtität zu sichern.
+Ziel der Abschlussarbeit soll es sein, ein funktionierendes und qualitativ hochwertiges Produkt zu erstellen.
+Dabei stellen sowohl der Weg vom Konzept und Proof of Concept zum fertigen Produkt als Ablauf, als auch die Umsetzung in den verschiedenen Bereichen die Themengebiete dar, die in der Abschlussarbeit behandelt werden sollen.
 
 Im Praxiprojekt wurde versucht, in verschiedenen Bereichen der visuellen Gerstaltung Regeln und Richtlinien zu definieren, die später von einen Computerprogramm bewertet werden können. Dieser Versuch war in verschiedenen Bereichen unterschiedlich erfolgreich. Um die Konzeptarbeit in der Abschlussarbeit möglichst gering zu halten, soll sich in dieser Hauptsächlich auf die bereit gut abgedeckten Bereiche konzentriert werden. Eine auflistung dieser Bereiche findet sich in \autoref{chapter:setting}: "\nameref{chapter:setting}".
 Weiterhin wurde im Bereich Typografie ein Proof of Concept erstellt, auf dem aufgebaut werden kann.
@@ -9,12 +11,11 @@ Im Folgenden sollen die sich für die Abschlussarbeit ergebenden Themengebiete k
 
 \subsection{Genereller Aufbau der Anwendung}
 \label{chapter:setting}
-Auch wenn im Rahmen des Praxisprojektes bereits grundlegende Konzepte zu Funktionalitäten der Anwendung erstellt wurden muss zunächst der generelle Aufbau der Anwendung definiert werden.
-Hier gilt es mögliche noch fehlende oder unzureichend definierte Bereiche zu identifizieren, eine Auswahl von Themengebieten zu treffen und deren Reihenfolge zu definieren.
+Im Rahmen des Praxisprojektes wurden bereits grundlegende Konzepte zu Inhalten der Anwendung in verschiedenen Bereichen erstellt. Da hier nicht in allen Bereichen zufriedenstellende Inhlate gefunden werden konnten, sollen diese als erster Schritt der Abschlussarbeit auf ihre Umsetzbarkeit überprüft werden. Weiterhin muss festgestellt werden, welche Gebiete gegbenenfalls noch weiter vertieft werden müssen.
 
-Die wichtigsten Beispiele für nicht hinreichend defineirte Bereich stellen hier der Einstiegspunkt und das Outcome der Anwendung dar.
-Viele der Kernbereiche der Anwendung greifen auf die verschiedenen Limitationen zurück, die mit derm Gestaltungsziel des Nuzters (Plattform, Medium etc.) einher gehen. Diese müssen im ersten Schritt vom Nutzer definiert werden.
-Auch muss geklärt werden, in welcher Form die Anwendung Informationen an den Nutzer weiter gibt. So werden dem Nuzter bereits währen der Nutzung Informationen mitgeteilt, jedoch besteht bisher kein Konzept, nach dem diese dem Nutzer am Ende der Anewenugn noch einmal gebündelt zur weiterverwendung angeboten werden.
+Die wichtigsten Beispiele für noch nicht hinreichend definierte Bereiche stellen hier der Einstiegspunkt und der Endpunkt der Anwendung dar.
+Viele der Kernbereiche der Anwendung greifen auf die verschiedenen Limitationen zurück, die mit derm Gestaltungsziel des Nuzters (Plattform, Medium etc.) einher gehen. Diese müssen im ersten Schritt vom Nutzer definiert werden. Hier soll definiert werden, welche Informationen benötigt werden und wie der Nutzer diese der Anwendung mitteilen soll.
+Auch muss geklärt werden, in welcher Form die Anwendung Informationen an den Nutzer weiter gibt. So werden dem Nuzter bereits währen der Nutzung Informationen durch seine Interaktion mit der Anwendung mitgeteilt, jedoch besteht bisher kein Konzept, nach dem diese dem Nutzer am Ende der Anwendung noch einmal gebündelt zur weiterverwendung angeboten werden.
 
 In einer ersten funktionierenden Version der Anwednung sollten die folgenden Bereiche enthalten sein:
 
@@ -37,26 +38,36 @@ Die Anwendung soll mit Hilfe des Framework React.js umgesetzt werden. React.js i
 [...] React is a way to describe the user interface of an application and a mechanism to change that over time as data changes. React is made with declarative components that describe an interface. React uses no observable data binding when building an application. React is also easy to manipulate, because you can take the components you create and combine them to make custom components that work as you expect every time because it can scale.
 \end{quote}
 
-Der Fokus des Framworks liegt also auf interaktiven User Interfaces, in denen sich die enthaltenen Daten häufig ändern. Da die Anwenundung dem Nuzter ineraktives Feedback zu seinen eingaben geben soll und keine weiteren Ressourcen, etwa auf der Serversiete nötig sind, eigenet sich React sher gut für diese Zwecke. \\
-Im Praxisprojekt wurde der Proof of Concept bereits in React geschrieben und das funktionierte ganz wunderbar.
+Der Fokus des Framworks liegt also auf interaktiven User Interfaces, in denen sich die enthaltenen Daten häufig ändern. Da die Anwenundung dem Nuzter ineraktives Feedback zu seinen Eingaben geben soll, eigenet sich React gut für diese Zwecke. \\
+Der Prrof of Concept im Praxisprojekt wurde bereits erfolgreich mit Hilfe von React.js umgesetzt und unterstützt die Entscheidung zur Wahl des Frameworks weiter.
 
 Trotzdem sollen in der Abschlussarbeit mögliche andere Frameworks zur umsetzung diskutiert und verglichen werden. Hier bieten sich vor allem andere Javascript Frameworks wie zum Beispiel Ember.js, Angular.js, Vue,js oder Backbone.js an.
 
-Da für die Anwendung keine persistente Datenhaltung benötigt wird, kann auf eine klassische Client-Server-Architektur verzichtet werden, die komplette Logik kann auf dem Client ausgeführt werden.\\
-Trotzdem sollte auch im Client eine Architektur entworfen werden. Wie oben bereits erwähnt hängen Teile der Anwendung voneinander ab und frühere Schritte beeinflussen spätere. Deshalb soll zu beginn ein Modell der Anwendung und der Datenhaltung angefertigt werden.
+Da für die Anwendung keine persistente Datenhaltung benötigt wird, kann auf eine klassische Client-Server-Architektur verzichtet werden und die komplette Logik kann auf dem Client ausgeführt werden.\\
+Trotzdem sollte auch im Client eine Architektur entworfen werden. Wie oben bereits erwähnt hängen Teile der Anwendung voneinander ab und frühere Schritte beeinflussen spätere. Deshalb soll zu beginn ein Modell der Anwendung und der Datenhaltung angefertigt werden. Für die Datenhaltung soll auf redux zurückgegriffen werden.
 
-[ Hier dann noch Datenhaltung mit redux erklären ]
+Redux verwaltet den Zustand (oder \textit{state}) einer Anwendung und sorgt dafür, dass dieser Konsistent bleibt. Diese Konsistenz wird durch drei Grunprinzipien von redux erreicht \cite{threeprinciplesredux}:
 
-\subsection{Gestaltung und Information Architecture}
-Auch die Gestaltung der Anwendung soll Teil der Bachelorarbeit sein. Hinnener soll dauf geachtet werden, dass die Gestaltung der Anwendung möglichst passiv ist und in den Hintergrund tritt, um den Nutzer nicht von seinem Ziel abzulenken.
+\begin{enumerate}
+  \item Der Zustand wir nur an einer zentralen Stelle verwaltet.
+  \item Der Zustand kann nur gelesen und nicht direkt manipuliert werden.
+  \item Der Zustand kann nur durch \textit{pure functions}\footnotemark verändert werden.
+\end{enumerate}
 
-Der Designprozess soll hierbei auf das komponentenbasierte Verhalten von React.js angepasst sein. Ganze Seiten sollen also nur in Form von Wireframes erstellt werden. Die einzelnen Komponenten auf den Seiten sollen dann gestaltet werden. Am Ende des Designporzesses soll also eine Art Pattern Lab erhalten werden.
+Redux wurde bereits beim Proof of Concept für den Bereich Typographie im Praxisprojekt verwendet. Hier konnte der Nutzer verschiedene Werte ändern, die sich auf verschiedene DOM-Elemente auswirkten. Redux kontne dafür soregen, dass sich diese Änderungen nicht gegenseitig überschreiben und der Zustand der Anwendung konsistent bleibt.
 
-Um dieses Patternlab auch in der Anwendung pflegen zu können, soll auf React-Storybook zurück gegriffen werden, was es ermöglicht, einen living styleguide für die Verwendung in der Anwendung zu erstellen.
+[ Vielleicht diagramm, wie das im PP gemacht wurde? ]
 
-[Hier noch kurze Erklärung, was das ist und vielleicht ein Bildchen?]
+\subsection{Gestaltung der Anwendung}
+Auch die Gestaltung der Anwendung soll Teil der Bachelorarbeit sein. Hierbei soll darauf geachtet werden, dass die Gestaltung der Anwendung möglichst in den Hintergrund tritt, um den Nutzer nicht von der Gestaltung abzulenken, die er mittels der Anwendung erstellt.
+Der Designprozess soll hierbei auf das komponentenbasierte Verhalten von React.js angepasst sein. Ganze Seiten sollen  nur in Form von Wireframes erstellt werden, die einzelnen Komponenten auf den Seiten dann im Detail gestaltet werden. Am Ende des Designporzesses soll Verzeichnis von Komponenten entstehen, die in der Anwendung verwendet werden können.
 
-[ Außerdem: CSS in Components ]
+Um dieses Verzeichnis auch in die Anwendung übernehmen zu können, soll auf React-Storybook zurück gegriffen werden. React Storybooks ermöglicht es, einen \textit{living styleguide} für die Verwendung in der Anwendung zu erstellen. Der Code für die verschiedenen Komponenten im Stroybook ist dem, der in der Anwendung verwendet wird dabei sehr ähnlich. Im Stroybook können außerdem verschiedene Stati und Funktionen der Komponenten abgebildet werden. Abb. X zeigt dies am Beispiel von XYZ.
+
+[ Abbildung mit Beispiel von Storybooks ]
+
+Durch die komponentenbasierte Form von React bietet es sich an, CSS auch mit in diesen Komponenten zu verarbeiten, um sowohl die funktion als auch das Aussehen in einer in sich geschlossenen Komponente zu speichern. [ Satz ist große kaka, muss noch besser werden. ]
+
 
 \section{Relevanz des Themas}
 Die Relevanz der Anwendung an sich wurde bereits im Praxisprojekt erläutert, daher soll hier nur eine Kurzfassung der Beweisführung folgen:
@@ -80,8 +91,8 @@ Gerade für den zweiten Teil gestaltet es sich schwierig, konkretere Voraussagen
 
 \begin{itemize}
   \item Einleitung
-  \item Relevanz
-  \item Zielsetzung
+  \item Relevanz des Themas
+  \item Zielsetzung der Arbeit
   \item 1.Teil: Theoretische Grundlagen
   \begin{itemize}
     \item Struktur der Anwendung
@@ -96,18 +107,19 @@ Gerade für den zweiten Teil gestaltet es sich schwierig, konkretere Voraussagen
       \item Angular.js
       \item React.js
     \end{itemize}
-    \item Architektur der Anwendung
-    \begin{itemize}
-      \item redux
-    \end{itemize}
     \item Vorgehen bei der Gestaltung
   \end{itemize}
   \item 2.Teil: Umsetzung
   \begin{itemize}
     \item Gestaltung
+    \item Architektur der Anwendung
+    \begin{itemize}
+      \item redux
+    \end{itemize}
     \item React Storybooks
     \item Redux Store
-    \item Algorithm
+    \item Gestaltung
+    \item Algorithmen
   \end{itemize}
   \item Fazit
   \item Ausblick
@@ -117,3 +129,5 @@ Gerade für den zweiten Teil gestaltet es sich schwierig, konkretere Voraussagen
 Die Arbeit soll so bald wie möglich, spätestens aber am 31.5.2017 angemeldet werden. Da kein erhöhter empirischer Anteil besteht, ist die reguläre Dauer von 9 Wochen zur Beendigung der Arbeit vorgesehen. Die Arbeit soll also (je nach Anmeldung) spätestens in der ersten Augustwoche 2017 abgegeben werden.
 
 Als zweitprüferin ist Dipl. Des. Liane Kirschner vorgesehen, die aktuell bei der Railslove GmbH in Köln tätig ist.
+
+\footnotetext{\textit{pure functions} sind funktionen, die keine Nebeneffekte aufweisen, also beim Aufruf mit den gleichen Argumenten zwangsweise die gleichen Ergebnisse liefern \cite{Haverbeke201412}. So kann eine Funktion, deren Ergbnis beispielsweise vom aktuellen Datum abhängt, niemlas \textit{pure} sein.}
