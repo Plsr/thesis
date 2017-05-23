@@ -38,7 +38,7 @@ Die Anwendung soll mit Hilfe des Framework React.js umgesetzt werden. React.js i
 [...] React is a way to describe the user interface of an application and a mechanism to change that over time as data changes. React is made with declarative components that describe an interface. React uses no observable data binding when building an application. React is also easy to manipulate, because you can take the components you create and combine them to make custom components that work as you expect every time because it can scale.
 \end{quote}
 
-Der Fokus des Frameworks liegt also auf interaktiven User Interfaces, in denen sich die enthaltenen Daten häufig ändern. Da die Anwendundung dem Nutzer interaktives Feedback zu seinen Eingaben geben soll, ist React.js hier gut geeignet. Der Proof of Concept im Praxisprojekt wurde bereits erfolgreich mit Hilfe von React.js umgesetzt und unterstützt die Entscheidung zur Wahl des Frameworks weiter. \\
+Der Fokus des Frameworks liegt also auf interaktiven User Interfaces, in denen sich die enthaltenen Daten häufig ändern. Da die Anwendung dem Nutzer interaktives Feedback zu seinen Eingaben geben soll, ist React.js hier gut geeignet. Der Proof of Concept im Praxisprojekt wurde bereits erfolgreich mit Hilfe von React.js umgesetzt und unterstützt die Entscheidung zur Wahl des Frameworks weiter. \\
 
 Da für die Anwendung keine persistente Datenhaltung benötigt wird, kann auf eine klassische Client-Server-Architektur verzichtet werden und die komplette Logik kann auf dem Client ausgeführt werden.\\
 Trotzdem sollte auch im Client eine Architektur entworfen werden. Wie oben bereits erwähnt stehen Teile der Anwendung in Abhängigkeit zueinander und Daten aus früheren Schritten beeinflussen die Darstellung von späteren\footnotemark[1]. Deshalb soll zu beginn ein Modell der Anwendung und der Datenhaltung angefertigt werden. Für die Datenhaltung soll dabei auf redux zurückgegriffen werden.
@@ -58,12 +58,12 @@ Redux wurde bereits beim Proof of Concept für den Bereich Typographie im Praxis
 Auch die Gestaltung der Anwendung soll Teil der Bachelorarbeit sein. Hier soll darauf geachtet werden, dass die Anwendung möglichst neutral gestaltet wird, um den Fokus des Nutzers nicht von seiner eigenen Gestaltungsarbeit abzulenken.\\
 Der Designprozess soll auf das komponentenbasierte Verhalten von React.js angepasst sein. Ganze Seiten sollen  nur in Form von Wireframes erstellt werden, in denen auch Inhalte und Interaktionen festgelegt werden sollen. Einzelne Komponenten auf den Seiten sollen im Detail gestaltet werden, sodass am Ende des Designprozesses ein Verzeichnis von Komponenten entsteht, die in der Anwendung verwendet werden können.
 
-Um dieses Verzeichnis auch in die Anwendung übernehmen zu können, soll auf \textit{Storybook for React} zurück gegriffen werden \cite{StorybooksOnline}, das es ermöglicht, einen \textit{living styleguide} für die Verwendung in der Anwendung zu erstellen. Der Code für die verschiedenen Komponenten im Storybook ist dabei der gleiche, der auch in der Anwendung verwendet wird. Im Storybook können außerdem verschiedene Stati und auch Funktionen der Komponenten abgebildet werden. \textit{Abbildung \ref{fig:storybook}} auf Seite \pageref{fig:storybook} zeigt dies am Beispiel von einem Button.
+Um dieses Verzeichnis auch in die Anwendung übernehmen zu können, soll auf \textit{Storybook for React} zurück gegriffen werden \cite{StorybooksOnline}, das es ermöglicht, einen \textit{living styleguide} für die Verwendung in der Anwendung zu erstellen. Der Code für die verschiedenen Komponenten im Storybook ist dabei der gleiche, der auch in der Anwendung verwendet wird. Im Storybook können außerdem verschiedene Status und auch Funktionen der Komponenten abgebildet werden. \textit{Abbildung \ref{fig:storybook}} auf Seite \pageref{fig:storybook} zeigt dies am Beispiel von einem Button.
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=1\textwidth]{images/ReactStroybooksExample.png}
-  \caption{Beispielhafte Verwendung von \textit{Stroybook for React} mit einem Button}
+  \caption{Beispielhafte Verwendung von \textit{Storybook for React} mit einem Button}
   \label{fig:storybook}
 \end{figure}
 
@@ -75,11 +75,11 @@ Lindgaard et al. \cite{lindgaard2006attention} haben gezeigt, dass Menschen sich
 Daher ist es wichtig, dass auch Artefakte in Modulen, in denen die Gestaltung gegebenenfalls nicht bewertet wird, ein solides Design aufweisen, um den ersten Eindruck so positiv wie möglich zu gestalten.
 
 Unterstützend seien hier noch zwei weitere Quellen aufgeführt, die die Relevanz weiter unterstreichen:\\
-\cite{tractinsky2006evaluating} zeigen, dass die Ergebnisse der Studie von Lingaard et al. auch mit anderen Parametern bestand haben und unterstreichen weiterhin die Wichtigkeit von guter Gestaltung für eine gute Nutzererfahrung \cite{tractinsky2000beautiful}.\\
+\cite{tractinsky2006evaluating} zeigen, dass die Ergebnisse der Studie von Lindgaard et al. auch mit anderen Parametern bestand haben und unterstreichen weiterhin die Wichtigkeit von guter Gestaltung für eine gute Nutzererfahrung \cite{tractinsky2000beautiful}.\\
 Auch aus vielen persönlichen Gespräche konnte ich entnehmen, dass die Umsetzung der erarbeiteten Konzepte als Produkt, auch für verschiedene Personengruppen, durchaus wünschenswert ist.
 
 Neben der Relevanz des Produktes, das in Rahmen der Arbeit entstehen soll ist aber auch das eigentliche Thema der Arbeit zu rechtfertigen: Die Entwicklung von einem Konzept zu einem fertigen Produkt.
-Als abschließende Arbeit für den Studiengang Medieninformatik ist dies ein passendes Thema, da in diesem viele Aspekte des gesamten Studiums vereint werden. In den weiter oben genannten Bereichen kommen besiepielsweise Inhalte aus den Modulen GdvK, WBA 1, ST,  PM und EIS vor. Daher bietet das Thema eine gute Verbindung zwischen den verschiedenen Disziplinen innerhalb des Studiums, verbunden mit einer wissenschaftlichen Diskussion verschiedener Vorgehensweisen und Abläufe.
+Als abschließende Arbeit für den Studiengang Medieninformatik ist dies ein passendes Thema, da in diesem viele Aspekte des gesamten Studiums vereint werden. In den weiter oben genannten Bereichen kommen beispielsweise Inhalte aus den Modulen GdvK, WBA 1, ST,  PM und EIS vor. Daher bietet das Thema eine gute Verbindung zwischen den verschiedenen Disziplinen innerhalb des Studiums, verbunden mit einer wissenschaftlichen Diskussion verschiedener Vorgehensweisen und Abläufe.
 
 \section{Organisatorisches}
 
