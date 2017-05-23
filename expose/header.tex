@@ -34,9 +34,9 @@
 }
 
 %Abbildungsnummerierung ändern (abhängig von chapter, z.B. Abbildung 1.1)
-\renewcommand*{\thefigure}{\thechapter.\arabic{figure}}
+\renewcommand*{\thefigure}{\arabic{figure}}
 %Tabellennummerierung ändern (abhängig von chapter, z.B. Tabelle 1.1)
-\renewcommand*{\thetable}{\thechapter.\arabic{table}}
+\renewcommand*{\thetable}{\arabic{table}}
 
 %Paket, um ein Glossar/Abkürzungsverzeichnis anzulegen
 \usepackage{nomencl}
@@ -63,9 +63,7 @@
 \clubpenalty = 10000 % schliesst Schusterjungen aus
 \widowpenalty = 10000 % schliesst Hurenkinder aus (keine Beleidigung, sondern wirklich ein Fachbegriff)
 
-%Paket für ein deutsches Literaturverzeichnis
-\usepackage[authoryear,round]{natbib}
-\bibliographystyle{natdin}
+\bibliographystyle{alpha}
 % \setlength\bibhang{30pt}
 
 %Paket für die Verwendung von URLs durch den Befehl \url{}
