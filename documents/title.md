@@ -1,0 +1,21 @@
+# Title
+This documents contains some drafts for titles and will eventually only contain the final title of the thesis.
+
+## Drafts
+**25knots – Ein Tool zur Sicherung der gestalterischen Qualität von Artefakten
+im Hochschulkontext**  
+-  
+Entwicklung einer Webanwendung vom Konzept und Prototypen zum marktfähigen Produkt
+-----
+**25knots – Ein Tool zur Verbesserung der gestalterischen Qualität von Artefakten im Hochschulkontext**  
+-  
+Entwicklung einer Webanwendung vom Konzept und Prototypen zum marktfähigen Produkt
+-----
+**25knots – Ein Tool zur Vermittlung gestalterischer Grundlagen in der Entwicklung**  
+-  
+Umsetzung eines Konzeptes und Prototypen zur marktfähigen Webanwendung
+-----
+**25knots – Ein Tool zur Vermittlung gestalterischer Grundlagen in der Entwicklung**  
+-  
+Umsetzung eines Konzeptes und Prototypen zum marktfähigen Open-Source-Projekt
+-----
