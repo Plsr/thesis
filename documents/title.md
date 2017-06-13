@@ -18,7 +18,7 @@ Entwicklung einer Webanwendung vom Konzept und Prototypen zum marktfähigen Prod
 
 **25knots – Ein Tool zur Vermittlung gestalterischer Grundlagen in der Entwicklung**  
 
-Umsetzung eines Konzeptes und Prototypen zur marktfähigen Webanwendung
+Umsetzung vom Proof of Concept zur marktfähigen Webanwendung
 
 -----
 
