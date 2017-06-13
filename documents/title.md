@@ -1,5 +1,7 @@
 # Title
-This documents contains some drafts for titles and will eventually only contain the final title of the thesis.
+**25knots – Ein Tool zur Verbesserung der gestalterischen Qualität von Artefakten im Hochschulkontext** 
+
+Umsetzung vom Proof of Concept zur marktfähigen Webanwendung
 
 ## Drafts
 
