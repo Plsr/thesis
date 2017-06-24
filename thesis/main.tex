@@ -1,0 +1,29 @@
+\documentclass[12pt]{report}
+
+% Use UTF-8 encoding for the document
+\usepackage[utf8]{inputenc}
+
+% Use german language
+\usepackage[german]{babel}
+
+% Use Times as font family for the document
+\usepackage{times}
+
+% Set line height to 1.5
+\renewcommand{\baselinestretch}{1.5}
+
+% Set spacing of the outer edges of the page
+\usepackage{geometry}
+\geometry{a4paper, top=20mm, left=30mm, right=20mm, bottom=30mm, footskip=15mm}
+
+% Set header and footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\renewcommand{\headrulewidth}{0pt}
+\cfoot{} % Surpress centered line number
+\rfoot{\thepage}
+
+\begin{document}
+\include{chapters/introduction}
+\end{document}
