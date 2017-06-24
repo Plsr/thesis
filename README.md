@@ -4,4 +4,4 @@ This is the hub of everything based around my thesis. For now, there'll only be 
 
 ## Table of Contents
 1. [Research](research/RESEARCH.md)
-2. [Documnets](/documents)
+2. [Documents](/documents)
