@@ -37,11 +37,18 @@ Die finale Struktur der Anwendung für den Rahmen dieser Arbeit sieht also wie f
 \end{itemize}
 
 \subsection{Einstieg in die Anwendung}
-Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
-Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
-auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
-und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
-besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
+Bereits im Praxisprojekt wurde festgestellt, dass es sinnvoll ist, das Zielmedium des Nutzers zu kennen. Mit Blick auf die Zielgruppe wurden hier drei mögliche Bereiche definiert: Native App, Website und Textdokument. \textbf{NOTE: Hier verweis auf Untersuchung im PP}. Diese Bereiche können jedoch auch in sich verschiedene Eigenarten aufweisen, so kann ein Textdokument beispielsweise für das Lesen an einem Bildschirm oder das Lesen in gedruckter Form entworfen werden. Eine komplette Auflistung der möglichen Bereiche oder \textit{scopes} der Anwendung findet sich in Abbildung \ref{fig:intro} auf Seite \pageref{fig:intro}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{images/ablauf_intro.png}
+    \caption{Mögliche Entscheidungen im Einstieg der Anwendung}
+    \label{fig:intro}
+\end{figure}
+
+Obwohl die Abgrenzung der Bereiche für die hier definierte Zielgruppe ausreichend ist, lassen sich bereits jetzt einige Stellen erkennen, die bei einer möglichen späteren Erweiterung der Zielgruppe überarbeitet werden müsste. Vorrangig betrifft das den Bereich \textit{Website}. Hier ist die vorhandene Unterteilung in \textit{Responnsive} und \textit{Desktop} für ein Echtwelt-Szenario unter Umständen zu allgemein gehalten.
+
+Um den kognitiven Aufwand \textbf{Beleg} für den Nutzer möglichst gering zu halten, bietet es sich an, ihn Schrittweise durch das Festlegen des für ihn passenden Bereiches zu führen.
 
 \subsection{Ergebnisse der Benutzung}
 Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
