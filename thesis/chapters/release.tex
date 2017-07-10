@@ -31,18 +31,30 @@ Der Server hostet dabei den ordner \verb|dist|, in dem sich die gebuildeten File
   web: node server.js
 \end{lstlisting}
 
-Da sowohl Github Pages, als auch Heroku von sich aus eine recht kryptische URL verwenden, wurde weiterhin die Domain \verb|25knots.de| gekauft, um auch hier den Einstief für potentielle Nutzer so einfach wie möglich zu gestalten.
-
+Da sowohl Github Pages, als auch Heroku von sich aus eine recht kryptische URL verwenden, wurde weiterhin die Domain \verb|25knots.de| gekauft, um auch hier den Einstieg für potentielle Nutzer so einfach wie möglich zu gestalten.
 
 
 \section{Weiterentwicklung}
-Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
-Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
-auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
-und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
-besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
+Nachfolgend soll außerdem auf eine mögliche Weiterentwicklung der Anwendung nach dem Abschluss dieser Arbeit eingegangen werden. In diesem Zusammenhang stellen sich vor allem drei Fragen:
+\begin{enumerate}
+  \item Wie können Personen aus der Community dazu gebracht werden, an einer Weiterentwicklung mitzuarbeiten?
+  \item Wie kann eine durchgängig hohe Qualität des Quellcodes garantiert werden, auch wenn viele verschiedene Menschen daran arbeiten?
+  \item Wie kann das Mitwirken für Interessenten möglichst einfach gestaltet werden?
+\end{enumerate}
 
-\subsection{es-lint}
+Eine konkrete Beantwortung der ersten Frage gestaltet sich recht schwierig. Es lässt sich jedoch ein logischer Zusammenhang zwischen der Anzahl der Nutzer und der Anzahl der Mitwirkenden eines Projektes feststellen. Am Beispiel der Plattform Github können \textit{stars} als relativ sichere Mindestzahl der Nutzer gesehen werden. Laut \cite{borges2015popularity} besteht ein Zusammenhang zwischen \textit{stars} und der anzahl der Mitwirkenden an einem Projekt:
+
+\begin{quote}
+  In git-based systems, forks are used to either propose changes to an application or as
+a starting point for a new project. In both cases, the number of forks can be seen as a proxy
+for the importance of a project in GitHub. [...] Two facts can be observed in this figure. First, there is a strong positive
+correlation between stars and forks (Spearman rank correlation coefficient = 0.55). Second,
+only a few systems have more forks than stars.
+\end{quote}
+
+Somit ist eine Steigerung der Mitwirkenden also automatisch mit einer Steigerung der Nutzer der Anwendung verbunden. Der Inhalt diese Abschnittes soll also vorrangig mit der Beantwortung der zweiten und dritten Frage beschäftigen.
+
+\subsection{Sicherung der Code-Qualität}
 zahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
 auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
 und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
@@ -55,6 +67,12 @@ und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
 besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
 
 \subsection{Contribution Guidelines}
+zahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
+auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
+und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
+besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
+
+\subsection{Tests}
 zahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
 auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
 und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
