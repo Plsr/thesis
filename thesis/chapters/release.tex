@@ -8,15 +8,40 @@ und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
 besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
 
 \section{Hosting}
+Um den Zugang zur Anwendung für die Community möglichst einfach zu gestalten, bietet es sich an, diese zu hosten (einer andere, weniger geeignete Möglichkeit, wäre beispielsweise nur die Veröffentlichung des Quellcodes und das lokale hosten durch den Nutzer selbst).
+Da es sich bei der Anwendung um eine rein Clientseitige handelt, stehen eine Vielzahl von Möglichkeiten für das hosting zu Verfügung, da der Server lediglich statische html- und JavaScript-Dateien ausliefern muss.
+
+In die nähere Auswahl kamen in diesem Projekt Github Pages und Heroku. Ein hosting auf einem privaten Server wurde schnell ausgeschlossen, um die mögliche zusätzliche Arbeit möglichst gering zu halten.
+Da der Quellcode der Anwendung bereits auf Github veröffentlich wurde, scheint das Hosting über Github Pages zunächst die naheliegendste und einfachste Lösung. Ein Deployment auf Github Pages erfolgt nach entsprechenden Einstellungen im Repository einfach durch einen push auf den gh-pages branch. Die Anwenudung ist danach über die Domain username.github.io/rpository erreichbar. Größter Vorteil ist dabei, dass kein externer Service benötigt wird. Es treten aber auch einige Limitierungen auf. Beim testen der Hosting-Möglichkeiten wurde deutlich, dass das Modul React-Router den zusätzlichen Path nicht ohne weiteres unterstützt. Zwar bieten sich hier relative einfach Lösungen wie das verwenden von hashes anstatt von Pfaden im React-Router an, jedoch wurde mit blick auf die bereits bei simplen dingen auftretenden Probleme diese Möglichkeit zunächst als weniger geeignet eingestuft.
+
+Für das Hosting wurde sich für den Service Heroku entschieden. Heroku ist ein Saas, das ein Deployment und hosting ohne Setup und Konfiguration erlaubt. Ein Deployment auf Heroku läuft dabei über einen remote branch im git repository, kann also mit dem Befehl \verb|git push heroku master| gestartet werden. Heroku erkennt die verwendete Sprache automatisch und stellt alles nötige automatisch ein.
+Jedoch unterstützt Heroku lediglich Serverseitige Progrmmiersprachen und beitet keinen Support für das Hosting von statischen files. Um diese Anwendung zu hosten, muss also ein Server geschreiben werden. Da dieser nur statische Files hosten muss, ist dieser sehr simple in Node.js und dem Framework express geschrieben:
+
+\begin{lstlisting}
+  const express = require('express')
+  const app = express()
+
+  app.use(express.static(__dirname + '/dist'))
+  app.listen(process.env.PORT || 8080)
+\end{lstlisting}
+
+Der Server hostet dabei den ordner \verb|dist|, in dem sich die gebuildeten Files befinden (unter anderem auch die Datei \verb|index.html|, auf die ein Browser automatisch zurück greift). Mit der Datei \verb|Procfile| wird Heroku dann mitgeteilt, welche Befehle beim Deployment der Anwendung ausgeführt werden soll. Im Falles dieser Anwendung ist das die Datei \verb|server.js|. Das \verb|Procfile| besteht alsolediglich aus der Zeile
+
+\begin{lstlisting}
+  web: node server.js
+\end{lstlisting}
+
+
+
+\section{Weiterentwicklung}
 Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
 Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
 auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
 und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
 besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
 
-\section{Weiterentwicklung}
-Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
-Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
+\subsection{es-lint}
+zahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
 auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
 und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
 besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
