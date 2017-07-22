@@ -108,18 +108,34 @@ und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
 besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
 
 \subsection{Komponenten}
-Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
-Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
-auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
-und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
-besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
+Der Komponentenbasierte Aufbau ist eines der Hauptaugenmerke von React.js. Komponenten werden auf der offiziellen React.sj-Website \footnotemark als der wichtigsten Merkmale aufgeführt und Gackenheimer \cite[S. 28]{Gackenheimer201509} nennt sie einen der Hauptbestandteile einer React-Anwendung. \\
+Dieser Abschnitt beschäftigt sich mit dem Aufbau, der Verwendung, den verschiedenen Formen und den Besonderheiten von Komponenten in React. \\
+Natürlich kann und soll es nicht Ziel sein, einen umfassenden überblick über alle Informationen zu geben, die mit Komponenten in React in Verbindung stehen. Daher soll im Folgenden vorrangig auf in der Umsetzung als am relevantesten empfundene Aspekte eingegangen werden.
+\footnotetext{https://facebook.github.io/react/}
+
 
 \subsubsection{Was ist eine Komponente?}
-Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
-Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
-auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
-und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
-besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
+Bevor auf die Besonderheiten von Komponenten in React.js eingegangen wird, soll im Folgenden kurz ein Überblick über das Konzept der Komponente an sich gegeben werden.
+
+Das Oxford Dictionary definiert eine Komponente als
+
+\begin{quote}
+  A part or element of a larger whole […]
+\end{quote}
+
+Gerade im Bezug auf Softwareentwicklung werden Komponenten aber noch einige weitere Eigenschaften zugeschrieben. So schreiben \cite{Szyperski200211} über Komponenten in der Softwareentwicklung:
+
+
+\begin{quote}
+  One thing can be stated with certainty: components are for composition. […] Composition enables prefabricated “things” to be reused by rearranging them in ever-new composites.
+\end{quote}
+
+Das Hauptaugenmerk bei der Entwicklung einer Komponente in der Softwareentwicklung sollte also auf der Möglichkeit der Wiederverwendbarkeit innerhalb der Anwendung liegen. Dabei sollte der Ort für die Wiederverwendung keine Rolle spielen. Eine Komponente sollte also unabhängig von ihrer Umgebung die gleichen Ergebnisse liefern \cite{de2001interface}:
+
+
+\begin{quote}
+  It does not constrain the environment but describes the behavior of the component in an arbitrary environment: “for all inputs x and y, if y $\neq$ 0, then the output is z = x/y“
+\end{quote}
 
 \subsubsection{Komponenten in React.js}
 Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
