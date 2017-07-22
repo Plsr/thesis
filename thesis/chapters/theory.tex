@@ -272,11 +272,15 @@ Die Werte für diese Komponenten werden ihnen in der Oberkomponente als \verb|pr
 Ziel muss es also sein, so viele Komponenten wie möglich so klein wie möglich, optimaler Weise mit nur einer einzigen Aufgabe zu schreiben, um die Wiederverwendbarkeit zu erhöhen.
 
 \subsection{JSX}
-Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
-Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
-auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
-und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
-besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
+Hier soll nicht tiefer auf die Kompilierung und Prozess von JSX eigegangen werden, jedoch ist JSX ein elementarer Teil von React-Anwendung und sei der Vollständigkeit halber hier erwähnt. Im folgenden soll vorrangig auf die Unterschiede zwischen JSX und HTML und die Besonderheiten und Pitfalls während der Entwicklung mit JSX eingegangen werden.
+
+JSX ist eine (eigens für die Verwendung mit React entwickelte) Syntax-Erweiterung für JavaScript, die es Erlaubt, HTML-Ähnliche Tags in der \verb|render()|-Methode von React Komponenten zu verwenden (der Einsatz von JSX konnte bereits in den vorhergehenden Beispielen beobachtet werden).
+JSX ist dabei lediglich eine syntaktische Verschönerung der Funktion \verb|React.createElement(component, props, ...children)| \cite{ReactJSX}, auch wenn die Syntax der HTML-Syntax ähnlich sieht, werden alle JSX-Elemente in die genannte JavaScript-Funktion kompiliert.
+
+JSX unterstütz die Deklaration von regulären HTML-Elementen, als auch die von React-Komponenten. Unterschieden werden die beiden Varianten dabei nach Groß- und Kleinschreibung, wobei React-Komponenten groß- und reguläre HTML-Elemente klein geschrieben sind.
+React-Komponenten können dabei, wie oben bereits erwähnt, \verb|props| mitgegeben werden.
+Der Schritt von HTML zu JSX stellt in der Entwicklung keine große Herausforderung dar.
+Der wichtigste Punkt ist die Verwendung von \verb|class|. Auch bei der Entwicklung mit React werden für DOM-Elemente häufig Klassen vergeben. Da JSX-Code aber in JavaScript kompiliert wird, kann das in JavaScript reservierte Wort \verb|class| nicht verwendet werden. Es muss stattdessen auf \verb|className| zurück gegriffen werden. 
 
 \subsection{Beispielhafte Verwendung von Komponenten in der Anwendung}
 \textbf{Sollte vielleicht eher in der Umsetzung folgen, hier dann nur irgendwo eine Referenz auf das Kapitel}
