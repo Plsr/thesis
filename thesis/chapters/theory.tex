@@ -71,11 +71,13 @@ Es liegt dabei durchaus im Rahmen des Möglichen, diese Informationen vom Nutzer
 Hier wird dem Nutzer daher zunächst eine PDF zur Verfügung gestellt. Ein exemplarischer Aufbau kann ABB. XYZ entnommen werden.
 
 \section{Diskussion verfügbarer Technologien}
-Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
-Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
-auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
-und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
-besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
+Im Nachfolgenden Kapitel sollen mögliche Technologien diskutiert werden, die für die Umsetzung der Abschlussarbeit genutzt werden können. Für die Umsetzung einer Webanwendung bieten sich eine Vielzahl von Programmiersprachen und Frameworks an. Diese können durch die geplante Struktur der Anwendung jedoch bereits weiter eingegrenzt werden. Da die Anwendung keine persistente Datenhaltung implementiert und auch keine übermäßig aufwendigen Berechnungen durchgeführt werden müssen, kann auch ein klassisches Client-Server-Modell verzichtet werden.
+Aufgrund des hohen Grades der Interaktivität der Anwendung kann außerdem davon ausgegangen werden, dass in jedem Falle auf JavaScript zurück gegriffen werden muss.
+
+In den letzten Jahren wurden viele JavaScript-Frontend-Frameworks veröffentlicht, die genau auf die Anforderung der gestiegenen Interaktivität im Browser reagieren.
+Im Praxisprojekt wurde bereits versucht, den Proof of Concept nur mithilfe des Frameworks jQuery umzusetzen. Hier wurde schnell deutlich, dass die Komplexität der Anwendung den Rahmen von jQuery übersteigt.
+
+Im folgenden sollen also einige der bekanntesten JavaScript-Frontend-Frameworks verglichen werden. Die Auswahl dieser Frameworks erfolgt nach Beliebtheit auf GitHub.com. Weiterhin wurden Frameworks ausgeschlossen, die ein komplettes MCV-Pattern implementieren, da zum aktuellen Stand dieser Anwendung keine Models angemacht sind.
 
 \subsection{Vue.js}
 Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
@@ -104,6 +106,126 @@ Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
 auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
 und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
 besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
+
+\subsection{Komponenten}
+Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
+Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
+auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
+und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
+besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
+
+\subsubsection{Was ist eine Komponente?}
+Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
+Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
+auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
+und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
+besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
+
+\subsubsection{Komponenten in React.js}
+Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
+Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
+auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
+und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
+besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
+
+\subsubsection{Stateful \& Stateless}
+Komponenten in React.js können entweder Stateful oder Stateless sein. Wie der Name bereits vermuten lässt, haben diese Komponenten entweder  einen state, oder nicht.\\
+Der state in React.js beschreibt den Zustand eine Komponente. Hier findet sich auch eines der Hauptfeatures von React.js: Ändert sich der state einer Komponente, so wird diese Komponente neu gerendert, also auch das User Interface aktualisiert um den neuen Zustand darzustellen. Der state kann (und sollte) dabei durch das Aufrufen der Funktion \verb|setState()| geändert werden. Das nachfolgende Codebeispiel zeigt eine simple Komponente, die clicks auf einen Button zählt:
+
+\begin{lstlisting}
+  class ClickCounter extends React.Component{
+  	constructor(props) {
+  		super(props)
+
+  		this.state = {clicks: 0}
+  	}
+
+  	handleClick() {
+  		this.setState({
+  			clicks: this.state.clicks + 1
+  		})
+  	}
+
+  	render() {
+  		return (
+  			<button onClick={this.handleClick}>Click me!</button>
+  			{this.state.clicks}
+  		)
+  	}
+  }
+\end{lstlisting}
+
+Hier passiert folgendes: Im Konstruktor der Komponente (der nur ein mal, beim initialen rendern aufgerufen wird) wird die initiale Anzahl der Clicks im state auf 0 gesetzt.
+Die Komponente rendert ein \verb|<buttton>| element und die Anzahl der gezahlten Klicks. Wird der Button geklickt, wird die Funktion \verb|handleClick()| in der Komponente aufgerufen. Diese Funktion erhöht die Anzahl der Klicks im state um eins. Durch den aktualisierten state wird auch die Komponente neu gerendert, so dass nun auch die neue Klickzahl angezeigt wird. \\
+
+Die Komponente im obigen Beispiel ist also Stateful. Wie schon früher in diesem Kapitel erwähnt, ist es aber Ziel der Komponentenbasierten Softwareentwicklung, wiederverwendbare Komponenten zu schreiben.\\
+Diese Komponente ließe sich an jeder Stelle der Anwendung wiederverwenden, an der Klicks über einen Button gezählt werden müssen, jedoch ist die Wahrscheinlichkeit hoch, dass diese Anwendungsfall eher selten vorkommt. Außerdem ist die Wahrscheinlichkeit recht hoch, dass ein Button oder ein Element zur Darstellung von Werten in der Anwendung häufiger verwendet werden (natürlich würde eine einfache Darstellung wie im obigen Beispiel kein Sinn ergeben, für dieses Beispiel soll daher eine komplexere Darstellung der Daten angenommen werde, beispielsweise durch eine Progress-Bar).
+Eigentlich liegen hier also drei Komponenten vor: Eine Komponente, die Logik enthält und zwei weitere, die lediglich Daten darstellen, somit also stateless sind.\\
+
+Mit dem release von React 0.14 (https://facebook.github.io/react/blog/2015/09/10/react-v0.14-rc1.html) wurde eine simplifizierte Schreibweise für stateless components eingeführt. Die beiden Komponente aus dem Beispiel könnten somit wie folgt definiert werden:
+
+\begin{lstlisting}
+  export default function Button = (props) => {
+  	return (
+  		<button onClick={props.onClick}>Click me!</button>
+  	)
+  }
+\end{lstlisting}
+
+und
+
+\begin{lstlisting}
+  export default function ValueDisplay = (props) => {
+  	return (
+  		<div>{props.value}</div>
+  	)
+  }
+\end{lstlisting}
+
+Die Werte für diese Komponenten werden ihnen in der Oberkomponente als \verb|props| übergeben:
+
+\begin{lstlisting}
+  class ClickCounter extends React.Component{
+  	constructor(props) {
+  		super(props)
+
+  		this.state = {clicks: 0}
+  	}
+
+  	handleClick() {
+  		this.setState({
+  			clicks: this.state.clicks + 1
+  		})
+  	}
+
+  	render() {
+  		return (
+  			<Button onClick={this.handleClick} />
+  			<ValueDisplay value={this.state.clicks} />
+  		)
+  	}
+  }
+\end{lstlisting}
+
+Ziel muss es also sein, so viele Komponenten wie möglich so klein wie möglich, optimaler Weise mit nur einer einzigen Aufgabe zu schreiben, um die Wiederverwendbarkeit zu erhöhen.
+
+\subsection{JSX}
+Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
+Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
+auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
+und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
+besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
+
+\subsection{Weitergabe von Daten}
+Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
+Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
+auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
+und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
+besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
+
+
+
+
 
 \section{Technologie-Stack}
 Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
