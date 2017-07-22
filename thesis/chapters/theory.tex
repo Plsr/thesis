@@ -138,13 +138,59 @@ Das Hauptaugenmerk bei der Entwicklung einer Komponente in der Softwareentwicklu
 \end{quote}
 
 \subsubsection{Komponenten in React.js}
-Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
-Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
-auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
-und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
-besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
+Jede Komponente in React ist eine Subklasse der Basisklasse \verb|React.Component| \cite{ReactCom}.
+Konzeptuell besitzt jede Komponente in React einen Lifecycle. Die offizielle Dokumentation \cite{ReactCom} beschreibt in diesem Lifecycle drei Zustände:
+
+\begin{enumerate}
+  \item Mounting
+  \item Updating
+  \item Unmounting
+\end{enumerate}
+
+\textbf{Mounting} beschreibt dabei den Vorgang des erstellen der Komponente und des einfügens in den DOM. Funktionen, die beim Mounting aufgerufen werden, werden also nur ein einziges mal im gesamten Lifecycle aufgerufen (die Ausnahme bildet dabei die Funktion \verb|render()|, die auch beim Update Ereignis aufgerufen wird).
+
+Ein \textbf{Update} wird durch die Veränderung von \verb|props| oder \verb|state| herbeigeführt. Der Auslöser für ein Update kann dabei also sowohl von der Komponente selbst, als auch von einer anderen Komponente kommen, die diese Komponente aufgerufen hat.
+
+\textbf{Unmounting} wird unmittelbar vor dem entfernen der Komponente aus dem DOM aufgerufen.
+
+Abbildung XYZ zeigt eine Schematische Darstellung des Lifecycle einer React Komponente.
+
+Für jeden dieser verschiedenen Zustände bietet die Basisklasse \verb|React.Component| verschiedene Funktionen an, die überschreiben werden können um diese zu verwenden. Die Funktionen werden dabei entweder vor oder nach dem jeweiligen Ereignis im Lifecycle aufgerufen.
+Die einzelnen Funktionen sollen im Folgenden nicht im einzelnen erläutert werden, da diese ausreichend Dokumentiert sind.
+
+Für das Arbeiten mit Komponenten in React ist weiterhin das Konzept der \verb|props| und des \verb|state| relevant.
+\verb|props| sind Daten, die von einer Komponente zur anderen übergeben werden können. Diese können beliebige JavaScript Objekte oder Primitive sein, somit können auch Referenzen auf Funktionen and Kind-Komponenten übergeben werden.  Die Kind-Komponente kann dann via \verb|this.props.propName| auf die ihr mitgegebenen props zugreifen.
+Listing XZY verdeutlich dieses Prinzip
+
+\begin{lstlisting}
+  class Parent extends REact.Component {
+  	calculateSomething() {
+  		// Claculates something
+  		return result
+  	}
+
+  	render() {
+  		let result = this.calculateSomething()
+
+  		return (
+  			<Child value={result} />
+  		)
+  	}
+  }
+
+  class Child extends React.Component {
+  	render() {
+  		return (
+  			<div>{this.props.value}</div>
+  		)
+  	}
+  }
+\end{lstlisting}
+
+Das Prinzip des \verb|state| wird im Kapitel Stateless \& Stateful auf Seite \pageref{chap:stateless} näher erläutert.
 
 \subsubsection{Stateful \& Stateless}
+\label{chap:stateless}
 Komponenten in React.js können entweder Stateful oder Stateless sein. Wie der Name bereits vermuten lässt, haben diese Komponenten entweder  einen state, oder nicht.\\
 Der state in React.js beschreibt den Zustand eine Komponente. Hier findet sich auch eines der Hauptfeatures von React.js: Ändert sich der state einer Komponente, so wird diese Komponente neu gerendert, also auch das User Interface aktualisiert um den neuen Zustand darzustellen. Der state kann (und sollte) dabei durch das Aufrufen der Funktion \verb|setState()| geändert werden. Das nachfolgende Codebeispiel zeigt eine simple Komponente, die clicks auf einen Button zählt:
 
@@ -232,7 +278,9 @@ auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbark
 und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
 besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
 
-\subsection{Weitergabe von Daten}
+\subsection{Beispielhafte Verwendung von Komponenten in der Anwendung}
+\textbf{Sollte vielleicht eher in der Umsetzung folgen, hier dann nur irgendwo eine Referenz auf das Kapitel}
+
 Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
 Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
 auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
