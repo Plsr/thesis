@@ -273,6 +273,8 @@ Die Werte für diese Komponenten werden ihnen in der Oberkomponente als \verb|pr
 
 Ziel muss es also sein, so viele Komponenten wie möglich so klein wie möglich, optimaler Weise mit nur einer einzigen Aufgabe zu schreiben, um die Wiederverwendbarkeit zu erhöhen.
 
+\textbf{Hier irgendwo eine Referenz auf Beispielhafte Verwendung von Komponenten in der Anwendung}
+
 \subsection{JSX}
 Hier soll nicht tiefer auf die Kompilierung und Prozess von JSX eigegangen werden, jedoch ist JSX ein elementarer Teil von React-Anwendung und sei der Vollständigkeit halber hier erwähnt. Im folgenden soll vorrangig auf die Unterschiede zwischen JSX und HTML und die Besonderheiten und Pitfalls während der Entwicklung mit JSX eingegangen werden.
 
@@ -285,15 +287,6 @@ Der Schritt von HTML zu JSX stellt in der Entwicklung keine große Herausforderu
 Der wichtigste Punkt ist die Verwendung von \verb|class|. Auch bei der Entwicklung mit React werden für DOM-Elemente häufig Klassen vergeben. Da JSX-Code aber in JavaScript kompiliert wird, kann das in JavaScript reservierte Wort\footnotemark \verb|class|  nicht verwendet werden. Es muss stattdessen auf \verb|className| zurück gegriffen werden.
 
 \footnotetext{\url{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar}}
-
-\subsection{Beispielhafte Verwendung von Komponenten in der Anwendung}
-\textbf{Sollte vielleicht eher in der Umsetzung folgen, hier dann nur irgendwo eine Referenz auf das Kapitel}
-
-Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
-Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
-auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
-und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
-besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
 
 
 \section{Einstieg in Redux}
@@ -314,8 +307,14 @@ Abb XYZ zeigt einen schematischen Ablauf einer Aktualisierung des redux stores.
 Detailliertere Erläuterungen zur Implementation von redux im Rahmen der Anwendung finden sich in Kapitel ABC.
 
 \section{Komponentenbasierte Gestaltung}
-Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
-Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
-auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
-und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
-besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
+Bei einer so stark komponentenbasierten Entwicklung ergibt auch eine Anpassung des Design-Prozesse an diese Strategie Sinn. Dabei ist jedoch ein rein komponentenbasierter Designprozess nicht die Optimale Lösung, denn Aspekte wie Interaktion im Gesamtkontext der Anwendung und auch gestalterisches Zusammenspiel der verschiedenen Komponenten müssen getestet werden.
+Daher werden zunächst Wireframes mit Hilfe des Tool UXPin\footnotemark erstellt, um die allgemeine Struktur der Anwendung zu entwerfen. Auf basis dieser Wireframes können dann bereits einzelne Komponenten definiert werden, die anschließend Gestaltet werden können. Jedoch muss die endgültige Gestaltung dieser Komponenten im Gesamtverbund einer Seite erfolgen, um garantieren zu können, dass die Komponenten untereinander harmonieren.
+
+\footnotetext{url{https://www.uxpin.com/}}
+
+Bei einer Komponentenbasierten Gestaltung (und gerade auch mit Blick auf die Weiterentwicklung durch die Community) bietet sich außerdem immer ein Styleguide an, der einen überblick über die verschiedenen Komponenten gibt. Dieser Styleguide soll in diesem Projekt in Form von Storybook\footnotemark abgebildet werden.
+Storybook bietet dabei nicht nur die Möglichkeit, einen überblick über die vorhandenen Komponenten zu bilden, sonder erlaubt es auch, den Code direkt aus der Anwendung einzubinden. Das heißt, es muss nicht extra für den Styleguide doppelter Code beschreiben werden. Weiterhin können Komponenten zunächst in Storybook entwickelt werden, der Fokus kann also rein auf der zu entwickelnden Komponente liegen und es muss nicht auf die umliegende Anwendung geachtet werden.
+
+\footnotetext{url{https://storybook.js.org/}}
+
+[HIER NOCH BILD]
