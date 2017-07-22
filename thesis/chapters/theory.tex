@@ -156,10 +156,10 @@ Der state in React.js beschreibt den Zustand eine Komponente. Hier findet sich a
   		this.state = {clicks: 0}
   	}
 
-  	handleClick() {
-  		this.setState({
-  			clicks: this.state.clicks + 1
-  		})
+    handleClick() {
+  		this.setState((prevState) => {
+    			return {clicks: prevState.clicks + 1};
+  		});
   	}
 
   	render() {
@@ -208,10 +208,10 @@ Die Werte für diese Komponenten werden ihnen in der Oberkomponente als \verb|pr
   		this.state = {clicks: 0}
   	}
 
-  	handleClick() {
-  		this.setState({
-  			clicks: this.state.clicks + 1
-  		})
+    handleClick() {
+  		this.setState((prevState) => {
+    			return {clicks: prevState.clicks + 1};
+  		});
   	}
 
   	render() {
