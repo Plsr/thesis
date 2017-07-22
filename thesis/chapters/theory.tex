@@ -111,7 +111,7 @@ besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
 Der Komponentenbasierte Aufbau ist eines der Hauptaugenmerke von React.js. Komponenten werden auf der offiziellen React.sj-Website \footnotemark als der wichtigsten Merkmale aufgeführt und Gackenheimer \cite[S. 28]{Gackenheimer201509} nennt sie einen der Hauptbestandteile einer React-Anwendung. \\
 Dieser Abschnitt beschäftigt sich mit dem Aufbau, der Verwendung, den verschiedenen Formen und den Besonderheiten von Komponenten in React. \\
 Natürlich kann und soll es nicht Ziel sein, einen umfassenden überblick über alle Informationen zu geben, die mit Komponenten in React in Verbindung stehen. Daher soll im Folgenden vorrangig auf in der Umsetzung als am relevantesten empfundene Aspekte eingegangen werden.
-\footnotetext{https://facebook.github.io/react/}
+\footnotetext{\url{https://facebook.github.io/react/}}
 
 
 \subsubsection{Was ist eine Komponente?}
@@ -224,7 +224,9 @@ Die Komponente im obigen Beispiel ist also Stateful. Wie schon früher in diesem
 Diese Komponente ließe sich an jeder Stelle der Anwendung wiederverwenden, an der Klicks über einen Button gezählt werden müssen, jedoch ist die Wahrscheinlichkeit hoch, dass diese Anwendungsfall eher selten vorkommt. Außerdem ist die Wahrscheinlichkeit recht hoch, dass ein Button oder ein Element zur Darstellung von Werten in der Anwendung häufiger verwendet werden (natürlich würde eine einfache Darstellung wie im obigen Beispiel kein Sinn ergeben, für dieses Beispiel soll daher eine komplexere Darstellung der Daten angenommen werde, beispielsweise durch eine Progress-Bar).
 Eigentlich liegen hier also drei Komponenten vor: Eine Komponente, die Logik enthält und zwei weitere, die lediglich Daten darstellen, somit also stateless sind.\\
 
-Mit dem release von React 0.14 (https://facebook.github.io/react/blog/2015/09/10/react-v0.14-rc1.html) wurde eine simplifizierte Schreibweise für stateless components eingeführt. Die beiden Komponente aus dem Beispiel könnten somit wie folgt definiert werden:
+Mit dem release von React 0.14\footnotemark wurde eine simplifizierte Schreibweise für stateless components eingeführt. Die beiden Komponente aus dem Beispiel könnten somit wie folgt definiert werden:
+
+\footnotetext{\url{https://facebook.github.io/react/blog/2015/09/10/react-v0.14-rc1.html}}
 
 \begin{lstlisting}
   export default function Button = (props) => {
@@ -280,7 +282,9 @@ JSX ist dabei lediglich eine syntaktische Verschönerung der Funktion \verb|Reac
 JSX unterstütz die Deklaration von regulären HTML-Elementen, als auch die von React-Komponenten. Unterschieden werden die beiden Varianten dabei nach Groß- und Kleinschreibung, wobei React-Komponenten groß- und reguläre HTML-Elemente klein geschrieben sind.
 React-Komponenten können dabei, wie oben bereits erwähnt, \verb|props| mitgegeben werden.
 Der Schritt von HTML zu JSX stellt in der Entwicklung keine große Herausforderung dar.
-Der wichtigste Punkt ist die Verwendung von \verb|class|. Auch bei der Entwicklung mit React werden für DOM-Elemente häufig Klassen vergeben. Da JSX-Code aber in JavaScript kompiliert wird, kann das in JavaScript reservierte Wort \verb|class| nicht verwendet werden. Es muss stattdessen auf \verb|className| zurück gegriffen werden. 
+Der wichtigste Punkt ist die Verwendung von \verb|class|. Auch bei der Entwicklung mit React werden für DOM-Elemente häufig Klassen vergeben. Da JSX-Code aber in JavaScript kompiliert wird, kann das in JavaScript reservierte Wort\footnotemark \verb|class|  nicht verwendet werden. Es muss stattdessen auf \verb|className| zurück gegriffen werden.
+
+\footnotetext{\url{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar}}
 
 \subsection{Beispielhafte Verwendung von Komponenten in der Anwendung}
 \textbf{Sollte vielleicht eher in der Umsetzung folgen, hier dann nur irgendwo eine Referenz auf das Kapitel}
@@ -293,11 +297,21 @@ besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
 
 
 \section{Einstieg in Redux}
-Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
-Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
-auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
-und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
-besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
+Redux\footnotemark  erlaubt die zentrale Verwaltung des state bzw. des Zustandes der Anwendung im sogenannten redux store. Dabei ersetzt der redux store nicht zwangsweise den state von einzelnen Komponenten. Es gibt keine genauen Richtlinien dafür, wann ein state in der Komponente und wann im redux store verwaltet werden sollte, jedoch bietet es sich als Richtlinie an, nur Zustände im redux store zu verwalten, die von mehr als nur einer einzigen Komponente verwendet werden.
+Redux besteh dabei aus drei Grundbestandteilen: Dem \textit{Store}, den \textit{Actions} und den \textit{Reducern}.
+
+\footnotetext{\url{http://redux.js.org/}}
+
+Wie bereits erwähnt wird im Store der Zustand der Anwendung verwaltet. Der \textit{Store} an sich kann dabei ein beliebiges JavaSCript Objekt (Funktionen ausgenommen) oder Primitiv sein. Für diesen \textit{Store} hat die Anwendung nur Leserecht, er darf nicht direkt manipuliert werden. Für eine Änderung des Stores werden die anderen beiden Bestandteile benötigt.
+
+\textit{Actions} beschreiben Aktionen und sind JavaScript Objekte. Sie müssen mindestens einen \verb|type| Parameter haben, der beschreibt, welche Aktion ausgeführt werden soll. Weiterhin können sie Daten definieren, die für die Änderung des stores von Bedeutung sind. Das absenden dieser actions ist der einzige weg, mit dem die Anwendung den \textit{Store} verändern kann.
+
+\textit{Reducer} definieren, wie der Zustand der Anwendung je nach erhaltener Aktion verändert werden muss. Ist beispielsweise der \verb|type| einer \textit{Action} \verb|INCREMENT_DOWNLOADS_COUNT| kann im \textit{Reducer} definiert sein, dass beim erhalten dieser action das Feld \verb|downloadsCount| im \textit{Store} um eins erhöht werden muss.
+
+Ein \textit{Provider} macht den \textit{Store} dann für Container-Komponenten verfügbar. Diese verteilen den \textit{Store} und die actions als props an representative Komponenten. Ändert sich der \textit{Store} erhalten die entsprechen betroffenen Komponenten also neue \textit{props} und werden somit neu gerendert.
+Abb XYZ zeigt einen schematischen Ablauf einer Aktualisierung des redux stores.
+
+Detailliertere Erläuterungen zur Implementation von redux im Rahmen der Anwendung finden sich in Kapitel ABC.
 
 \section{Komponentenbasierte Gestaltung}
 Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
