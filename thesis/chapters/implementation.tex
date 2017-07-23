@@ -35,11 +35,11 @@ und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
 besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
 
 \subsection{Redux}
-Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
-Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
-auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
-und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
-besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
+\begin{itemize}
+  \item Trennung in verschiedene Sub-Stores
+  \item Container
+  \item Kein direktes dispatch in Components mehr
+\end{itemize}
 
 \subsection{React Storybooks}
 Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
@@ -136,13 +136,105 @@ und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
 besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
 
 \section{Typographie}
+Wie bereits erwähnt wurde für den Bereich Typographie bereits im Rahmen des Praxisprojektes ein Proof of Concept entwickelt, der weite Teile der erarbeiteten Logik implementierte.
+Im Folgenden soll daher vor allem auf die Bereiche eingegangen werden, die im Vergleich zum Praxisprojekt neu oder verändert sind. Vorrangig sind dies die Gestaltung und generelle Konzeption, sowie eine bessere Implementierung des Redux Stores und von React-Komponenten an sich.
+
+\subsection{Konzeption}
+Das Grundlegende Konzept zur Interaktion mit der Anwendung wurde aus dem Praxisprojekt übernommen, auch im Rahmen der Abschlussarbeit ist dieser Teil der Anwendung zweigeteilt: Zum einen wird das Ergebnis der Einstellungen in Form eines gesetzten Textes angezeigt, zum anderen werden verschiedene Möglichkeiten zur Manipulation des Textes in einer Tab-Navigation angezeigt.\\
+Eine Andere Idee hier war die Möglichkeit zur direkten Interaktion mit Elementen. So hätte beispielsweise eine Überschrift angeklickt und deren Attribute daraufhin editiert werden können (Abb. ABC zeigt ein Beispiel). Gegen diesen Ansatz wurde sich aus verschieden Gründen entschieden.\\
+Zum Einen wären für allgemeinere Einstellungen (wie z.B. die Wahl der Schriftart oder die Einstellung zur Laufweite des Textes gesonderte Bedienelemente nötig gewesen. Dem wurde eine geordnete Darstellung der Bedienelemente an einer zentralen Stelle vorgezogen. Damit einher wäre das Problem einer übersichtlichen Fehleranzeige gegangen: Es stellte sich als kompliziert dar, deutlich zu machen, zu welchem Attribut ein Fehler zugehörig ist.\\
+
+Eine Konzeptuelle Neuerung stellt der Reset-Button dar. Dieser erlaubt ein einfaches zurücksetzen auf die Standardeinstellung und nimmt es dem Nutzer damit ab, im Zweifel 10 oder mehr Werte verändern zu müssen, um auf eine gute Einstellung zurück zu kommen.\\
+
+Im Bezug auf die Standardeinstellungen stellt sich die Fragen: Welche Einstellungen sind hier zu bevorzugen? Es wurde sich bewusst gegen eine fehlerfreie Standardeinstellung entschieden, da es dem Nutzer nicht möglich ist, in der Anwendung einen Schritt vorwärts zu gehen, wenn noch Warnungen angezeigt werden. So kann sicher gestellt werden, dass der Nutzer sich auf jeden Fall mit dem Bereich Typographie befasst.\\
+\textbf{[EVTL DARK PATTERN?]}\\
+Auf der anderen Seite sollten die Standardeinstellung nicht zu viele Fehler enthalten, um den Nutzer nicht zu demotivieren.\\
+
+Weiterhin wurde auf mobile Geräte als Zielmedium eingegangen: Hier funktioniert die Rechnung der optimalen Zeilenlänge nach Anzahl der Wörter nicht mehr (wenigstens nicht in einem Rahmen, der einen Lesbaren Text liefern kann), außerdem sind die Schriftgrößen anders zu bewerten.\\
+\textbf{[ HIER NOCH SCHAUEN, WELCHE RICHTLINIEN ES DA GIBT ]}\\
+Andere Werte, wie zum Beispiel der Zeilenabstand bleiben davon aber unberührt. Weiter Informationen zur Umsetzung der verschiedenen Bereiche für verschiedene Zielmedien finden sich im Kapitel Entwicklung.
+
+\subsection{Gestaltung}
+Wie bereits erwähnt wurde das grundlegende Layout aus dem Praxisprojekt beibehalten, jedoch wurde die Anordnung verändert: Statt übereinander sind die beiden Bereiche nun nebeneinander angeordnet. Dies hat den Effekt, dass sowohl die Bedienelemente, als auch der größte Teil des gesetzten Textes in einem Viewport dargestellt werden können.\\
+Während der Geltung wurde versucht, den Fokus auf den zu setzenden Text zu legen und die Bedienelemente eher in den Hintergrund zu rücken. Durch die dunklere Hintergrundfarbe sollte aber auch eine klare Trennung der beiden Element nach ihren Aufgaben (Output oder Input) kommuniziert werden (Abbildung ASD zeigt ein High-Fidelity-Mockup dieses Bereiches).\\
+\textbf{[BILD FEHLT]}\\
+Außerdem wurde als Einstieg in den Bereich Typographie eine statische Seite entworfen, die kurz die Funktion des Bereiches aufzeigt (ABB. XYV zeigt eine schematische Ablauf der Interaktion). Zwar ist die Funktion dieses Bereiches recht eindeutig und simpel,  jedoch sollte es Ziel sein, den Nutzer so gut wie möglich während seiner Nutzung der Anwendung zu begleiten.\\
+\textbf{[BILD FEHLT]}
+
+\subsection{Entwicklung}
+Die größte Neuerung in der Entwicklung im Vergleich zum Praxisprojekt war die Anwendung der Scopes, also der Zielmedien für die der Benutzer gestaltet. Hauptsächlich Interessant für den Bereich Typographie war dabei, ob der Nutzer für das Lesen am Bildschirm oder auf Papier gestaltet und das Mobile Betriebssystem, falls er eine Native Applikation entwickelt. Hauptsächlich wirken sich diese Scopes auf die wählbaren Schriftfamilien aus.\\
+
+Die Umsetzung ist dabei recht simpel: Die verfügbaren Schriftfamilien sind als in einer Konstante gespeichert., sie sind dabei nach dem Namen ihres Scopes aufgeschlüsselt.
+
+\begin{lstlisting}
+  export const FONTS = {
+    DISPLAY: [
+      'Verdana', 'Arial', 'Tahoma', 'TrebuchetMS'
+    ],
+    RESPONSIVE: [
+      'Verdana', 'Arial', 'Tahoma', 'TrebuchetMS'
+    ],
+    NOT_RESPONSIVE: [
+      'Verdana', 'Arial', 'Tahoma', 'TrebuchetMS'
+    ],
+    PAPER_DISPLAY: [
+      'Verdana', 'Arial', 'Tahoma', 'TrebuchetMS', 'Times New Roman', 'Georgia', 'Palatino'
+    ],
+    PAPER: [
+      'Times New Roman', 'Georgia', 'Palatino'
+    ],
+    ANDROID: [
+      'Roboto', 'Noto'
+    ],
+    IOS: [
+      'San Francisco'
+    ]
+  }
+\end{lstlisting}
+
+In der entsprechenden Komponente, die ein Dropdown-Menu mit den verschiedenen Optionen darstellt, wir dann einfach das zum aktuellen Scope passende Array ausgewählt:
+
+\begin{lstlisting}
+  determineFontFamilies() {
+    let scope = this.props.scopes[1]
+    return FONTS[scope]
+  }
+\end{lstlisting}
+
+Dieser Aufbau ermöglicht sowohl ein einfach hinzufügen und entfernen von Schriftfamilien, also auch das hinzufügen und entfernen von ganzen Scopes, was gerade mit Blick auf die Weiterentwicklung durch die Community interessant ist.\\
+
+\textbf{[HIER FEHLT NOCH DER MOBILE SCOPE]}\\
+
+Im Vergleich zum Praxisprojekt wurde weiterhin der Komponentenbasierte Aufbau verbessert. Währen im Praxisprojekt noch 21 Komponenten für die Darstellung verwendet wurden, konnte diese Zahl im rahmen der Abschlussarbeit auch 10 verringert werden.\\
+\textbf{[ WIE KONNTE DAS ERREICHT WERDEN? ]}
+
+Dies lässt sich beispielhaft an der Komponente aufzeigen, die verschiedene Möglichkeiten zur Manipulation von Attributen von Überschriften darstellt. In der Anwendung gibt es drei Überschriften verschiedener Ordnung, die in den Werten Größe,  Abstand nach oben und Abstand  nach unten verändert werden können. Im Praxisprojekt gab es hier für jede Überschrift verschiedener Ordnung eine eigene Komponente, im Rahmen der Abschlussarbeit konnte dies auf nur eine Komponente reduziert werden.\\
+Der Hauptgrund hierfür ist das auslagern der Logik in andere Bereiche der Anwendung. So werden die Fehler nicht mehr innerhalb der Komponente errechnet, sondern lediglich dargestellt. Alle anderen Werte werden der Komponente beim Aufruf aus der Elternkomponente übergeben. Die prop area gibt dabei an, welchen Bereich des Stores diese Komponente verändert.
+
+\begin{lstlisting}
+  <HeadlineControls
+  	onChange={this.props.setValueInArea}
+  	area={'headline1'}
+  	title={'Headline 1'}
+  	componentErrors={errors.headline1}
+  	{...this.props.headline1}
+  />
+\end{lstlisting}
+
+\subsection{Ausblick}
+Auch wenn hier eine solide und Marktfähige Version dieses Bereiches erstellt werden konnte, wurden währen der Entwicklung noch weitere Bereiche deutlich, die in Zukunft potentielle Verbesserung bieten können.\\
+So wäre eine bessere visuelle Darstellung, welche Bereich beim Manipulieren eines Werte verändert werden, wünschenswert. Aktuell wird dies zwar bei Veränderungen in großen Schritten schnell deutlich, bei kleineren Schritten ist die Darstellung jedoch nicht optimal.\\
+Weiterhin kann eine bessere Umsetzung für den Scope Responsive erreicht werden, Hier werden in der Regel mehrere Versionen von gesetztem Text benötigt.
+
+
+\section{Farben}
 Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
 Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
 auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
 und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
 besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
 
-\section{Farben}
+\section{Layouts \& Grid}
 Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
 Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
 auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
