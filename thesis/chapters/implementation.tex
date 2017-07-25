@@ -129,11 +129,38 @@ Die Struktur der style-objekte ist dabei der von inline-style-objekten gleich.
 Mit der Verwendung von Aphrodite können also Aussehen und Funktion von Komponenten in der gleichen Datei gehalten werden, ohne dabei den Limitierungen von inline-styles zu unterliegen.
 
 \section{Einstieg}
-Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
-Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
-auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
-und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
-besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
+Auf die Konzeptionellen Aspekte des Einstiegs in die Applikation wurde bereits im Kapitel Einstieg in die Anwendung [VERWEIS] eingegangen. In diesem Abschnitt soll ergänzend  auf einige konkrete Aspekte der Gestaltung und Entwicklung eingegangen werden.
+
+\subsection{Gestaltung}
+Bereits im Kapitel Einstieg in die Anwendung [VERWEIS] wurde angesprochen, dass ein schrittweises Führen des Nutzers durch das Festlegen seines Entwicklungskontextes sinnvoll ist.
+Hierfür wurde im ersten Schritt ein Wizard entworfen, der den Nutzer schrittweise durch die Knoten der verschiedenen Ebenen des Baumes in ABB XYC auf Seite ABC [VERWEIS]  führt.
+Hierbei wurden Buttons mit Icons und Beschreibung verwendet, um eine Unterscheidung zwischen den verschiedenen Optionen für den Nutzer so einfach wie möglich zu machen [BELEG].
+Am Ende des Wizards wird dem Nutzer der von ihm gewählte Entwicklungskontext noch einmal zusammengefasst dargestellt. Außerdem wird ihm die Option geboten, den Vorgang zu wiederholen, sollten die Ergebnisse nicht den gewünschten entsprechen.  Zum jetzigen Zeitpunkt ist  diese Funktion nicht unbedingt eine Notwendige, jedoch ist nicht ausgeschlossen, dass die Entwicklungskontexte zu einem späteren Zeitpunk zahlreicher oder tiefer verschachtelt werden.
+Der Gestaltete Wizard kann ABB XZY entnommen werden [BILD FEHLT].
+
+Hier wird auch die Verwendung der beiden Farben in der Applikation deutlich: Das Blau verändert Werte innerhalb eines einzelnen Schrittes, das Rot dient zu Navigation zwischen den verschiedenen Schritten der Applikation.
+
+\subsection{Entwicklung}
+Das Hauptaugenmerk in der Entwicklung lag in diesem Schritt im setzen der Scopes für die Anwendung. Da auf die Scopes in allen späteren Teilen der Anwendung zugegriffen werden können muss wurde schnell deutlich, dass diese im Application Sate, also dem Redux Store gehalten werden müssen. Hier stellte sich jedoch vor allem die Fragen nach der Datenstruktur der Scopes, wobei die Möglichkeiten auf die Haltung in einem Array oder als JavaScript Objekt begrenzt wurden.
+Ein Array bietet dabei eine höhere Flexibilität, jedoch eine deutlich ungenauere Beschreibung der Scopes. So können andere Komponenten herausfinden, ob der für ihren Anwendungsfall relevanten Scope sich im Array der Scopes befindet, ohne Kenntnis darüber haben zu müssen, wie der Schlüssel des Scopes innerhalb des JavaScript Objektes lautet. Auch spielt die Länger der verschiedenen Äste des Baumes bei der Verwendung des Arrays eine weniger große Rolle, während bei der Verwendung eines Objektes immer auch geprüft werden muss, ob der key im store überhaupt vorhanden ist. Daher wurde an dieser Stelle ein Array verwendet.
+[HIER SPÄTER NOCH MAL SCHAUEN, OB DAS NOCH STIMMT]
+
+An dieser Stelle wird außerdem der in Kapitel Stateful \& Stateless [VERWEIS] angesprochene Unterschied zwischen Component State und Application State deutlich. Die Interaktion des Nutzers mit dem Wizard findet wie folgt statt: Der Nutzer wählt einen Scope aus, dieser wird von der Anwendung hervor gehoben. Mit einem Klick auf den “Next”-Button wird die Selektion gespeichert und darauf aufbauend neue Optionen angezeigt.
+Abb XYZ [BILD FEHLT] zeigt noch einmal den Aufbau des Wizards in Verbindung mit den beteiligten Komponenten. Dabei ist nur der SetupContainer [NAME STIMMT NICHT] stateful, dieser kümmert sich um die Anzeige des vom Nutzer ausgewählten Scopes, der im state dieser Komponente gespeichert ist
+
+\begin{lstlisting}
+  constructor(props) {
+    super(props)
+
+	  // shortended for readability
+
+    this.state = {
+      activeOption: false // currently active option, 'false' by default
+  }
+\end{lstlisting}
+
+Da die aktuell gewählte Option nur für diese Komponente von Bedeutung ist, wird diese auch nicht in den Application State geschrieben. Bestätigt der Nutzer die Auswahl jedoch mit dem “Next”-Button, wird der Wert des aktuell aktiven Elements in den Store geschrieben.
+
 
 \section{Typographie}
 Wie bereits erwähnt wurde für den Bereich Typographie bereits im Rahmen des Praxisprojektes ein Proof of Concept entwickelt, der weite Teile der erarbeiteten Logik implementierte.
