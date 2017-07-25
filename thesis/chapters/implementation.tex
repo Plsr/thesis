@@ -63,7 +63,7 @@ Auch die Verwendung von CSS-Präsporzessoren wie zum Beispiel SCSS stellt kein P
 Die kompilierte Dom-Node wäre dabei
 
 \begin{lstlisting}
-  <ReactComponent className='myClass'>
+  <ReactComponent class='myClass'>
    Content
   </ReactComponent>
 \end{lstlisting}
@@ -255,11 +255,137 @@ Weiterhin kann eine bessere Umsetzung für den Scope Responsive erreicht werden,
 
 
 \section{Farben}
-Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
-Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
-auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
-und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
-besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
+Der Bereich Farben bietet einige neue Aspekte in der Entwicklung, vor allem, weil dieser Bereich im Praxisprojekt nur in der Theorie definiert wurde. Hier standen also weder Code noch Struktur zur Verfügung, auf denen aufgebaut werden konnte (die Ausnahme bilden einige Wireframes. Der folgende Abschnitt erläutert die Gedankengänge hinter der Konzeption und einige interessante Aspekte, die während der Entwicklung auftraten.
+
+\subsection{Konzeption}
+Dieser Bereich wird sehr stark vom Entwicklungskontext des Nutzers beeinflusst, vor allem weil beide abgebildeten mobilen Betriebssysteme sehr genaue Vorgaben im Bereich der zu verwendenden Farben machen.
+Daher wurde dieser Bereich in zwei Schritten konzipiert: Das finden einer Grundfarbe und das finden einer Akzentfarbe.
+
+Generell wurde die Idee aufgegriffen, Farben nach bestimmten Adjektiven wählen zu können. Dabei bietet sich, je nach Entwicklungskontext ein unterschiedlich vielfältiger Pool aus verfügbaren Farben.
+Für alle Scopes außerhalb der mobilen Betriebssysteme sind die Farben nicht begrenzt, es steht dem Nutzer also Frei, jede hexadezimal darstellbare Farbe zu wählen. Für die Auswahl nach Adjektiven wurde die Zahl der Farben jedoch auch etwa 20 [ZAHL NOCH GENAU NACH SCHAUEN] reduziert, um hier eine gut Übersicht erhalten zu können. Eine Übersicht der Adjektive und Farben bietet ABB. XZY [BILD FEHLT]
+
+[HIER FEHLT NOCH: WIE KOMMEN DIE ADJEKTIVE ZUSTANDE?]
+
+Die beiden mobilen Betriebssysteme sind in ihren Guidelines hier deutlich restriktiver. Android definiert 18 [ZAHL NOCH MAL NACHSEHEN] Farben in verschiedenen Farbtönen. Den Guidelines folgend werden dem Nutzer hier die Farben im Farbton 500 dargestellt, aus denen er wählen kann.
+In den Guidelines von iOS ist die Zahl der Farben mit 8 [ZAHL NOCH GUCKEN] am geringsten.
+In beiden Fällen konnte aber Trotzdem eine Auswahl nach Adjektiven, wenn auch limitierter, weiterhin angeboten werden.
+
+Im zweiten Schritt soll dem Nutzer dann beim finden einer Akzentfarbe geholfen werden. Auch hier unterscheiden sich die Vorgänge je nach Entwicklungskontext.
+Im Bereich iOS fällt das finden einer Akzentfarbe ganz weg, das Apple eine Gestaltung mit nur einer Farbe (die in sich also eher eine Akzentfarbe als wie hier definiert eine Grundfarbe darstellt) nahe legt [VERWEIS].
+Im Bereich Android gibt es in allen Farbtönen drei Abstufungen, die zur Verwendung als Akzentfarbe gedacht sind. Diese werden dem Nutzer hier zur Auswahl gestellt.
+In allen anderen Bereichen ist die Anzahl der Farben, wie schon im ersten Schritt, nicht eingeschränkt.  Hier soll dem Nutzer die Möglichkeit geboten werden, Farbkombinationen in der Kontrasten Komplementär, Triadisch und Monochromatisch zu erstellen.
+Zu den ermittelten Farben werden dann weiterhin weiss und schwarz hinzugefügt. Für Android sind auch diese definiert, in allen anderen Bereichen (iOS ausgenommen) sind diese als \verb|#ffffff| und \verb|#333333| festgelegt.
+
+\subsection{Gestaltung}
+[TBD]
+
+\subsection{Entwicklung}
+
+[HIER KÖNNTE NOCH EIN BISSCHEN MEHR EINLEITUNG]
+
+Da die Berechnung der Farben im HSL-Farbmodell erfolgen sollten, die Anwendung aber an allen anderen Stellen mit der Hexadezimal-Darstellung arbeitet, müssen die Farben zunächst umgerechnet werden. Für die Umwandlung wurde die Bibliothek tinycolor [FUSSNOTE] verwendet, die aufgrund anderer verwendeter Bibliotheken schon im Projekt eingebunden war.
+Die Bibliothek wandelt die Hexadezimaldarotellung in ein JavaScript-Objekt mit den Attributen hue, saturation, lightness und alpha am. Somit können einzelne Werte dieses Objektes problemlos manipuliert und anschließend wieder in einen Hexadezimal-String umgewandelt werden.
+
+Die Grundlegende Logik zum errechnen von bestimmten Kontrasten wurde bereits im Praxisprojekt definiert: Für einen Komplementärkontrast muss der hue-Wert um 180° verändert werden, für ein triadisches Farbschema werden die Werte jeweils um 30° nach links und rechts verändert und für ein Monochromatische Farbschema können der lightness- und saturation-Wert von einer Menge von Farben verändert werden.
+Im Folgenden sollen hier die konkreten Implementierungen dieser Berechnungen erläutert werden.
+
+Die Berechnung der Komplementärfarbe erwies sich als recht einfach, hier musste lediglich darauf geachtet werden, dass der Hue-Wert nicht größer als 360° [VIELLEICHT AUCH 359?] werden durfte.
+
+
+\begin{lstlisting}
+  export function calculateCompelemntary(baseColor) {
+    let complementary = Object.assign({}, baseColor)
+    let hue = complementary.h
+
+    hue += 180
+    if (hue > 360) {
+      hue -= 360
+    }
+
+    complementary.h = hue
+    return complementary
+  }
+\end{lstlisting}
+
+Ähnlich gestaltete es sich bei der Berechnung des triadischen Farbschemas. Hier musste der Hue-Wert lediglich um den gegebenen Gradwert erhöht oder verringert werden. Um die Farbschemata dynamischer zu gestalten, wurde sich dazu entschieden, hier nicht statische Werte von 30° zu verwenden, sondern diese dynamisch in einem Rahmen von 25° bis 35° zu generieren.
+
+Deutlich komplexer gestaltet die Generierung von monochromatischen Farbschemata. Zum einen waren hier mehr Farben nötig, zum anderen können diese in den Werten Saturation und Lightness verändert werden. Weiterhin steht hier nicht fest, ob beide oder nur einer der Werte verändert werden soll, und wie die Veränderung aussieht. Auch hier wurde im Sinne der Dynamik auf zufallsgenerierte Zahlen zurück gegriffen.
+In der Funktion wird zunächst zufällig bestimmt, welche Werte verändert werden. Sowohl Saturation als auch Lightness können Werte zwischen 0 und 1 annehmen. Im zweiten Schritt wurden also eine oder zwei Zufallszahlen zwischen 0 und 1 generiert (gerundet auch zwei Dezimalstellen).
+Weiterhin muss gewährleistet werden, dass die einzelnen Farben sich nicht zu ähnlich sehen. Hier wurde eine Differenz von 0.1 als Minimum festgelegt (dabei reicht es, wenn einer der Werte außerhalb dieses Minimum liegt, um eine ausreichend hohe Differenz zwischen den Farben zu gewährleisten). Wird dieser Wert unterschritten, wird eine neue, zufällige Farbe generiert.
+
+\begin{lstlisting}
+  checkForSimilarColors(colors, candidate) {
+    let similarValues = false
+    for (var j = 0; j < colors.length; j++) {
+      let saturationDifference = Math.abs(colors[j].s - candidate.s)
+      let lightnessDifference = Math.abs(colors[j].l - candidate.l)
+
+      if (saturationDifference < 0.1 && lightnessDifference < 0.1) {
+        similarValues = true
+      }
+    }
+
+    return similarValues
+  }
+\end{lstlisting}
+
+\begin{lstlisting}
+  changeValuesOfColor(values, color) {
+    let manipulatedColor = Object.assign({}, color)
+    // Switch case
+    // Do the changes that need to be DropdownController
+    switch (values) {
+      case 0:
+        // change lightness
+        manipulatedColor.l = Math.random().toFixed(2)
+        break
+      case 1:
+        // change Saturation
+        manipulatedColor.s = Math.random().toFixed(2)
+        break
+      case 2:
+        // change lightning and saturation
+        manipulatedColor.l = Math.random().toFixed(2)
+        manipulatedColor.s = Math.random().toFixed(2)
+        break
+      default:
+        throw new 'Oops, seems like the randomizer messed something up.'
+    }
+
+    return manipulatedColor
+  }
+\end{lstlisting}
+
+\begin{lstlisting}
+  calculateMonochromaticColors(amount) {
+
+    let colors = []
+
+    for (var i = 0; i < amount; i++) {
+      let currentColor = Object.assign({}, convertToHsl(this.props.baseColor))
+      // Figure out if only one or two values should be changed
+      // Random: 0 = Lightness, 1 = Saturation, 2 = Both
+      let randomOption = Math.floor(Math.random() * 3)
+      let changedColor = this.changeValuesOfColor(randomOption, currentColor)
+
+      if (colors.length < 1) {
+        colors.push(changedColor)
+      } else {
+        let similarColors = this.checkForSimilarColors(colors, changedColor)
+        while (similarColors) {
+          changedColor = this.changeValuesOfColor(randomOption, changedColor)
+          similarColors = this.checkForSimilarColors(colors, changedColor)
+        }
+        colors.push(changedColor)
+      }
+    }
+
+    return colors
+  }
+\end{lstlisting}
+
+[HIER FEHLT NOCH DER AUSSCHLUSS VON SCHWARZ UND WEISS]
+
 
 \section{Layouts \& Grid}
 Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
