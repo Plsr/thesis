@@ -386,11 +386,24 @@ und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
 besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
 
 \section{Offboarding}
-Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
-Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
-auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
-und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
-besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
+Wie im Kapitel 2.1.2 “Ergebnisse der Benutzung”  bereits angesprochen, dient dieser letzte Schritt der Anwendung dazu, dem Nutzer eine Zusammenfassung der Ergebnisse zu liefern.
+Da alle vom Nutzer getroffenen Entscheidungen im redux store gespeichert werden ist es kein Problem, hier eine Zusammenfassung dieser Daten darzustellen.
+Diese Daten werden dem Nutzer in der aktuellen Version nach Themengebiet aufgeschlüsselt, untereinander dargestellt. Für die aktuell implementierten Gebiete und die daraus resultierende Menge an Informationen ist diese Lösung ausreichend, jedoch muss mit weiterer Entwicklung der Anwendung hier vermutlich auch ein anderer Lösungsansatz gefunden werden.
+
+Als Anspruchsvoller stellte sich die Implementierung der Möglichkeit heraus, die Ergebnisse auch als PDF-Datei speichern zu können. Hier bieten sich verschiedene Möglichkeiten der PDF-Generierung an. Da die Applikation momentan eine reine Client-Anwendung ist, war die Auswahl an Möglichkeiten dadurch limitiert. Hier sollte nicht nur für die Möglichkeit der PDF-Generierung auch ein Server in die Anwendung eingespielt werden.
+
+Die simpelste der Möglichkeiten ist ein Drucken als PDF Datei. Hierbei müsste für die Seite lediglich ein entsprechendes Stylesheet hinterlegt werden, dass das Layout für den Druck anpasst. Diese Lösung ist allerdings nur beschränkt verfügbar. Das Betriebssystem macOS bieten den Druck als PDF nativ an, das Betriebssystem Windows beispielsweise aber erst seit der neusten Version, Windows 10.
+Eine weitere Möglichkeit stellt die Bibliothek html2canvas\footnotemark{} dar. Die Bibliothek erlaubt das Speichern von Seiten als Bilddateien. Die Verfügbarkeit ist hier deutlich höher als beim Drucken als PDF, jedoch bringt das Speichern als Bild einige Restriktionen mit sich. So können beispielsweise Werte nicht markiert und kopiert werden, was einen erhöhten Arbeitsaufwand für den Nutzer bedeutet.
+
+\footnotetext{\url{https://github.com/niklasvh/html2canvas}}
+
+Die Entscheidung file aus diesen Gründen hier auf die Bibliothek jsPDF\footnotemark{}. Diese erlaubt das erstellen von PDF-Dateien im Browser und auch das einfügen von DOM-Elementen in PDF-Dateien. Das einfügen bringt allerdings einige Limitierungen mit sich, so werden teilweise Texte, die zu tief in DOM-Elementen verschachtelt sind, nicht dargestellt. Daher wurde die PDF per hand zusammen gesetzt. jsPDF bietet dafür eine API, mit der verschiedene Elemente (wie Text oder geometrische Formen), unter Angabe der Position auf der x- und y-Achse, in die Datei eingefügt werden können. Listing XZY zeigt das beispielhafte einfügen einer Textzeile und das anschließende Speichern der Datei.
+
+\footnotetext{\url{https://github.com/MrRio/jsPDF}}
+
+Hier besteht jedoch ein hoher manueller Aufwand, der mit potentiellen weiteren Themengebieten in der Anwendung erneut evaluiert werden muss. Abb. XZY zeigt eine beispielhafte PDF-Datei, die von der Anwendung erstellt wurde.
+
+Hier wurde außerdem deutlich, dass eine mögliche Nomenklatur des Projektes durch den Nutzer Vorteile hätte. So könnte dieser Name auf der PDF-Datei vermerkt werden, um diese eindeutiger zuordnen zu können. Außerdem wird dem Nutzer somit eher das Gefühl vermittelt, dass er einen Prozess durchläuft, an dessen Ende er ein Ergebnis für sein Projekt erzielt hat.
 
 \section{Tests}
 Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
