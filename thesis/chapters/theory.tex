@@ -1,6 +1,7 @@
 \chapter{Theoretische Grundlagen}
 \thispagestyle{fancy}
-\textbf{Hier fehlt noch eine generelle Einleitung zum Kapitel}
+Das nachfolgende Kapitel soll die theoretischen Grundlagen erläutern, die für die Umsetzung der Anwendung von Bedeutung sind. Diese Grundlagen teilen sich in verschiedene Bereiche auf. Zum einen soll der Aufbau der Anwendung festgelegt werden. In diesem Beriech müssen außerdem einige Bereich noch Konzipiert werden. Auch dieser Prozess und dessen Ergebnisse sollen hier erläutert werden.
+Weiterhin gilt es, die verschiedenen technischen Möglichkeiten der Umsetzung zu diskutieren. Abschließend findet sich ein konzeptioneller Einstieg in React.js und in einige damit verbundene und wichtige Bibliotheken, sowie eine Darstellung der Design-Prozesse.
 
 \section{Struktur der Anwendung}
 In diesem Abschnitt soll zunächst die generelle Struktur der Anwendung definiert werden. Weite Teile der Struktur können dabei aus dem Praxisprojekt übernommen werden. Im Praxisprojekt wurden die folgenden Themengebiete behandelt:
@@ -80,25 +81,37 @@ Im Praxisprojekt wurde bereits versucht, den Proof of Concept nur mithilfe des F
 Im folgenden sollen also einige der bekanntesten JavaScript-Frontend-Frameworks verglichen werden. Die Auswahl dieser Frameworks erfolgt nach Beliebtheit auf GitHub.com. Weiterhin wurden Frameworks ausgeschlossen, die ein komplettes MCV-Pattern implementieren, da zum aktuellen Stand dieser Anwendung keine Models angemacht sind.
 
 \subsection{Vue.js}
-Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
-Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
-auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
-und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
-besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
+Zuerst wurde Vue.js im Dezember 2013 veröffentlicht. Mittlerweile ist Vue.js in der zweiten Version zugänglich.
+Vue beschreibt sich selbst in der Einführung der Documentation wie folgt:
+
+\begin{quote}
+  Vue […] is a progressive framework for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is very easy to pick up and integrate with other libraries or existing projects. \cite{VueIntro}
+\end{quote}
+
+Vue.js ist dabei (wie die anderen hier behandelten Libraries und Frameworks auch) Komponentenbasiert. Um das User Interface effektiv zu aktualisieren, verwendet es eine Virtual DOM. Dieser ist eine Abstraktion des Normalen DOMs, wie ihn das w3c spezifiziert \cite{w3cDOM}:
+
+\begin{quote}
+  The Document Object Model (DOM) is a programming API for HTML and XML documents. It defines the logical structure of documents and the way a document is accessed and manipulated.
+\end{quote}
+
+Der DOM im klassischen Sinn ist also eine Baumdarstellung der Elemente, die sich beispielsweise in einer HTML-Datei wiederfinden. Abb. XYZ zeigt eine beispielhafte Darstellung einer HTML-Datei im Browser, die Struktur ihrer Elemente und die Darstellung als DOM-Baum.
+Der Virtual DOM wird von Frameworks wie Vue.js dafür verwendet, Änderungen am DOM performances durchführen zu können. Die genaue Funktionsweise sei im Rahmen dieser Arbeit nicht erläutert,  jedoch beschreibt die Vue.js Dokumentation die Vorgänge wie folgt \cite{VueTemplate}:
+
+\begin{quote}
+  Under the hood, Vue compiles the templates into Virtual DOM render functions. Combined with the reactivity system, Vue is able to intelligently figure out the minimal amount of components to re-render and apply the minimal amount of DOM manipulations when the app state changes.
+\end{quote}
+
+Für das Darstellen von Inhalten verwendet Vue.js eine Templating-Engine, Erweiterungen wie Routing oder Verwaltung des Zustandes der Anwendung müssen über externe Bibliotheken eingefügt werden.
 
 \subsection{Angular.js}
-Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
-Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
-auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
-und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
-besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
+Das von Google Entwickelte Angular.js ist das älteste der hier behandelten Frameworks. Es wurde zuerst im Oktober 2010 veröffentlicht und ist ebenfalls in der 2. Version angelangt.\\
+Insgesamt ist Angular deutlich komplexer als  Vue.js und React. Dies zeigt sich zum Einen beispielsweise durch die inkludierung von Routing (wenn auch nicht im angular core package), zum Anderen aber auch die die deutlich Komplexere Architektur, die unter anderem aus Teilen wie Modulen, Komponenten und Templates besteht. Auch hier wird also eine Templating-Engine verwendet.
 
 \subsection{React.js}
-Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
-Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
-auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
-und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
-besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
+React.js wurde im Juli 2013 von Facebook veröffentlicht.\\
+Wie Vue.js verwendet auch React.js einen Virtual DOM. Auch wenn die Implementierung sich hier unterscheiden sollte, ist das Prinzip das Gleiche.
+Anders als Vue.js und Angluar.js verwendet React keine Templating Engine, React Applikationen sind daher als komplett in JavaScript geschrieben. Hier wird also HTML in JavaScript geschrieben, und nicht JavaScript in HTML, wie es im klassischen Sinne geschieht.
+Ähnlich wie Vue.js ist auch React.js in seiner Funktionalität sehr komprimiert, Funktionen wie Routing oder Application State müssen also über externe Bibliotheken eingebunden werden.
 
 \section{Einstieg in React.js}
 Der Folgende Abschnitt soll einen überblick über wichtige Konzepte und Vorgehensweisen bei der Entwicklung mit React.js geben. Ziel soll es dabei sein, genug Wissen zu vermitteln, um die später in dieser Arbeit gezeigten Codebeispiele verstehen zu können.\\
