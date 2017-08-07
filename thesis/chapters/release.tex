@@ -56,12 +56,12 @@ only a few systems have more forks than stars.
 Somit ist eine Steigerung der Mitwirkenden also automatisch mit einer Steigerung der Nutzer der Anwendung verbunden. Der Inhalt diese Abschnittes soll also vorrangig mit der Beantwortung der zweiten und dritten Frage beschäftigen.
 
 \subsection{Sicherung der Code-Qualität}
-Grober Aufbau für diese Sektion:
+Nach der Veröffentlichung der Anwendung ist es beabsichtigt, dass weitere Leute den Quellcode der Anwendung erweitern und bearbeiten. Hier kann nicht von einem festen Team ausgegangen werden, so ist es durchaus auch möglich, dass einzelne Personen nur ein einziges Mal und an einem kleinen Teil er Anwendung arbeiten. Für die Anwendung ist es von Vorteil einen durchgängigen Code-Stil zu verwenden, um die Lesbarkeit durch die verschiedenen Bereiche der Anwendung zu verbessern. Personen, die allerdings nur für einen kurzen Moment Kontakt mit der Anwendung haben, kann  jedoch nicht abverlangt werden, dass diese sich vorher eingehend mit den verschiedenen Code-Styles der Anwendung befasst haben. Uns diesem Grund wurde die Bibliothek eslint eingebunden, zur Unterstützung der Einhaltung von Coding-Styles innerhalb einer Anwendung dient.
+In der Datei .eslintrc wird dabei festgelegt, welche Conventions befolgt werden sollen. Durch das einbinden des Bibliothek im Webpack-Build-Prozess können dann Warnung und error-messages ausgegeben werden, wenn gegen die Guidelines verstoßen wurde. Für einige Verstöße (wie zum Beispiel Fehler bei der Einrückung) lässt sich auch eine automatische  Fehlerbehebung einstellen.
 
-\begin{enumerate}
-  \item Travis-CI
-  \item es-lint
-\end{enumerate}
+Auch wenn die Fehlermeldungen Webpack daran hindern, die Anwendung zu kompilieren, ist es dennoch möglich, Code auf GitHub zu pushen, der gegen die Conventions verstößt. Um hier eine weiter Sicherung einzubauen, wurden die beiden Branchen master und development, die jeweils in Verbindung mit der Staging- und Production-Umgebung stehen, geschützt. In diese Branches kann also nicht mehr direkt committed werden, sondern nur noch über Pull Requests.
+
+Für die Überprüfung von neuen Pull Request wurde der Service Travis eingebunden. Dieser service kann bei jedem neuen Pull Request bestimmte Programme ablaufen lassen und nur wenn diese keine Fehler ausgeben, kenn der Pull Request gemerged werden (s. Abb ZXC). Dies bietet sich zum Beispiel für das Ausführen von Tests an, aber auch für das testen der Code-Styles mit eslint.
 
 \subsection{Dokumentation}
 Grober Aufbau für diese Sektion:
