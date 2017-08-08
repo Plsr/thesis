@@ -18,6 +18,34 @@ Zum Anderen zeig die Auswahl von Farben gut, wie Interaktive Elemente der Anwend
 Um die Design-Sprache der Anwendung nicht in den Vordergrund zu stellen wurde ein sehr schlichtes Farbschema verwendet, in dem die zwei Farben (Blau und Rot) nur zur Anzeige von Interaktivität verwendet wurden. Der größte Teil der Anwendung ist weiß gehalten, um sie die Gestaltung des Nutzers und dessen Entscheidungen besser in den Vordergrund stellen zu können.\\
 Die beiden Farben haben dabei festgelegte Rollen: Blau zeigt Interaktivität innerhalb eines Schrittes der Anwendung an, Rot zeigt zwischen Schritten übergreifende Aktivitäten an (z.B. ein Button, der von einem Schritt zum nächsten führt).
 
+\subsection{Abstände}
+Um den Gedanken von innerhalb der Anwendung wiederverwendbaren Komponenten zu unterstützen liegt der Gedanke nahe, auch Abstände innerhalb der Gestaltung (und später auch in der Umsetzung) wiederverwendbar zu gestalten. Die Grundlage für diesen Gedanken lieferte ein Artikel von Nathan Curtis \cite{CurtisSpace16}. Der Artikel enthält zwei Grundgedanken:
+
+\begin{enumerate}
+  \item Die Größen von Abständen sollten sollten festgelegt und ihre Anzahl übersichtlich sein.
+  \item Es gibt verschiedene Arten von Abständen, die die verschiedenen Größen auf unterschiedliche Weise einsetzen und kombinieren.
+\end{enumerate}
+
+Diese Gedanken wurden in der Gestaltung und Umsetzung des Projektes übernommen. Zunächst wurden die verschiedenen Abstände, aufbauend auf der von Curtis empfohlenen Basisgröße von 16px, definiert. Aufbauend auf der Basisgröße wurden anschließend Abstufungen in beide Richtungen
+Erstellt, die nach Kleidergrößen, von XS bis XXL, benannt wurden.
+Diese Abstufungen wurden in einer eigenen Datei als JavaScript-Objekt deklariert, so dass über die gesamte Anwendung hinweg diese festgelegten Größen verwendet werden können.
+
+Curtis definiert 6 verschieden Arten von Abständen (vgl. Abb. ZXC), von denen 5 innerhalb der Anwendung als eigenständige Komponenten definiert wurden.
+Die Komponenten nehmen die Größe des Abstandes als \verb|prop| in einer der definierten Kleidergrößen entgegen und erzeugen ein \verb|div|, dass die Abstände als padding oder margin anwendet.
+Die Pixelwerte für die jeweilige Abstandsgröße erhält die Komponente dabei durch den Aufruf des für die Abstandsgrößen zuständigen JavaScript-Objekts (zum Beispiel \verb|spacing.l|). Alle diese Komponenten rendern außerdem die ihnen übergebenen Kinder, sodass eine Verwendung der \verb|SpacingInset| Komponente wie in Listing ASD möglich wird.
+
+\begin{lstlisting}[caption=Beispielhafte Verwendung einer Komponente für Abstände, label=ListingSpacingInset]
+  <SpacingInset size='l' >
+    <h1> A Headline </h1>
+    <p> Some Text </p>
+  </SpacingInset>
+\end{lstlisting}
+
+Hier stellt sich die Frage, inwiefern es Sinn ergibt, Komponenten zu definieren, die eine ausschließlich visuelle Funktion haben.
+So könnte deren Funktion auch innerhalb der CSS-Regeln von anderen Komponenten definiert und so ein übersichtlicheres Markup geschaffen werden.
+Während der Arbeit stellte sich heraus, dass die Definition er Abstände als eigene Komponenten ein sehr einfaches Entwickeln von Interfaces ermöglichte.  Durch die eingegrenzten Möglichkeiten ist auch währen der Entwicklung ein testen von anderen Abständen sehr einfach möglich.
+Weiterhin ist der Raum für Inkonsistenzen begrenzt, da die Abstände nur in den vorgegebenen Größen angegeben werden können. Dies wurde, gerade mit Blick auf die spätere Weiterentwicklung und Veröffentlichung, als ausreichend großer Vorteil angesehen, um eine Definition als eigenständige Komponente zu rechtfertigen.
+
 \section{Besonderhieten im Technologie-Stack}
 Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
 Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
@@ -143,7 +171,7 @@ Abb XYZ [BILD FEHLT] zeigt noch einmal den Aufbau des Wizards in Verbindung mit 
   constructor(props) {
     super(props)
 
-	  // shortended for readability
+    // shortended for readability
 
     this.state = {
       activeOption: false // currently active option, 'false' by default
