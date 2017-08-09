@@ -163,44 +163,6 @@ Mit der Verwendung von Aphrodite können also Aussehen und Funktion von Komponen
 \section{Interessante Aspekte in der Entwicklung}
 
 \subsection{State in Komponenten}
-
-\subsection{Dispatch von Actions}
-
-\subsection{Anzeige von Inhalten nach Scope}
-
-\subsection{Modularisierung der Anwendung}
-\textbf{Hier ist gemeint: Im Praxisprojekt wurden mehr Komponenten gebraucht, was lief hier besser?}
-
-\subsection{Arbeiten mit Farben}
-
-\subsection{Erstellen von PDF-Dateien}
-
-
-
-
-
-
-
-
-
-
-\section{Einstieg}
-Auf die Konzeptionellen Aspekte des Einstiegs in die Applikation wurde bereits im Kapitel Einstieg in die Anwendung [VERWEIS] eingegangen. In diesem Abschnitt soll ergänzend  auf einige konkrete Aspekte der Gestaltung und Entwicklung eingegangen werden.
-
-\subsection{Gestaltung}
-Bereits im Kapitel Einstieg in die Anwendung [VERWEIS] wurde angesprochen, dass ein schrittweises Führen des Nutzers durch das Festlegen seines Entwicklungskontextes sinnvoll ist.
-Hierfür wurde im ersten Schritt ein Wizard entworfen, der den Nutzer schrittweise durch die Knoten der verschiedenen Ebenen des Baumes in ABB XYC auf Seite ABC [VERWEIS]  führt.
-Hierbei wurden Buttons mit Icons und Beschreibung verwendet, um eine Unterscheidung zwischen den verschiedenen Optionen für den Nutzer so einfach wie möglich zu machen [BELEG].
-Am Ende des Wizards wird dem Nutzer der von ihm gewählte Entwicklungskontext noch einmal zusammengefasst dargestellt. Außerdem wird ihm die Option geboten, den Vorgang zu wiederholen, sollten die Ergebnisse nicht den gewünschten entsprechen.  Zum jetzigen Zeitpunkt ist  diese Funktion nicht unbedingt eine Notwendige, jedoch ist nicht ausgeschlossen, dass die Entwicklungskontexte zu einem späteren Zeitpunk zahlreicher oder tiefer verschachtelt werden.
-Der Gestaltete Wizard kann ABB XZY entnommen werden [BILD FEHLT].
-
-Hier wird auch die Verwendung der beiden Farben in der Applikation deutlich: Das Blau verändert Werte innerhalb eines einzelnen Schrittes, das Rot dient zu Navigation zwischen den verschiedenen Schritten der Applikation.
-
-\subsection{Entwicklung}
-Das Hauptaugenmerk in der Entwicklung lag in diesem Schritt im setzen der Scopes für die Anwendung. Da auf die Scopes in allen späteren Teilen der Anwendung zugegriffen werden können muss wurde schnell deutlich, dass diese im Application Sate, also dem Redux Store gehalten werden müssen. Hier stellte sich jedoch vor allem die Fragen nach der Datenstruktur der Scopes, wobei die Möglichkeiten auf die Haltung in einem Array oder als JavaScript Objekt begrenzt wurden.
-Ein Array bietet dabei eine höhere Flexibilität, jedoch eine deutlich ungenauere Beschreibung der Scopes. So können andere Komponenten herausfinden, ob der für ihren Anwendungsfall relevanten Scope sich im Array der Scopes befindet, ohne Kenntnis darüber haben zu müssen, wie der Schlüssel des Scopes innerhalb des JavaScript Objektes lautet. Auch spielt die Länger der verschiedenen Äste des Baumes bei der Verwendung des Arrays eine weniger große Rolle, während bei der Verwendung eines Objektes immer auch geprüft werden muss, ob der key im store überhaupt vorhanden ist. Daher wurde an dieser Stelle ein Array verwendet.
-[HIER SPÄTER NOCH MAL SCHAUEN, OB DAS NOCH STIMMT]
-
 An dieser Stelle wird außerdem der in Kapitel Stateful \& Stateless [VERWEIS] angesprochene Unterschied zwischen Component State und Application State deutlich. Die Interaktion des Nutzers mit dem Wizard findet wie folgt statt: Der Nutzer wählt einen Scope aus, dieser wird von der Anwendung hervor gehoben. Mit einem Klick auf den “Next”-Button wird die Selektion gespeichert und darauf aufbauend neue Optionen angezeigt.
 Abb XYZ [BILD FEHLT] zeigt noch einmal den Aufbau des Wizards in Verbindung mit den beteiligten Komponenten. Dabei ist nur der SetupContainer [NAME STIMMT NICHT] stateful, dieser kümmert sich um die Anzeige des vom Nutzer ausgewählten Scopes, der im state dieser Komponente gespeichert ist
 
@@ -217,34 +179,12 @@ Abb XYZ [BILD FEHLT] zeigt noch einmal den Aufbau des Wizards in Verbindung mit 
 
 Da die aktuell gewählte Option nur für diese Komponente von Bedeutung ist, wird diese auch nicht in den Application State geschrieben. Bestätigt der Nutzer die Auswahl jedoch mit dem “Next”-Button, wird der Wert des aktuell aktiven Elements in den Store geschrieben.
 
+\subsection{Dispatch von Actions}
+Das Hauptaugenmerk in der Entwicklung lag in diesem Schritt im setzen der Scopes für die Anwendung. Da auf die Scopes in allen späteren Teilen der Anwendung zugegriffen werden können muss wurde schnell deutlich, dass diese im Application Sate, also dem Redux Store gehalten werden müssen. Hier stellte sich jedoch vor allem die Fragen nach der Datenstruktur der Scopes, wobei die Möglichkeiten auf die Haltung in einem Array oder als JavaScript Objekt begrenzt wurden.
+Ein Array bietet dabei eine höhere Flexibilität, jedoch eine deutlich ungenauere Beschreibung der Scopes. So können andere Komponenten herausfinden, ob der für ihren Anwendungsfall relevanten Scope sich im Array der Scopes befindet, ohne Kenntnis darüber haben zu müssen, wie der Schlüssel des Scopes innerhalb des JavaScript Objektes lautet. Auch spielt die Länger der verschiedenen Äste des Baumes bei der Verwendung des Arrays eine weniger große Rolle, während bei der Verwendung eines Objektes immer auch geprüft werden muss, ob der key im store überhaupt vorhanden ist. Daher wurde an dieser Stelle ein Array verwendet.
+[HIER SPÄTER NOCH MAL SCHAUEN, OB DAS NOCH STIMMT]
 
-\section{Typographie}
-Wie bereits erwähnt wurde für den Bereich Typographie bereits im Rahmen des Praxisprojektes ein Proof of Concept entwickelt, der weite Teile der erarbeiteten Logik implementierte.
-Im Folgenden soll daher vor allem auf die Bereiche eingegangen werden, die im Vergleich zum Praxisprojekt neu oder verändert sind. Vorrangig sind dies die Gestaltung und generelle Konzeption, sowie eine bessere Implementierung des Redux Stores und von React-Komponenten an sich.
-
-\subsection{Konzeption}
-Das Grundlegende Konzept zur Interaktion mit der Anwendung wurde aus dem Praxisprojekt übernommen, auch im Rahmen der Abschlussarbeit ist dieser Teil der Anwendung zweigeteilt: Zum einen wird das Ergebnis der Einstellungen in Form eines gesetzten Textes angezeigt, zum anderen werden verschiedene Möglichkeiten zur Manipulation des Textes in einer Tab-Navigation angezeigt.\\
-Eine Andere Idee hier war die Möglichkeit zur direkten Interaktion mit Elementen. So hätte beispielsweise eine Überschrift angeklickt und deren Attribute daraufhin editiert werden können (Abb. ABC zeigt ein Beispiel). Gegen diesen Ansatz wurde sich aus verschieden Gründen entschieden.\\
-Zum Einen wären für allgemeinere Einstellungen (wie z.B. die Wahl der Schriftart oder die Einstellung zur Laufweite des Textes gesonderte Bedienelemente nötig gewesen. Dem wurde eine geordnete Darstellung der Bedienelemente an einer zentralen Stelle vorgezogen. Damit einher wäre das Problem einer übersichtlichen Fehleranzeige gegangen: Es stellte sich als kompliziert dar, deutlich zu machen, zu welchem Attribut ein Fehler zugehörig ist.\\
-
-Eine Konzeptuelle Neuerung stellt der Reset-Button dar. Dieser erlaubt ein einfaches zurücksetzen auf die Standardeinstellung und nimmt es dem Nutzer damit ab, im Zweifel 10 oder mehr Werte verändern zu müssen, um auf eine gute Einstellung zurück zu kommen.\\
-
-Im Bezug auf die Standardeinstellungen stellt sich die Fragen: Welche Einstellungen sind hier zu bevorzugen? Es wurde sich bewusst gegen eine fehlerfreie Standardeinstellung entschieden, da es dem Nutzer nicht möglich ist, in der Anwendung einen Schritt vorwärts zu gehen, wenn noch Warnungen angezeigt werden. So kann sicher gestellt werden, dass der Nutzer sich auf jeden Fall mit dem Bereich Typographie befasst.\\
-\textbf{[EVTL DARK PATTERN?]}\\
-Auf der anderen Seite sollten die Standardeinstellung nicht zu viele Fehler enthalten, um den Nutzer nicht zu demotivieren.\\
-
-Weiterhin wurde auf mobile Geräte als Zielmedium eingegangen: Hier funktioniert die Rechnung der optimalen Zeilenlänge nach Anzahl der Wörter nicht mehr (wenigstens nicht in einem Rahmen, der einen Lesbaren Text liefern kann), außerdem sind die Schriftgrößen anders zu bewerten.\\
-\textbf{[ HIER NOCH SCHAUEN, WELCHE RICHTLINIEN ES DA GIBT ]}\\
-Andere Werte, wie zum Beispiel der Zeilenabstand bleiben davon aber unberührt. Weiter Informationen zur Umsetzung der verschiedenen Bereiche für verschiedene Zielmedien finden sich im Kapitel Entwicklung.
-
-\subsection{Gestaltung}
-Wie bereits erwähnt wurde das grundlegende Layout aus dem Praxisprojekt beibehalten, jedoch wurde die Anordnung verändert: Statt übereinander sind die beiden Bereiche nun nebeneinander angeordnet. Dies hat den Effekt, dass sowohl die Bedienelemente, als auch der größte Teil des gesetzten Textes in einem Viewport dargestellt werden können.\\
-Während der Geltung wurde versucht, den Fokus auf den zu setzenden Text zu legen und die Bedienelemente eher in den Hintergrund zu rücken. Durch die dunklere Hintergrundfarbe sollte aber auch eine klare Trennung der beiden Element nach ihren Aufgaben (Output oder Input) kommuniziert werden (Abbildung ASD zeigt ein High-Fidelity-Mockup dieses Bereiches).\\
-\textbf{[BILD FEHLT]}\\
-Außerdem wurde als Einstieg in den Bereich Typographie eine statische Seite entworfen, die kurz die Funktion des Bereiches aufzeigt (ABB. XYV zeigt eine schematische Ablauf der Interaktion). Zwar ist die Funktion dieses Bereiches recht eindeutig und simpel,  jedoch sollte es Ziel sein, den Nutzer so gut wie möglich während seiner Nutzung der Anwendung zu begleiten.\\
-\textbf{[BILD FEHLT]}
-
-\subsection{Entwicklung}
+\subsection{Anzeige von Inhalten nach Scope}
 Die größte Neuerung in der Entwicklung im Vergleich zum Praxisprojekt war die Anwendung der Scopes, also der Zielmedien für die der Benutzer gestaltet. Hauptsächlich Interessant für den Bereich Typographie war dabei, ob der Nutzer für das Lesen am Bildschirm oder auf Papier gestaltet und das Mobile Betriebssystem, falls er eine Native Applikation entwickelt. Hauptsächlich wirken sich diese Scopes auf die wählbaren Schriftfamilien aus.\\
 
 Die Umsetzung ist dabei recht simpel: Die verfügbaren Schriftfamilien sind als in einer Konstante gespeichert., sie sind dabei nach dem Namen ihres Scopes aufgeschlüsselt.
@@ -288,6 +228,8 @@ Dieser Aufbau ermöglicht sowohl ein einfach hinzufügen und entfernen von Schri
 
 \textbf{[HIER FEHLT NOCH DER MOBILE SCOPE]}\\
 
+\subsection{Modularisierung der Anwendung}
+\textbf{Hier ist gemeint: Im Praxisprojekt wurden mehr Komponenten gebraucht, was lief hier besser?}
 Im Vergleich zum Praxisprojekt wurde weiterhin der Komponentenbasierte Aufbau verbessert. Währen im Praxisprojekt noch 21 Komponenten für die Darstellung verwendet wurden, konnte diese Zahl im rahmen der Abschlussarbeit auch 10 verringert werden.\\
 \textbf{[ WIE KONNTE DAS ERREICHT WERDEN? ]}
 
@@ -304,39 +246,7 @@ Der Hauptgrund hierfür ist das auslagern der Logik in andere Bereiche der Anwen
   />
 \end{lstlisting}
 
-\subsection{Ausblick}
-Auch wenn hier eine solide und Marktfähige Version dieses Bereiches erstellt werden konnte, wurden währen der Entwicklung noch weitere Bereiche deutlich, die in Zukunft potentielle Verbesserung bieten können.\\
-So wäre eine bessere visuelle Darstellung, welche Bereich beim Manipulieren eines Werte verändert werden, wünschenswert. Aktuell wird dies zwar bei Veränderungen in großen Schritten schnell deutlich, bei kleineren Schritten ist die Darstellung jedoch nicht optimal.\\
-Weiterhin kann eine bessere Umsetzung für den Scope Responsive erreicht werden, Hier werden in der Regel mehrere Versionen von gesetztem Text benötigt.
-
-
-\section{Farben}
-Der Bereich Farben bietet einige neue Aspekte in der Entwicklung, vor allem, weil dieser Bereich im Praxisprojekt nur in der Theorie definiert wurde. Hier standen also weder Code noch Struktur zur Verfügung, auf denen aufgebaut werden konnte (die Ausnahme bilden einige Wireframes. Der folgende Abschnitt erläutert die Gedankengänge hinter der Konzeption und einige interessante Aspekte, die während der Entwicklung auftraten.
-
-\subsection{Konzeption}
-Dieser Bereich wird sehr stark vom Entwicklungskontext des Nutzers beeinflusst, vor allem weil beide abgebildeten mobilen Betriebssysteme sehr genaue Vorgaben im Bereich der zu verwendenden Farben machen.
-Daher wurde dieser Bereich in zwei Schritten konzipiert: Das finden einer Grundfarbe und das finden einer Akzentfarbe.
-
-Generell wurde die Idee aufgegriffen, Farben nach bestimmten Adjektiven wählen zu können. Dabei bietet sich, je nach Entwicklungskontext ein unterschiedlich vielfältiger Pool aus verfügbaren Farben.
-Für alle Scopes außerhalb der mobilen Betriebssysteme sind die Farben nicht begrenzt, es steht dem Nutzer also Frei, jede hexadezimal darstellbare Farbe zu wählen. Für die Auswahl nach Adjektiven wurde die Zahl der Farben jedoch auch etwa 20 [ZAHL NOCH GENAU NACH SCHAUEN] reduziert, um hier eine gut Übersicht erhalten zu können. Eine Übersicht der Adjektive und Farben bietet ABB. XZY [BILD FEHLT]
-
-[HIER FEHLT NOCH: WIE KOMMEN DIE ADJEKTIVE ZUSTANDE?]
-
-Die beiden mobilen Betriebssysteme sind in ihren Guidelines hier deutlich restriktiver. Android definiert 18 [ZAHL NOCH MAL NACHSEHEN] Farben in verschiedenen Farbtönen. Den Guidelines folgend werden dem Nutzer hier die Farben im Farbton 500 dargestellt, aus denen er wählen kann.
-In den Guidelines von iOS ist die Zahl der Farben mit 8 [ZAHL NOCH GUCKEN] am geringsten.
-In beiden Fällen konnte aber Trotzdem eine Auswahl nach Adjektiven, wenn auch limitierter, weiterhin angeboten werden.
-
-Im zweiten Schritt soll dem Nutzer dann beim finden einer Akzentfarbe geholfen werden. Auch hier unterscheiden sich die Vorgänge je nach Entwicklungskontext.
-Im Bereich iOS fällt das finden einer Akzentfarbe ganz weg, das Apple eine Gestaltung mit nur einer Farbe (die in sich also eher eine Akzentfarbe als wie hier definiert eine Grundfarbe darstellt) nahe legt [VERWEIS].
-Im Bereich Android gibt es in allen Farbtönen drei Abstufungen, die zur Verwendung als Akzentfarbe gedacht sind. Diese werden dem Nutzer hier zur Auswahl gestellt.
-In allen anderen Bereichen ist die Anzahl der Farben, wie schon im ersten Schritt, nicht eingeschränkt.  Hier soll dem Nutzer die Möglichkeit geboten werden, Farbkombinationen in der Kontrasten Komplementär, Triadisch und Monochromatisch zu erstellen.
-Zu den ermittelten Farben werden dann weiterhin weiss und schwarz hinzugefügt. Für Android sind auch diese definiert, in allen anderen Bereichen (iOS ausgenommen) sind diese als \verb|#ffffff| und \verb|#333333| festgelegt.
-
-\subsection{Gestaltung}
-[TBD]
-
-\subsection{Entwicklung}
-
+\subsection{Arbeiten mit Farben}
 [HIER KÖNNTE NOCH EIN BISSCHEN MEHR EINLEITUNG]
 
 Da die Berechnung der Farben im HSL-Farbmodell erfolgen sollten, die Anwendung aber an allen anderen Stellen mit der Hexadezimal-Darstellung arbeitet, müssen die Farben zunächst umgerechnet werden. Für die Umwandlung wurde die Bibliothek tinycolor [FUSSNOTE] verwendet, die aufgrund anderer verwendeter Bibliotheken schon im Projekt eingebunden war.
@@ -443,14 +353,7 @@ Weiterhin muss gewährleistet werden, dass die einzelnen Farben sich nicht zu ä
 [HIER FEHLT NOCH DER AUSSCHLUSS VON SCHWARZ UND WEISS]
 
 
-\section{Layouts \& Grid}
-Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
-Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
-auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
-und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
-besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
-
-\section{Offboarding}
+\subsection{Erstellen von PDF-Dateien}
 Wie im Kapitel 2.1.2 “Ergebnisse der Benutzung”  bereits angesprochen, dient dieser letzte Schritt der Anwendung dazu, dem Nutzer eine Zusammenfassung der Ergebnisse zu liefern.
 Da alle vom Nutzer getroffenen Entscheidungen im redux store gespeichert werden ist es kein Problem, hier eine Zusammenfassung dieser Daten darzustellen.
 Diese Daten werden dem Nutzer in der aktuellen Version nach Themengebiet aufgeschlüsselt, untereinander dargestellt. Für die aktuell implementierten Gebiete und die daraus resultierende Menge an Informationen ist diese Lösung ausreichend, jedoch muss mit weiterer Entwicklung der Anwendung hier vermutlich auch ein anderer Lösungsansatz gefunden werden.
@@ -469,10 +372,3 @@ Die Entscheidung file aus diesen Gründen hier auf die Bibliothek jsPDF\footnote
 Hier besteht jedoch ein hoher manueller Aufwand, der mit potentiellen weiteren Themengebieten in der Anwendung erneut evaluiert werden muss. Abb. XZY zeigt eine beispielhafte PDF-Datei, die von der Anwendung erstellt wurde.
 
 Hier wurde außerdem deutlich, dass eine mögliche Nomenklatur des Projektes durch den Nutzer Vorteile hätte. So könnte dieser Name auf der PDF-Datei vermerkt werden, um diese eindeutiger zuordnen zu können. Außerdem wird dem Nutzer somit eher das Gefühl vermittelt, dass er einen Prozess durchläuft, an dessen Ende er ein Ergebnis für sein Projekt erzielt hat.
-
-\section{Tests}
-Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
-Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
-auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
-und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
-besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
