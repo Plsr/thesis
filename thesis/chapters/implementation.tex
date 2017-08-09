@@ -1,4 +1,4 @@
-\chapter{Entwicklung der Anwendung}
+\chapter{Umsetzung der Anwendung}
 \thispagestyle{fancy}
 Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
 Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
@@ -7,16 +7,24 @@ und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
 besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
 
 \section{Gestaltung}
-Generell nimmt die Gestaltung, wie bereits im Kapitel “Relevanz” deutlich wurde, eine zentrale Rolle in allen Projekte ein. Auch dieses Projekt bildet keine Ausnahme. Um eine gute Benutzbarkeit des Tools zu gewährleisten, ist eine solide Gestaltung unabdingbar. \\
+Bereits in Kapitel XZC “Relevanz” wird deutlich, welche zentrale Rolle die Gestaltung in allen Projekten einnimmt. Auch dieses Projekt ist davon nicht ausgenommen. Um eine gute Benutzbarkeit des Tools zu gewährleisten, ist eine solide Gestaltung unabdingbar.
+Insgesamt ist 25knots eine sehr interaktive Anwendung, in der Informationen eher Grafisch und durch Interaktionen des Benutzers übertragen werden, als Beispielswiese durch Texte. Steve Krug schreibt über die Gestaltung von Webseiten:
 
-Insgesamt ist die Anwendung eine sehr interaktive, in der Informationen eher Grafisch und über Interaktionen übertragen werden, als Beispielswiese über Text. Daher wurde hier bei der Gestaltung großer Wert darauf gelegt, klar zu kommunizieren, welche Bereiche interaktiv sind und welche Auswirkungen diese haben. \\
-Weiterhin liegt hier der Fall vor, dass der Nutzer die Anwendung verwendet, um eine Gestaltung für sein Projekt zu erstellen. Der Fokus der Anwendung sollte daher, auch in der Gestaltung, darauf liegen, dem Nutzer die von ihm erstellte Gestaltung darzustellen. Die Anwendung sollte sich nicht un bestimmten Fällen (beispielsweise beim Auftreten eines Fehlers oder wenn eine Interaktion notwendig ist) in den Vordergrund stellen. \\
+\begin{quote}
+  Die Seiten offensichtlich zu gestalten, ist wie eine gute Beleuchtung in einem Geschäft: Alles erscheint einfach besser. Die Nutzung einer Website, die uns nicht zum Nachdenken über Unwichtiges zwingt, fühlt sich mühelos an, wogegen das Kopfzerbrechen über Dinge, die uns nichts bedeuten, Energie und Enthusiasmus raubt — und Zeit. \cite[S. 19]{Krug201410}
+\end{quote}
+
+Daher wurde bei der Gestaltung großer Wert darauf gelegt, klar zu kommunizieren, welche Bereiche interaktiv sind und welche Auswirkungen eine Interaktion mit diesen Bereichen hat.
+Um diese Abgrenzung zu gewährleisten, wurde ein schlichtes Farbschema verwendet, in dem nur zwei Farben, Blau und Rot, verwendet wurden, die zur Anzeige von Interaktivität dienen.
+Die beiden Farben haben dabei festgelegte Rollen: Blau zeigt Interaktivität innerhalb eines Schrittes der Anwendung an, Rot zeigt zwischen verschiedenen Schritten übergreifende Aktivitäten an. Abbildung ZXC zeigt die Ausführung dieser Idee am Beispiel des Einstiegs in die Anwendung. Die blauen Elemente erlauben eine Auswahl innerhalb des Einstiegs (nächster Zwischenschritt, Auswahl eines Entwicklungsziels), der rote Button am unteren Rand erlaub das wechseln zum nächsten Abschnitt in der Anwendung.
+
+Weiterhin gilt es zu beachten, dass der Nutzer die Anwendung verwendet, um eine Gestaltung für sein Projekt zu erstellen. Der Fokus der Anwendung sollte daher darauf liegen, dem Nutzer die von ihm erarbeitete Gestaltung zu zeigen. Die Anwendung sollte sich nur in bestimmten Fällen (beispielsweise beim Auftreten eines Fehlers oder wenn eine Interaktion notwendig ist) in den Vordergrund stellen. Daher wurde darauf geachtet, die Anwendung so simpel wie möglich zu gestalten und auf unnötige gestalterische Spielereien zu verzichten. Der größte Teil der Anwendung ist in Weiß- und Grautönen gehalten, um sie die Gestaltung des Nutzers und dessen Entscheidungen besser in den Vordergrund stellen zu können.
 
 Dieses Vorgehen lässt sich anhand von zwei Beispielen gut verdeutlichen. Zum Einen seien hier die Fehlermeldungen im Bereich Typographie genannt. Diese sind in einem Auffälligen Gelb hinterlegt, dass nur an dieser Stelle (im Sinne von: Zum anzeigen von Fehlern) verwendet wird und dem Nutzer dafür schnell auffällt (s. Abb. ZXY).
-Zum Anderen zeig die Auswahl von Farben gut, wie Interaktive Elemente der Anwendung gleichzeitig auch die Gestaltung des Nutzer zeigen können. Die Buttons zur Auswahl einer Farbe (s. Abb. ASH) bestehen hier lediglich aus der Farbe selbst, die Gestaltung der Anwendung wird hier als visuelle Zwischenebene also komplett entfernt. \\
+Zum Anderen zeig die Auswahl von Farben gut, wie Interaktive Elemente der Anwendung gleichzeitig auch die Gestaltung des Nutzer zeigen können. Die Buttons zur Auswahl einer Farbe (s. Abb. ASH) bestehen hier lediglich aus der Farbe selbst, die Gestaltung der Anwendung wird hier als visuelle Zwischenebene also komplett entfernt.
 
-Um die Design-Sprache der Anwendung nicht in den Vordergrund zu stellen wurde ein sehr schlichtes Farbschema verwendet, in dem die zwei Farben (Blau und Rot) nur zur Anzeige von Interaktivität verwendet wurden. Der größte Teil der Anwendung ist weiß gehalten, um sie die Gestaltung des Nutzers und dessen Entscheidungen besser in den Vordergrund stellen zu können.\\
-Die beiden Farben haben dabei festgelegte Rollen: Blau zeigt Interaktivität innerhalb eines Schrittes der Anwendung an, Rot zeigt zwischen Schritten übergreifende Aktivitäten an (z.B. ein Button, der von einem Schritt zum nächsten führt).
+\subsection{Vorgehen}
+\textbf{TBD}
 
 \subsection{Abstände}
 Um den Gedanken von innerhalb der Anwendung wiederverwendbaren Komponenten zu unterstützen liegt der Gedanke nahe, auch Abstände innerhalb der Gestaltung (und später auch in der Umsetzung) wiederverwendbar zu gestalten. Die Grundlage für diesen Gedanken lieferte ein Artikel von Nathan Curtis \cite{CurtisSpace16}. Der Artikel enthält zwei Grundgedanken:
@@ -32,9 +40,9 @@ Diese Abstufungen wurden in einer eigenen Datei als JavaScript-Objekt deklariert
 
 Curtis definiert 6 verschieden Arten von Abständen (vgl. Abb. ZXC), von denen 5 innerhalb der Anwendung als eigenständige Komponenten definiert wurden.
 Die Komponenten nehmen die Größe des Abstandes als \verb|prop| in einer der definierten Kleidergrößen entgegen und erzeugen ein \verb|div|, dass die Abstände als padding oder margin anwendet.
-Die Pixelwerte für die jeweilige Abstandsgröße erhält die Komponente dabei durch den Aufruf des für die Abstandsgrößen zuständigen JavaScript-Objekts (zum Beispiel \verb|spacing.l|). Alle diese Komponenten rendern außerdem die ihnen übergebenen Kinder, sodass eine Verwendung der \verb|SpacingInset| Komponente wie in Listing ASD möglich wird.
+Die Pixelwerte für die jeweilige Abstandsgröße erhält die Komponente dabei durch den Aufruf des für die Abstandsgrößen zuständigen JavaScript-Objekts (zum Beispiel \verb|spacing.l|). Alle diese Komponenten rendern außerdem die ihnen übergebenen Kinder, sodass eine Verwendung der \verb|SpacingInset| Komponente wie in Listing \ref{lst:spacingInset} möglich wird.
 
-\begin{lstlisting}[caption=Beispielhafte Verwendung einer Komponente für Abstände, label=ListingSpacingInset]
+\begin{lstlisting}[caption=Beispielhafte Verwendung einer Komponente für Abstände, label=lst:spacingInset]
   <SpacingInset size='l' >
     <h1> A Headline </h1>
     <p> Some Text </p>
@@ -46,7 +54,17 @@ So könnte deren Funktion auch innerhalb der CSS-Regeln von anderen Komponenten 
 Während der Arbeit stellte sich heraus, dass die Definition er Abstände als eigene Komponenten ein sehr einfaches Entwickeln von Interfaces ermöglichte.  Durch die eingegrenzten Möglichkeiten ist auch währen der Entwicklung ein testen von anderen Abständen sehr einfach möglich.
 Weiterhin ist der Raum für Inkonsistenzen begrenzt, da die Abstände nur in den vorgegebenen Größen angegeben werden können. Dies wurde, gerade mit Blick auf die spätere Weiterentwicklung und Veröffentlichung, als ausreichend großer Vorteil angesehen, um eine Definition als eigenständige Komponente zu rechtfertigen.
 
-\section{Besonderhieten im Technologie-Stack}
+\subsection{Styleguide}
+Da zu einem späteren Zeitpunk unter Umständen verschiedene Personen an der Weiterentwicklung der Anwendung beteiligt sein werden, macht das Festhalten der bisher gestalteten Elemente und der Grundlagen der Gestaltung durchaus Sinn.
+Während der Gestaltung wurde nur ein minimalistischer Styleguide mit Informationen über Farben, Schriftgrößen und Abstände geführt, der für die Gestaltung dieser ersten Version mit nur einer Person im Team ausreichend war.
+
+Mit Blick auf die spätere Weiterentwicklung durch ist ein Zentraler Ort, der einen Überblick über die bereits erstellten Komponenten gibt, von großem Vorteil.
+Hierfür wurde die Bibliothek Storybook\footnotemark{} verwendet. Die Bibliothek läuft lokal im Browser und ermöglicht es, verschiedene Komponenten aus der Anwendung gekapselt darzustellen. Hierbei ist kein doppelter Code notwendig, die Komponenten können direkt aus dem Anwendungscode übernommen werden.
+Das hat außerdem den Vorteil, dass Komponenten zunächst für sich, außerhalb der Anwendung und ohne mögliche Abhängigkeiten entwickelt werden können.
+
+\footnotetext{\url{https://github.com/storybooks/storybook}}
+
+\section{Architektur}
 Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
 Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
 auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
@@ -60,12 +78,6 @@ besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
   \item Kein direktes dispatch in Components mehr
 \end{itemize}
 
-\subsection{React Storybooks}
-Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
-Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
-auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
-und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
-besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
 
 \subsection{CSS-Architektur}
 Für den Umgang mit CSS in React.js bieten sich verschiedene Möglichkeiten an. Nativ sind zwei Vorgehensweisen möglich: Anwenden von CSS über ausgelagerte Stylesheets (wie es in der Regel bei allen Webseiten gemacht wird) oder das verwenden von Inline-Styles.
@@ -146,6 +158,31 @@ Um diese  Limitierungen zu umgehen, wurde das Framework Aphrodite verwendet. Das
 Die Struktur der style-objekte ist dabei der von inline-style-objekten gleich.
 
 Mit der Verwendung von Aphrodite können also Aussehen und Funktion von Komponenten in der gleichen Datei gehalten werden, ohne dabei den Limitierungen von inline-styles zu unterliegen.
+
+
+\section{Interessante Aspekte in der Entwicklung}
+
+\subsection{State in Komponenten}
+
+\subsection{Dispatch von Actions}
+
+\subsection{Anzeige von Inhalten nach Scope}
+
+\subsection{Modularisierung der Anwendung}
+\textbf{Hier ist gemeint: Im Praxisprojekt wurden mehr Komponenten gebraucht, was lief hier besser?}
+
+\subsection{Arbeiten mit Farben}
+
+\subsection{Erstellen von PDF-Dateien}
+
+
+
+
+
+
+
+
+
 
 \section{Einstieg}
 Auf die Konzeptionellen Aspekte des Einstiegs in die Applikation wurde bereits im Kapitel Einstieg in die Anwendung [VERWEIS] eingegangen. In diesem Abschnitt soll ergänzend  auf einige konkrete Aspekte der Gestaltung und Entwicklung eingegangen werden.
