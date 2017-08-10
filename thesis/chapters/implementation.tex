@@ -292,11 +292,11 @@ Ein Array bietet dabei eine höhere Flexibilität, jedoch eine deutlich ungenaue
 [HIER SPÄTER NOCH MAL SCHAUEN, OB DAS NOCH STIMMT]
 
 \subsection{Anzeige von Inhalten nach Scope}
-Die größte Neuerung in der Entwicklung im Vergleich zum Praxisprojekt war die Anwendung der Scopes, also der Zielmedien für die der Benutzer gestaltet. Hauptsächlich Interessant für den Bereich Typographie war dabei, ob der Nutzer für das Lesen am Bildschirm oder auf Papier gestaltet und das Mobile Betriebssystem, falls er eine Native Applikation entwickelt. Hauptsächlich wirken sich diese Scopes auf die wählbaren Schriftfamilien aus.\\
+Ein Hauptaugenmerk währen der Entwicklung lag auf der Anwendung der vom Nutzer gewählten \textit{scope} in der Anwendung. In Abhängigkeit dieser Scopes muss die Anwendung verschiedene Daten präsentieren. Dabei muss die Möglichkeit bestehen, diese Daten zu erweitern oder zu verändern, ohne dass die Anwendung selbst dafür umstrukturiert werden muss. Diese Datenhaltung soll hier am Beispiel der verschiedenen Schriftfamilien, die im Bereich Typographie Verwendung finden können, gezeigt werden.
 
-Die Umsetzung ist dabei recht simpel: Die verfügbaren Schriftfamilien sind als in einer Konstante gespeichert., sie sind dabei nach dem Namen ihres Scopes aufgeschlüsselt.
+Da die Anwendung keine Datenbank implementiert, werden diese Daten in eigenen Dateien als JavaScript-Objekte gespeichert. Listing \ref{lst:fonts_object} zeigt das Objekt, in dem die verschiedenen Schriftarten der \textit{scopes} als Arrays gespeichert sind. Bei Betrachtung des Objektes fällt auf, dass sich Daten teilweise wiederholen. Obwohl hier gegen das Prinzip \textit{Don’t Repeat Yourself} verstoßen wird, ist eine solche Struktur mit Blick auf eine Weiterentwicklung der Anwendung nötig, um ein möglichst einfaches Verändern eines einzelnen \textit{scopes} gewährleisten zu können.
 
-\begin{lstlisting}
+\begin{lstlisting}[caption=Aufbau des \texttt{FONTS} Objektes, label=lst:fonts_object]
   export const FONTS = {
     DISPLAY: [
       'Verdana', 'Arial', 'Tahoma', 'TrebuchetMS'
@@ -322,18 +322,17 @@ Die Umsetzung ist dabei recht simpel: Die verfügbaren Schriftfamilien sind als 
   }
 \end{lstlisting}
 
-In der entsprechenden Komponente, die ein Dropdown-Menu mit den verschiedenen Optionen darstellt, wir dann einfach das zum aktuellen Scope passende Array ausgewählt:
+Da die \textit{keys} im \verb|FONTS| Objekt dabei exakt den möglichen \textit{scopes} entsprechen\footnotemark{}, ist ein einfaches Ermitteln der benötigten Schriftfamilien, wie es in Listing \ref{lst:fonts_access} gezeigt wird, möglich.
 
-\begin{lstlisting}
+\footnotetext{Auch die verschiedenen \textit{scopes} sind Konstanten, die in einem Objekt gespeichert werden.}
+
+\begin{lstlisting}[caption=Zugriff auf Werte des \texttt{FONTS} Objektes, label=lst:fonts_access]
   determineFontFamilies() {
     let scope = this.props.scopes[1]
     return FONTS[scope]
   }
 \end{lstlisting}
 
-Dieser Aufbau ermöglicht sowohl ein einfach hinzufügen und entfernen von Schriftfamilien, also auch das hinzufügen und entfernen von ganzen Scopes, was gerade mit Blick auf die Weiterentwicklung durch die Community interessant ist.\\
-
-\textbf{[HIER FEHLT NOCH DER MOBILE SCOPE]}\\
 
 \subsection{Modularisierung der Anwendung}
 \textbf{Hier ist gemeint: Im Praxisprojekt wurden mehr Komponenten gebraucht, was lief hier besser?}
@@ -353,20 +352,16 @@ Der Hauptgrund hierfür ist das auslagern der Logik in andere Bereiche der Anwen
   />
 \end{lstlisting}
 
-\subsection{Arbeiten mit Farben}
-[HIER KÖNNTE NOCH EIN BISSCHEN MEHR EINLEITUNG]
+\subsection{Erstellen von Farbkontrasten}
+Die Grundlegende Logik zum errechnen von bestimmten Kontrasten wurde bereits im Praxisprojekt definiert. Im ersten Schritt muss die Grundfarbe hierfür in den HSL-Farbraum überführt werden. Für diese Umwandlung wurde in der Anwendung die Bibliothek tinycolor\footnotemark{} verwendet, die verschiedene Funktionen zur Arbeit mit Farben bereit stellt (unter anderem auch das Umwandeln in den HSL-Farbraum).
+Nach der Umwandlung in den HSL-Farbraum gibt die Bibliothek ein JavaScript-Objekt zurück, in dem \textit{Hue}, \textit{Saturation}, \textit{Lightness} und \textit{Alpha} als \textit{Key-Value}-Paare vorhanden sind, mit denen die Berechnungen für die Farbkontraste vorgenommen werden können.
 
-Da die Berechnung der Farben im HSL-Farbmodell erfolgen sollten, die Anwendung aber an allen anderen Stellen mit der Hexadezimal-Darstellung arbeitet, müssen die Farben zunächst umgerechnet werden. Für die Umwandlung wurde die Bibliothek tinycolor [FUSSNOTE] verwendet, die aufgrund anderer verwendeter Bibliotheken schon im Projekt eingebunden war.
-Die Bibliothek wandelt die Hexadezimaldarotellung in ein JavaScript-Objekt mit den Attributen hue, saturation, lightness und alpha am. Somit können einzelne Werte dieses Objektes problemlos manipuliert und anschließend wieder in einen Hexadezimal-String umgewandelt werden.
+\footnotetext{\url{https://github.com/bgrins/TinyColor}, zuletzt abgerufen am 10.8.2017}
 
-Die Grundlegende Logik zum errechnen von bestimmten Kontrasten wurde bereits im Praxisprojekt definiert: Für einen Komplementärkontrast muss der hue-Wert um 180° verändert werden, für ein triadisches Farbschema werden die Werte jeweils um 30° nach links und rechts verändert und für ein Monochromatische Farbschema können der lightness- und saturation-Wert von einer Menge von Farben verändert werden.
-Im Folgenden sollen hier die konkreten Implementierungen dieser Berechnungen erläutert werden.
+Für einen Komplementär-Kontrast muss der \textit{Hue}-Wert der Grundfarbe um 180° verändert werden. Die Berechnung erwies sich mit Hilfe des HSL-JavaScript-Objektes als recht simpel, hier musste lediglich darauf geachtet werden, den einen Wert von 360 nicht zu überschreiten. Listing \ref{lst:complementary} zeigt die Funktion \verb|calculateComplemntary|, die diese Berechnung ausführt.
 
-Die Berechnung der Komplementärfarbe erwies sich als recht einfach, hier musste lediglich darauf geachtet werden, dass der Hue-Wert nicht größer als 360° [VIELLEICHT AUCH 359?] werden durfte.
-
-
-\begin{lstlisting}
-  export function calculateCompelemntary(baseColor) {
+\begin{lstlisting}[caption=Berechnung eines Komplementär-Kontrastes, label=lst:complementary]
+  export function calculateComplemntary(baseColor) {
     let complementary = Object.assign({}, baseColor)
     let hue = complementary.h
 
@@ -380,56 +375,25 @@ Die Berechnung der Komplementärfarbe erwies sich als recht einfach, hier musste
   }
 \end{lstlisting}
 
-Ähnlich gestaltete es sich bei der Berechnung des triadischen Farbschemas. Hier musste der Hue-Wert lediglich um den gegebenen Gradwert erhöht oder verringert werden. Um die Farbschemata dynamischer zu gestalten, wurde sich dazu entschieden, hier nicht statische Werte von 30° zu verwenden, sondern diese dynamisch in einem Rahmen von 25° bis 35° zu generieren.
+Hier wurde außerdem darauf geachtet, das Farbobjekt mit Hilfe der Funktion \verb|Object.assign()| zu kopieren, um keine ungewünschten Veränderungen im \verb|baseColor|-Objekt zu erzeugen\footnotemark{}.
 
-Deutlich komplexer gestaltet die Generierung von monochromatischen Farbschemata. Zum einen waren hier mehr Farben nötig, zum anderen können diese in den Werten Saturation und Lightness verändert werden. Weiterhin steht hier nicht fest, ob beide oder nur einer der Werte verändert werden soll, und wie die Veränderung aussieht. Auch hier wurde im Sinne der Dynamik auf zufallsgenerierte Zahlen zurück gegriffen.
-In der Funktion wird zunächst zufällig bestimmt, welche Werte verändert werden. Sowohl Saturation als auch Lightness können Werte zwischen 0 und 1 annehmen. Im zweiten Schritt wurden also eine oder zwei Zufallszahlen zwischen 0 und 1 generiert (gerundet auch zwei Dezimalstellen).
-Weiterhin muss gewährleistet werden, dass die einzelnen Farben sich nicht zu ähnlich sehen. Hier wurde eine Differenz von 0.1 als Minimum festgelegt (dabei reicht es, wenn einer der Werte außerhalb dieses Minimum liegt, um eine ausreichend hohe Differenz zwischen den Farben zu gewährleisten). Wird dieser Wert unterschritten, wird eine neue, zufällige Farbe generiert.
+\footnotetext{Objekte in JavaScript werden als \textit{Referenz} übergeben, siehe dazu \cite{Aggarwal2017Explaining}}
 
-\begin{lstlisting}
-  checkForSimilarColors(colors, candidate) {
-    let similarValues = false
-    for (var j = 0; j < colors.length; j++) {
-      let saturationDifference = Math.abs(colors[j].s - candidate.s)
-      let lightnessDifference = Math.abs(colors[j].l - candidate.l)
+Die Berechnung des triadischen Kontrastes gestaltet sich ähnlich, Hier wurde der \textit{Hue}-Wert jedoch um 30° erhöht beziehungsweise verringert, um den gewünschten Effekt zu erzielen.
 
-      if (saturationDifference < 0.1 && lightnessDifference < 0.1) {
-        similarValues = true
-      }
-    }
+Deutlich komplexer gestaltet die Generierung von monochromatischen Farbschemata, da die Farben hier in ihrem \textit{Hue}-Wert unverändert bleiben, jedoch in ihrem \textit{Saturation} und/oder ihrem \textit{Lightness}-Wert verändert werden können. Weiterhin werden für dies Farbschema mehr Farben benötigt (die Anwendung arbeitet mit der Grundfarbe und drei weitern, veränderten Farben).
 
-    return similarValues
-  }
-\end{lstlisting}
+Für jede Farbe müssen hier also verschiedene Entscheidungen getroffen werden. Zunächst muss entscheiden werden, welche Werte verändert werden können. Möglich ist hier einer von drei Fällen:
 
-\begin{lstlisting}
-  changeValuesOfColor(values, color) {
-    let manipulatedColor = Object.assign({}, color)
-    // Switch case
-    // Do the changes that need to be DropdownController
-    switch (values) {
-      case 0:
-        // change lightness
-        manipulatedColor.l = Math.random().toFixed(2)
-        break
-      case 1:
-        // change Saturation
-        manipulatedColor.s = Math.random().toFixed(2)
-        break
-      case 2:
-        // change lightning and saturation
-        manipulatedColor.l = Math.random().toFixed(2)
-        manipulatedColor.s = Math.random().toFixed(2)
-        break
-      default:
-        throw new 'Oops, seems like the randomizer messed something up.'
-    }
+\begin{itemize}
+  \item Nur der \textit{Saturation}-Wert
+  \item Nur der \textit{Lightness}-Wert
+  \item Sowohl der \textit{Saturation}- als auch der \textit{Lightness}-Wert
+\end{itemize}
 
-    return manipulatedColor
-  }
-\end{lstlisting}
+Um hier dynamischere Ergebnisse liefern zu können, wird diese Entscheidung in der Funktion \verb|calculateMonochromaticColors|, die Listing \ref{lst:mono} zeigt, zufällig getroffen.
 
-\begin{lstlisting}
+\begin{lstlisting}[caption=Berechnung eines Monochromatischen Farbschemas, label=lst:mono]
   calculateMonochromaticColors(amount) {
 
     let colors = []
@@ -457,7 +421,56 @@ Weiterhin muss gewährleistet werden, dass die einzelnen Farben sich nicht zu ä
   }
 \end{lstlisting}
 
-[HIER FEHLT NOCH DER AUSSCHLUSS VON SCHWARZ UND WEISS]
+Im nächsten Schritt müssen die Veränderungen in den bestimmten Werten vorgenommen werden. Auch hier werden diese Werte zufällig gewählt, wobei die Farben nicht zu Dunkel oder zu hell sein dürfen. Diese Zuweisung findet in der Funktion \verb|changeValuesOfColor| statt (siehe Listing \ref{lst:hsl}).
+
+[ HIER NOCH ERKLÄREN, WIE HELLE UND DUNKLE FARBEN AUSGESCHLOSSEN WERDEN ]
+
+\begin{lstlisting}[caption=Setzen der HSL-Werte, label=lst:hsl]
+  changeValuesOfColor(values, color) {
+    let manipulatedColor = Object.assign({}, color)
+    // Switch case
+    // Do the changes that need to be DropdownController
+    switch (values) {
+      case 0:
+        // change lightness
+        manipulatedColor.l = Math.random().toFixed(2)
+        break
+      case 1:
+        // change Saturation
+        manipulatedColor.s = Math.random().toFixed(2)
+        break
+      case 2:
+        // change lightning and saturation
+        manipulatedColor.l = Math.random().toFixed(2)
+        manipulatedColor.s = Math.random().toFixed(2)
+        break
+      default:
+        throw new 'Oops, seems like the randomizer messed something up.'
+    }
+
+    return manipulatedColor
+  }
+\end{lstlisting}
+
+Nachdem die Farben festgelegt sind muss außerdem überprüft werden, ob  eine generierte Farbe a) zu ähnlich der Grundfarbe oder b) zu ähnlich einer anderen generierten Farbe ist.
+Als \textit{zu ähnlich} zueinander wurden hier zwei Farben definiert, der \textit{Saturation}- \textbf{und} \textit{Lightness}-Werte eine Differenz kleiner als 0.1 aufweisen. Farben, die nur in einem der Beiden Werte eine zu kleine Differenz aufweisen, werden nicht als \textit{zu ähnlich} verstanden.
+Die Ähnlichkeit zweier Farben wird in  der Funktion \verb|checkForSimilarColors| in Listing \ref{lst:similar} deutlich. Die Funktion gibt dabei \verb|true| zurück, wenn die beiden übergebenen Werte zu ähnlich sind. Anstatt der betroffenen Farbe wird dann eine neue generiert.
+
+\begin{lstlisting}[caption=Überprüfen der Ähnlichkeit zweier Farben, label=lst:similar]
+  checkForSimilarColors(colors, candidate) {
+    let similarValues = false
+    for (var j = 0; j < colors.length; j++) {
+      let saturationDifference = Math.abs(colors[j].s - candidate.s)
+      let lightnessDifference = Math.abs(colors[j].l - candidate.l)
+
+      if (saturationDifference < 0.1 && lightnessDifference < 0.1) {
+        similarValues = true
+      }
+    }
+
+    return similarValues
+  }
+\end{lstlisting}
 
 
 \subsection{Erstellen von PDF-Dateien}
