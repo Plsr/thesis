@@ -168,15 +168,15 @@ Als Beispiel wurde die Auswahl des Zielmediums durch den Nutzer im ersten Schrit
 Der Ablauf der Interaktion mit der Anwendung sieht dabei wie folgt aus:
 Die Anwendung präsentiert dem Nutzer drei Optionen, aus denen dieser wählen kann. Wählt der Nutzer eine der Optionen aus, gibt die Anwendung ihm eine visuelle Rückmeldung über die ausgewählte Option. Ist der Nutzer mit seiner Wahl zufrieden, bestätigt er diese durch einen Button und  ihm wir der nächste Schritt im Wizard angezeigt.
 
-Für diese Interaktion werden verschiedene Komponenten eingesetzt (vgl. Abbildung ZXC), von denen die meisten \textit{stateless} sind, lediglich die Komponente \verb|SetupProgress| , die in Listing ZXC zu sehen ist \footnotemark{}, verwaltet einen Zustand.
+Für diese Interaktion werden verschiedene Komponenten eingesetzt (vgl. Abbildung ZXC), von denen die meisten \textit{stateless} sind, lediglich die Komponente \verb|SetupProgress|, die in Listing \ref{lst:setup} zu sehen ist\footnotemark{}, verwaltet einen Zustand.
 
 \footnotetext{Teile des Quellcodes, die für diesen Anwendungsfall nicht relevant sind, wurden gekürzt. Die gesamte Datei kann der beiliegenden CD entnommen werden}
 
-Im \textit{state} der Komponente  \verb|SetupProgress| wird eine Zahl gespeichert die angibt, welche der angezeigten Optionen momentan aktiv ist (ist keine aktiv, wird der Wert auf \verb|false| gesetzt). Beim rendern der \verb|IconButton| Komponenten wird für jede Komponente abgeglichen, ob diese im \textit{state} als aktive Option gespeichert ist. Jede der \verb|IconButton|-Komponenten, die Angezeigt wird, ruft über einen Callback die Funktion \verb|handleIconButtonClick(key)| auf, wenn der User auf diese klickt und übergibt einen Key, der wiederum in den \textit{state} der  \verb|SetupProgress| Komponente geschrieben wird. Durch das aktualisieren des \textit{state} wird nun die \verb|render()| Funktion der Komponente erneut aufgerufen und die entsprechende \verb|IconButton| Komponente wird als aktiv markiert.
+Im \textit{state} der Komponente \verb|SetupProgress| wird eine Zahl gespeichert die angibt, welche der angezeigten Optionen momentan aktiv ist (ist keine aktiv, wird der Wert auf \verb|false| gesetzt). Beim rendern der \verb|IconButton| Komponenten wird für jede Komponente abgeglichen, ob diese im \textit{state} als aktive Option gespeichert ist. Jede der \verb|IconButton|-Komponenten, die Angezeigt wird, ruft über einen Callback die Funktion \verb|handleIconButtonClick(key)| auf, wenn der User auf diese klickt und übergibt einen Key, der wiederum in den \textit{state} der  \verb|SetupProgress| Komponente geschrieben wird. Durch das aktualisieren des \textit{state} wird nun die \verb|render()| Funktion der Komponente erneut aufgerufen und die entsprechende \verb|IconButton| Komponente wird als aktiv markiert.
 Der  \verb|IconButton| Komponente selbst ist dabei der Kontext, in dem sie verwendet wird, nicht bekannt.
 
 
-\begin{lstlisting}
+\begin{lstlisting}[caption=Die Komponente \texttt{SetupProgress} in gekürzter Form, label=lst:setup]
   class SetupProgress extends React.Component {
     constructor(props) {
       super(props)
