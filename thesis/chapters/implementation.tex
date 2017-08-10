@@ -163,21 +163,128 @@ Mit der Verwendung von Aphrodite können also Aussehen und Funktion von Komponen
 \section{Interessante Aspekte in der Entwicklung}
 
 \subsection{State in Komponenten}
-An dieser Stelle wird außerdem der in Kapitel Stateful \& Stateless [VERWEIS] angesprochene Unterschied zwischen Component State und Application State deutlich. Die Interaktion des Nutzers mit dem Wizard findet wie folgt statt: Der Nutzer wählt einen Scope aus, dieser wird von der Anwendung hervor gehoben. Mit einem Klick auf den “Next”-Button wird die Selektion gespeichert und darauf aufbauend neue Optionen angezeigt.
-Abb XYZ [BILD FEHLT] zeigt noch einmal den Aufbau des Wizards in Verbindung mit den beteiligten Komponenten. Dabei ist nur der SetupContainer [NAME STIMMT NICHT] stateful, dieser kümmert sich um die Anzeige des vom Nutzer ausgewählten Scopes, der im state dieser Komponente gespeichert ist
+Das Konzept des \textit{state} in React.js wurde Bereits in Kapitel \ref{chap:stateless} angesprochen. Hier soll an einem konkreten Bespiel verdeutlicht werden, wie der \textit{state} genutzt werden kann, um auf Nutzereingaben zu reagieren und an welcher Stelle sich der \textit{Component State} und der \textit{Application State} unterscheiden.
+Als Beispiel wurde die Auswahl des Zielmediums durch den Nutzer im ersten Schritt der Anwendung gewählt, die in mehreren Schritten durchgeführt wird.
+Der Ablauf der Interaktion mit der Anwendung sieht dabei wie folgt aus:
+Die Anwendung präsentiert dem Nutzer drei Optionen, aus denen dieser wählen kann. Wählt der Nutzer eine der Optionen aus, gibt die Anwendung ihm eine visuelle Rückmeldung über die ausgewählte Option. Ist der Nutzer mit seiner Wahl zufrieden, bestätigt er diese durch einen Button und  ihm wir der nächste Schritt im Wizard angezeigt.
+
+Für diese Interaktion werden verschiedene Komponenten eingesetzt (vgl. Abbildung ZXC), von denen die meisten \textit{stateless} sind, lediglich die Komponente \verb|SetupProgress| , die in Listing ZXC zu sehen ist \footnotemark{}, verwaltet einen Zustand.
+
+\footnotetext{Teile des Quellcodes, die für diesen Anwendungsfall nicht relevant sind, wurden gekürzt. Die gesamte Datei kann der beiliegenden CD entnommen werden}
+
+Im \textit{state} der Komponente  \verb|SetupProgress| wird eine Zahl gespeichert die angibt, welche der angezeigten Optionen momentan aktiv ist (ist keine aktiv, wird der Wert auf \verb|false| gesetzt). Beim rendern der \verb|IconButton| Komponenten wird für jede Komponente abgeglichen, ob diese im \textit{state} als aktive Option gespeichert ist. Jede der \verb|IconButton|-Komponenten, die Angezeigt wird, ruft über einen Callback die Funktion \verb|handleIconButtonClick(key)| auf, wenn der User auf diese klickt und übergibt einen Key, der wiederum in den \textit{state} der  \verb|SetupProgress| Komponente geschrieben wird. Durch das aktualisieren des \textit{state} wird nun die \verb|render()| Funktion der Komponente erneut aufgerufen und die entsprechende \verb|IconButton| Komponente wird als aktiv markiert.
+Der  \verb|IconButton| Komponente selbst ist dabei der Kontext, in dem sie verwendet wird, nicht bekannt.
+
 
 \begin{lstlisting}
-  constructor(props) {
-    super(props)
+  class SetupProgress extends React.Component {
+    constructor(props) {
+      super(props)
 
-    // shortended for readability
+      // Shortened for readability
 
-    this.state = {
-      activeOption: false // currently active option, 'false' by default
+      this.state = {
+        activeOption: false
+      }
+    }
+
+    handleIconButtonClick(key) {
+      this.setState({
+        activeOption: key
+      })
+    }
+
+    handleButtonClick() {
+      this.props.setScope(this.state.activeOption)
+
+      // If the current setup step is the last, also set the setup state to finished
+      if (this.props.setupStep == this.props.setupSteps) {
+        this.props.setSetupToFinished()
+      }
+
+      // Reset this components' internal state to disable the button
+      this.setState({
+        activeOption: false
+      })
+    }
+
+    handleBackButtonClick() {
+      this.props.previousSetupStep()
+    }
+
+    /**
+     * Generates the main content for the setup component (i.e. Iconbuttons).
+     * Determines the correct subset of options and calls constructIconButtons()
+     * with that subset.
+     *
+     * @return {Array} An array of IconButtons ready for rendering
+     */
+    generateContent() {
+
+      // Shortened for readability
+
+      return this.constructIconButtons(setupOptions)
+    }
+
+    /**
+     * Constructs an array of IconButtons based on a given set of options
+     *
+     * NOTE: This will construct an IconButton for every element in the given options
+     * and does not validate them.
+     *
+     * @param {Array} setupOptions
+     * @returns {Array} An Array of iconButtons
+     */
+    constructIconButtons(setupOptions) {
+      let iconButtons = []
+      for (var i = 0; i < setupOptions.length; i++) {
+        let currentOption = setupOptions[i]
+
+        iconButtons.push(
+          <div className={css(styles.iconButtonWrapper)}>
+            <IconButton
+              icon={currentOption.icon}
+              onClick={this.handleIconButtonClick}
+              key={i}
+              identifier={currentOption.value}
+              active={this.state.activeOption === currentOption.value}
+            >
+              {currentOption.text}
+            </IconButton>
+          </div>
+
+        )
+      }
+
+      return iconButtons
+    }
+
+    render() {
+      return (
+        <BorderedBox>
+          <SpacingInset size='l'>
+            <span>Choose what you are building</span>
+            <SpacingInset size='l' />
+            <div className={css(styles.buttonWrapperStyles)}>
+              {this.generateContent()}
+            </div>
+            <SpacingInset size='l' />
+            <div className={css(styles.buttonWrapperStyles)}>
+              <SecondaryButton inactive={this.props.setupStep < 2} onClick={this.handleBackButtonClick} variant={'outline'}>Back</SecondaryButton>
+              <SecondaryButton inactive={this.state.activeOption == false} onClick={this.handleButtonClick}>Next Step</SecondaryButton>
+            </div>
+          </SpacingInset>
+        </BorderedBox>
+      )
+    }
   }
+
+  // Shortened for readability
+
+  export default SetupProgress
 \end{lstlisting}
 
-Da die aktuell gewählte Option nur für diese Komponente von Bedeutung ist, wird diese auch nicht in den Application State geschrieben. Bestätigt der Nutzer die Auswahl jedoch mit dem “Next”-Button, wird der Wert des aktuell aktiven Elements in den Store geschrieben.
+Der hier gezeigte Ablauf hätte sich auch durch die Verwendung des Redux-Stores realisieren lassen, jedoch ist die gewählte Option zunächst nicht für die gesamte Anwendung von Relevanz (so kann der Nutzer seine Auswahl zum Beispiel noch ändern). Erst, wenn der Nutzer sich durch den Klick auf den \textit{Next}-Button auf einen Wert festlegt, wird dieser auch der ganzen Anwendung, über den Redux-Store, bekannt gemacht.
 
 \subsection{Dispatch von Actions}
 Das Hauptaugenmerk in der Entwicklung lag in diesem Schritt im setzen der Scopes für die Anwendung. Da auf die Scopes in allen späteren Teilen der Anwendung zugegriffen werden können muss wurde schnell deutlich, dass diese im Application Sate, also dem Redux Store gehalten werden müssen. Hier stellte sich jedoch vor allem die Fragen nach der Datenstruktur der Scopes, wobei die Möglichkeiten auf die Haltung in einem Array oder als JavaScript Objekt begrenzt wurden.

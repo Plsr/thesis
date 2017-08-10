@@ -7,7 +7,7 @@
 \usepackage[german]{babel}
 
 % Use Times as font family for the document
-\usepackage{times}
+\usepackage[T1]{fontenc}
 
 \usepackage{hyperref}
 
@@ -44,6 +44,9 @@
 \usepackage{xcolor}
 \usepackage{textcomp}
 
+\usepackage{inconsolata}
+
+
 % Inlcude subsubsection in ToC
 \setcounter{tocdepth}{4}
 \setcounter{secnumdepth}{4}
@@ -71,18 +74,20 @@
 % lstlisting styles
 \lstset{
    language=JavaScript,
-   backgroundcolor=\color{lightgray},
+   backgroundcolor=\color{white},
    extendedchars=true,
-   basicstyle=\footnotesize\ttfamily,
+   basicstyle=\scriptsize\ttfamily,
+   lineskip={0.5pt},
    showstringspaces=false,
    showspaces=false,
    numbers=left,
-   numberstyle=\footnotesize,
+   numberstyle=\scriptsize\ttfamily,
    numbersep=9pt,
    tabsize=2,
    breaklines=true,
    showtabs=false,
-   captionpos=b
+   captionpos=b,
+   frame=single
 }
 
 
