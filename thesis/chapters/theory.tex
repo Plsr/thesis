@@ -5,13 +5,49 @@ Weiterhin gilt es, die verschiedenen technischen Möglichkeiten der Umsetzung zu
 \textbf{Die Einleitung stimmt nicht mehr}
 
 \section{Diskussion verfügbarer Technologien}
-Im Nachfolgenden Kapitel sollen mögliche Technologien diskutiert werden, die für die Umsetzung der Abschlussarbeit genutzt werden können. Für die Umsetzung einer Webanwendung bieten sich eine Vielzahl von Programmiersprachen und Frameworks an. Diese können durch die geplante Struktur der Anwendung jedoch bereits weiter eingegrenzt werden. Da die Anwendung keine persistente Datenhaltung implementiert und auch keine übermäßig aufwendigen Berechnungen durchgeführt werden müssen, kann auch ein klassisches Client-Server-Modell verzichtet werden.
-Aufgrund des hohen Grades der Interaktivität der Anwendung kann außerdem davon ausgegangen werden, dass in jedem Falle auf JavaScript zurück gegriffen werden muss.
+Durch die in Kapitel ZXC definierten Konzepte können bereits einige Anforderungen an die Anwendung gefunden werden, die für die Umsetzung von Bedeutung sind.
+Die Anwendung:
 
-In den letzten Jahren wurden viele JavaScript-Frontend-Frameworks veröffentlicht, die genau auf die Anforderung der gestiegenen Interaktivität im Browser reagieren.
-Im Praxisprojekt wurde bereits versucht, den Proof of Concept nur mithilfe des Frameworks jQuery umzusetzen. Hier wurde schnell deutlich, dass die Komplexität der Anwendung den Rahmen von jQuery übersteigt.
+\begin{itemize}
+  \item weist einen hohen Grad der Interaktivität auf
+  \item benötigt kein Backend
+  \item soll eine Webanwendung sein
+\end{itemize}
 
-Im folgenden sollen also einige der bekanntesten JavaScript-Frontend-Frameworks verglichen werden. Die Auswahl dieser Frameworks erfolgt nach Beliebtheit auf GitHub.com. Weiterhin wurden Frameworks ausgeschlossen, die ein komplettes MCV-Pattern implementieren, da zum aktuellen Stand dieser Anwendung keine Models angemacht sind.
+Die Anwendung entspricht somit einer \textit{Rich Internet Application} wie sie George Lawton definiert:
+
+\begin{quote}
+  RIAs feature responsive user interfaces and interactive capabilities. This makes Internet-based programs easier to use and more functional, and also overcomes problems with traditional Web applications such as slow performance and limited interactivity \cite{lawton2008new}
+\end{quote}
+
+\subsection{Rich Internet Applications}
+Die Idee, Webseiten dynamischer und interaktiver zu gestalten geht dabei fast so weit zurück wie die Idee des Internet selbst.
+
+\begin{quote}
+  Very early on, software engineers realized that the client-server architecture of the Web provided a powerful platform in which the browser could be a universal user interface to applications that may run locally or remotely on a server \cite{Jazayeri:2007:TWA:1253532.1254719}
+\end{quote}
+
+Um diese Interaktivität und Dynamik umzusetzen wurden zunächst Plattformen mit eigenen Laufzeitumgebungen genutzt. Lawton \cite{lawton2008new} nennt hier beispielsweise Microsoft Silverlight, Adobe Flash oder JavaFX.
+Die Verwendung von eigenen Laufzeitumgebungen dieser Plattformen  bedeutete für den Nutzer jedoch,  dass dieser bestimmte Programme auf seinem Rechner oder Plugins in seinem Browser installieren musste, um zugriff auf die so gewonnene Interaktivität zu erhalten. Somit musste auf einen der größten Vorteile der Entwicklung von Webanwendungen verzichtet werden: Die Unnötigkeit einer Installation im Client für die Nutzung der Software.
+
+Durch das Verabschieden von neuen Web-Standards wie HTML5 oder ECMAScript 6 können viele Funktionen der oben genannten Plattformen mittlerweile auch nativ, nur mit Hilfe des Browsers, abgebildet werden. So empfiehlt Adobe beispielsweise, Flash nicht für Funktionen zu nutzen, die auch mit Hilfe von HTML5 abgebildet werden können\footnotemark{}.
+
+\footnotetext{siehe dazu \url{https://blogs.adobe.com/conversations/2015/11/flash-html5-and-open-web-standards.html}, zuletzt abgerufen am 11.08.2017}
+
+Viele Facetten der Interaktivität können vor allem durch die Hilfe von JavaScript realisiert werden.
+
+\subsection{Single Page Applications}
+Das Prinzip der \textit{Single Page Applications (SPA)} lässt sich bereits an der Wortbedeutung gut erkennen: Es handelt sich um Anwendungen, die auf einer einzigen HTML-Seite ausgeliefert werden.
+Mikowski und Powell definieren SPAs als
+
+\begin{quote}
+  […] an application delivered to the browser that doesn’t reload the page during use. Like all applications, it’s intended to help the user complete a task, such as “write a document” or “administer a web server.” We can think of an SPA as a fat client that’s loaded from a web server. \cite{MikowskiPowell201309}
+\end{quote}
+
+Single Page Applications können somit als Untereinheit der Rich Internet Applications bezeichnet werden.
+Eine der ältesten Möglichkeiten, eine Single Page Application zu realisieren stellt AJAX dar. AJAX erlaubt das nachladen von Inhalten  vom Server, ohne, dass die Seite des Clients neu geladen werden muss \cite{paulson2005building}. Da eine Anforderung an die zu entwickelnde Anwendung aber die Absenz eines Backends ist, kann diese Möglichkeit zur Umsetzung ausgeschlossen werden.
+
+Aufgrund der Möglichkeiten, die mit den bereits erwähnten, neuen Web-Standards einhergehen, entstanden in den letzten Jahren jedoch viele JavaScript-Frameworks, die sich auf die Entwicklung von Single Page Applications spezialisieren.
 
 \subsection{Vue.js}
 Zuerst wurde Vue.js im Dezember 2013 veröffentlicht. Mittlerweile ist Vue.js in der zweiten Version zugänglich.
