@@ -1,8 +1,7 @@
-\chapter{Theoretische Grundlagen}
+\chapter{Technischen Grundlagen}
 \thispagestyle{fancy}
-Das nachfolgende Kapitel soll die theoretischen Grundlagen erläutern, die für die Umsetzung der Anwendung von Bedeutung sind. Diese Grundlagen teilen sich in verschiedene Bereiche auf. Zum einen soll der Aufbau der Anwendung festgelegt werden. In diesem Beriech müssen außerdem einige Bereich noch Konzipiert werden. Auch dieser Prozess und dessen Ergebnisse sollen hier erläutert werden.
-Weiterhin gilt es, die verschiedenen technischen Möglichkeiten der Umsetzung zu diskutieren. Abschließend findet sich ein konzeptioneller Einstieg in React.js und in einige damit verbundene und wichtige Bibliotheken, sowie eine Darstellung der Design-Prozesse.
-\textbf{Die Einleitung stimmt nicht mehr}
+Das nachfolgende Kapitel soll die technischen Grundlagen erläutern, die für die Umsetzung der Anwendung von Bedeutung sind. Im Folgenden sollen verschiedene Möglichkeiten der Umsetzung diskutiert und der Prozess für die Wahl der verwendeten Technologien und Frameworks erläutert werden.\\
+Weiterhin sollen im zweiten Teil dieses Kapitels die nötigen Grundlagen für ein Verständnis des Aufbaus der Anwendung und ihres Quellcodes geschaffen werden.
 
 \section{Diskussion verfügbarer Technologien}
 Durch die in Kapitel ZXC definierten Konzepte können bereits einige Anforderungen an die Anwendung gefunden werden, die für die Umsetzung von Bedeutung sind.
@@ -49,8 +48,17 @@ Eine der ältesten Möglichkeiten, eine Single Page Application zu realisieren s
 
 Aufgrund der Möglichkeiten, die mit den bereits erwähnten, neuen Web-Standards einhergehen, entstanden in den letzten Jahren jedoch viele JavaScript-Frameworks, die sich auf die Entwicklung von Single Page Applications spezialisieren.
 
-\subsection{Vue.js}
-Zuerst wurde Vue.js im Dezember 2013 veröffentlicht. Mittlerweile ist Vue.js in der zweiten Version zugänglich.
+
+\subsubsection{JavaScript Single Page Application Frameworks}
+
+Aus der Menge der verfügbaren JavaScript-Frameworks, die sich für die Umsetzung einer SPA eignen, wurden hier drei für eine Untersuchung auf die Tauglichkeit für die Umsetzung der Konzipierten Anwendung hin untersucht.
+Die Auswahl der Frameworks erfolgte dabei nach Verbreitung und tatsächlicher Verwendung. Die Verbreitung von Software genau zu messen gestaltet sich schwierig. Als Indikator für die Beliebtheit wurde hier die Zahl der \textit{stars}\footnotemark{} auf der Plattform GitHub verwendet.
+
+\footnotetext{Ein \textit{star} sagt aus, dass eine Person Interesse an dieser Software zeigt.}
+
+Im folgenden werden die Frameworks Vue.js, Angular.js und React.js verglichen.
+
+\textbf{Vue.js} wurde im Dezember 2013 veröffentlicht und ist mittlerweile in der Version zwei .
 Vue beschreibt sich selbst in der Einführung der Documentation wie folgt:
 
 \begin{quote}
@@ -72,53 +80,53 @@ Der Virtual DOM wird von Frameworks wie Vue.js dafür verwendet, Änderungen am 
 
 Für das Darstellen von Inhalten verwendet Vue.js eine Templating-Engine, Erweiterungen wie Routing oder Verwaltung des Zustandes der Anwendung müssen über externe Bibliotheken eingefügt werden.
 
-\subsection{Angular.js}
-Das von Google Entwickelte Angular.js ist das älteste der hier behandelten Frameworks. Es wurde zuerst im Oktober 2010 veröffentlicht und ist ebenfalls in der 2. Version angelangt.\\
+Das von Google Entwickelte \textbf{Angular.js} ist das älteste der hier behandelten Frameworks. Es wurde zuerst im Oktober 2010 veröffentlicht und ist ebenfalls in der 2. Version angelangt.\\
 Insgesamt ist Angular deutlich komplexer als  Vue.js und React. Dies zeigt sich zum Einen beispielsweise durch die inkludierung von Routing (wenn auch nicht im angular core package), zum Anderen aber auch die die deutlich Komplexere Architektur, die unter anderem aus Teilen wie Modulen, Komponenten und Templates besteht. Auch hier wird also eine Templating-Engine verwendet.
 
-\subsection{React.js}
-React.js wurde im Juli 2013 von Facebook veröffentlicht.\\
+\textbf{React.js} wurde im Juli 2013 von Facebook veröffentlicht.\\
 Wie Vue.js verwendet auch React.js einen Virtual DOM. Auch wenn die Implementierung sich hier unterscheiden sollte, ist das Prinzip das Gleiche.
 Anders als Vue.js und Angluar.js verwendet React keine Templating Engine, React Applikationen sind daher als komplett in JavaScript geschrieben. Hier wird also HTML in JavaScript geschrieben, und nicht JavaScript in HTML, wie es im klassischen Sinne geschieht.
 Ähnlich wie Vue.js ist auch React.js in seiner Funktionalität sehr komprimiert, Funktionen wie Routing oder Application State müssen also über externe Bibliotheken eingebunden werden.
 
+Aus dem Vergleich wird zunächst deutlich, dass alle Frameworks ähnliche Ziele verfolgen und somit auch alle Frameworks für die Umsetzung der hier vorliegenden Anwendung grundsätzlich geeignet sind.
+Angular.js wurde jedoch ausgeschlossen, da die relativ komplexe Grundstruktur für eine eher kleinere Anwendung, wie sie hier entwickelt werden soll, unpassend ist.
+Die abschließende Entscheidung fiel auf das Framework React.js, aus dem pragmatischen Grund, dass bereits im Vorfeld dieser Arbeit ein Proof of Concept entstand, der ebenfalls auf dem Framework React.js aufbaut. Hiervon wurde sich eine simplere übernähme bestimmter Teile des Proof of Concept versprochen.
+
+
 \section{Einstieg in React.js}
-Der Folgende Abschnitt soll einen überblick über wichtige Konzepte und Vorgehensweisen bei der Entwicklung mit React.js geben. Ziel soll es dabei sein, genug Wissen zu vermitteln, um die später in dieser Arbeit gezeigten Codebeispiele verstehen zu können.\\
-Dieser Abschnitt wird auf das Konzept von Komponenten im Allgemeinen sowie deren Verwendung in und in React.js eingehen und einige Grundlagen in der Auszeichnungssprache JSX vermitteln. Weiterhin werden die Übertragung von Daten und Zuständen innerhalb von React Komponenten behandelt.
+Das Framework React.js definiert einige spezielle Konzepte und Vorgänge, auf die im Folgenden eingegangen werden soll. Der Umfang soll dabei so gering wie möglich bleiben, aber trotzdem ein Verständnis der später in dieser Arbeit gezeigten Codebeispiele und des Quellcodes auf der Begleit-CD ermöglichen.
 
 \subsection{Komponenten}
-Der Komponentenbasierte Aufbau ist eines der Hauptaugenmerke von React.js. Komponenten werden auf der offiziellen React.sj-Website \footnotemark als der wichtigsten Merkmale aufgeführt und Gackenheimer \cite[S. 28]{Gackenheimer201509} nennt sie einen der Hauptbestandteile einer React-Anwendung. \\
-Dieser Abschnitt beschäftigt sich mit dem Aufbau, der Verwendung, den verschiedenen Formen und den Besonderheiten von Komponenten in React. \\
-Natürlich kann und soll es nicht Ziel sein, einen umfassenden überblick über alle Informationen zu geben, die mit Komponenten in React in Verbindung stehen. Daher soll im Folgenden vorrangig auf in der Umsetzung als am relevantesten empfundene Aspekte eingegangen werden.
-\footnotetext{\url{https://facebook.github.io/react/}}
-
+Die komponentenbasierte Entwicklung ist einer der Hauptbestandteile der Architektur einer React-Anwendung \cite[S. 28]{Gackenheimer201509}. \\
+Dieser Abschnitt beschäftigt sich mit dem Aufbau, der Verwendung, den verschiedenen Formen und den Besonderheiten von Komponenten in React.\\
+Bevor auf die Besonderheiten von Komponenten in React.js eingegangen wird, soll im Folgenden zunächst ein Überblick über das Konzept der Komponente an sich und im Kontext der Software-Entwicklung gegeben werden.
 
 \subsubsection{Was ist eine Komponente?}
-Bevor auf die Besonderheiten von Komponenten in React.js eingegangen wird, soll im Folgenden kurz ein Überblick über das Konzept der Komponente an sich gegeben werden.
-
-Das Oxford Dictionary definiert eine Komponente als
-
-\begin{quote}
-  A part or element of a larger whole […]
-\end{quote}
-
-Gerade im Bezug auf Softwareentwicklung werden Komponenten aber noch einige weitere Eigenschaften zugeschrieben. So schreiben \cite{Szyperski200211} über Komponenten in der Softwareentwicklung:
-
+\label{chap:component}
+Als erster Schritt zu Beantwortung der Frage, was eine Komponente ist, bietet sich die Betrachtung der Wortbedeutung an. Der Duden definiert eine Komponente als "Bestandteil eines Ganzen" \cite{Dudenredaktion2006}. Diese Definition gibt bereits erste Hinweise auf die Eigenschaften einer Komponente in der Software-Entwicklung.\\
+Weitere Eigenschaften definiert Clemens Szyperski:
 
 \begin{quote}
-  One thing can be stated with certainty: components are for composition. […] Composition enables prefabricated “things” to be reused by rearranging them in ever-new composites.
+  One thing can be stated with certainty: components are for composition. […] Composition enables prefabricated “things” to be reused by rearranging them in ever-new composites. \cite{Szyperski200211}
 \end{quote}
 
-Das Hauptaugenmerk bei der Entwicklung einer Komponente in der Softwareentwicklung sollte also auf der Möglichkeit der Wiederverwendbarkeit innerhalb der Anwendung liegen. Dabei sollte der Ort für die Wiederverwendung keine Rolle spielen. Eine Komponente sollte also unabhängig von ihrer Umgebung die gleichen Ergebnisse liefern \cite{de2001interface}:
-
+Und De Alfredo und Henzinger schreiben über Komponenten:
 
 \begin{quote}
-  It does not constrain the environment but describes the behavior of the component in an arbitrary environment: “for all inputs x and y, if y $\neq$ 0, then the output is z = x/y“
+  It does not constrain the environment but describes the behavior of the component in an arbitrary environment: “for all inputs x and y, if y $\neq$ 0, then the output is z = x/y“ \cite{de2001interface}
 \end{quote}
+
+Für den Rahmen dieser Arbeit können daraus für Komponenten also folgende Eigenschaften gefolgert werden:\\
+Eine Komponente ist nur ein einzelner Teil der ganzen Anwendung. Dieser Teil sollte (nach Möglichkeit) auch an anderen Stellen in der Anwendung wiederverwendbar sein und sollte weiterhin keine Abhängigkeit von seiner Umwelt besitzen.
 
 \subsubsection{Komponenten in React.js}
-Jede Komponente in React ist eine Subklasse der Basisklasse \verb|React.Component| \cite{ReactCom}.
-Konzeptuell besitzt jede Komponente in React einen Lifecycle. Die offizielle Dokumentation \cite{ReactCom} beschreibt in diesem Lifecycle drei Zustände:
+Die React.js-Dokumentation selbst enthält eine weiter Definition einer Komponente:
+
+\begin{quote}
+  Conceptually, components are like JavaScript functions. They accept arbitrary inputs (called "props") and return React elements describing what should appear on the screen. \cite{ReactProps}
+\end{quote}
+
+Jede Komponente in React.js ist eine Subklasse der Basisklasse \verb|React.Component| und besitzt einen Lebenszyklus, den sogenannten \textit{Component Lifecycle}. Dieser besteht aus drei Zuständen \cite{ReactCom}:
 
 \begin{enumerate}
   \item Mounting
@@ -126,161 +134,64 @@ Konzeptuell besitzt jede Komponente in React einen Lifecycle. Die offizielle Dok
   \item Unmounting
 \end{enumerate}
 
-\textbf{Mounting} beschreibt dabei den Vorgang des erstellen der Komponente und des einfügens in den DOM. Funktionen, die beim Mounting aufgerufen werden, werden also nur ein einziges mal im gesamten Lifecycle aufgerufen (die Ausnahme bildet dabei die Funktion \verb|render()|, die auch beim Update Ereignis aufgerufen wird).
+Für jeden dieser Zustände können verschiedene Funktionen aus der Basisklasse \verb|React.Component| überschrieben werden, um diese in der Komponente zu verwenden.
 
-Ein \textbf{Update} wird durch die Veränderung von \verb|props| oder \verb|state| herbeigeführt. Der Auslöser für ein Update kann dabei also sowohl von der Komponente selbst, als auch von einer anderen Komponente kommen, die diese Komponente aufgerufen hat.
+\textit{Mounting} und \textit{Unmounting} beschreiben den Anfang beziehungsweise das Ende des Lebenszyklus und Funktionen, die diesen Zuständen zugehörig sind, werden demnach nur einmal aufgerufen.
+Funktionen, die  dem Zustand \textit{Updating} zugehörig sind, können beliebig oft aufgerufen werden, jedes Mal, wenn ein Update der Komponente initiiert wird. Von besonderer Bedeutung ist hier die Funktion \verb|render()|, in der definiert wird, welchen Inhalt die Komponente ausgeben soll.
 
-\textbf{Unmounting} wird unmittelbar vor dem entfernen der Komponente aus dem DOM aufgerufen.
+Für das Arbeiten mit Komponenten in React ist weiterhin das Konzept der \textit{props} und des \textit{state} relevant \cite{ReactProps}.\\
+Dabei bezeichnen \textit{props} JavaScript-Objekte, die von einer Elternkomponente zur Kindkomponente übergeben werden können. Besonders interessant ist die Möglichkeit, Referenzen auf Funktionen übergeben zu können. Smoit kann in einer Elternkomponente auf die Interaktion mit einer Kindkomponente reagiert werden.
+Der \textit{state} bezeichnet im weitesten Sinne den Zustand einer Komponente. In diesem Objekt können Werte gespeichert werden, die für die Anzeige des Zustandes der Komponente relevant sind.\\
+Hier zeigt sich außerdem der Grundgedanke der Interaktivität in React.js: Werden \textit{props} oder \textit{state} aktualisiert, werden die Funktionen des \textit{Updating}-Zustandes im Lebenszyklus dieser Komponente aufgerufen. Somit kann die Ausgabe der Komponente auf die neuen Werte angepasst werden.
 
-Abbildung XYZ zeigt eine Schematische Darstellung des Lifecycle einer React Komponente.
-
-Für jeden dieser verschiedenen Zustände bietet die Basisklasse \verb|React.Component| verschiedene Funktionen an, die überschreiben werden können um diese zu verwenden. Die Funktionen werden dabei entweder vor oder nach dem jeweiligen Ereignis im Lifecycle aufgerufen.
-Die einzelnen Funktionen sollen im Folgenden nicht im einzelnen erläutert werden, da diese ausreichend Dokumentiert sind.
-
-Für das Arbeiten mit Komponenten in React ist weiterhin das Konzept der \verb|props| und des \verb|state| relevant.
-\verb|props| sind Daten, die von einer Komponente zur anderen übergeben werden können. Diese können beliebige JavaScript Objekte oder Primitive sein, somit können auch Referenzen auf Funktionen and Kind-Komponenten übergeben werden.  Die Kind-Komponente kann dann via \verb|this.props.propName| auf die ihr mitgegebenen props zugreifen.
-Listing XZY verdeutlich dieses Prinzip
-
-\begin{lstlisting}
-  class Parent extends REact.Component {
-  	calculateSomething() {
-  		// Claculates something
-  		return result
-  	}
-
-  	render() {
-  		let result = this.calculateSomething()
-
-  		return (
-  			<Child value={result} />
-  		)
-  	}
-  }
-
-  class Child extends React.Component {
-  	render() {
-  		return (
-  			<div>{this.props.value}</div>
-  		)
-  	}
-  }
-\end{lstlisting}
-
-Das Prinzip des \verb|state| wird im Kapitel Stateless \& Stateful auf Seite \pageref{chap:stateless} näher erläutert.
-
-\subsubsection{Stateful \& Stateless}
+\subsubsection{Zustandslose Komponenten}
 \label{chap:stateless}
-Komponenten in React.js können entweder Stateful oder Stateless sein. Wie der Name bereits vermuten lässt, haben diese Komponenten entweder  einen state, oder nicht.\\
-Der state in React.js beschreibt den Zustand eine Komponente. Hier findet sich auch eines der Hauptfeatures von React.js: Ändert sich der state einer Komponente, so wird diese Komponente neu gerendert, also auch das User Interface aktualisiert um den neuen Zustand darzustellen. Der state kann (und sollte) dabei durch das Aufrufen der Funktion \verb|setState()| geändert werden. Das nachfolgende Codebeispiel zeigt eine simple Komponente, die clicks auf einen Button zählt:
+Nicht jede Komponente in React.js muss den \textit{state} verwenden, viele Komponenten innerhalb einer Anwendung dienen nur der Darstellung von Inhalten, die ihnen von ihren Elternkomponenten übergeben werden. Vor den in Kapitel \ref{chap:component} definierten Anforderungen an eine Komponente ist es Sinnvoll, viele in sich abgeschlossene und in ihren Funktionen limitierte Komponenten zu implementieren, die dann von wenigen Komponenten "kontrolliert" werden.\\
+Da zustandslose Komponenten keine der im vorhergehenden Kapitel erwähnten Methoden implementieren, wurde mit dem Release von React 0.14\footnotemark{} eine simplifizierte Schreibweise für diese Komponenten eingeführt (Listing \ref{lst:stateless} zeigt diese Schreibweise). Hier wird zum Einen das unnötige Schreiben von Code vermeiden, zum anderen kann während der Entwicklung auf den ersten Blick festgestellt werden, ob eine Komponente einen Zustand verwaltet oder nicht.
 
-\begin{lstlisting}
-  class ClickCounter extends React.Component{
-  	constructor(props) {
-  		super(props)
+\footnotetext{Siehe dazu \url{https://facebook.github.io/react/blog/2015/09/10/react-v0.14-rc1.html}, zuletzt abgerufen am 11.08.2017}
 
-  		this.state = {clicks: 0}
-  	}
-
-    handleClick() {
-  		this.setState((prevState) => {
-    			return {clicks: prevState.clicks + 1};
-  		});
-  	}
-
-  	render() {
-  		return (
-  			<button onClick={this.handleClick}>Click me!</button>
-  			{this.state.clicks}
-  		)
-  	}
-  }
-\end{lstlisting}
-
-Hier passiert folgendes: Im Konstruktor der Komponente (der nur ein mal, beim initialen rendern aufgerufen wird) wird die initiale Anzahl der Clicks im state auf 0 gesetzt.
-Die Komponente rendert ein \verb|<buttton>| element und die Anzahl der gezahlten Klicks. Wird der Button geklickt, wird die Funktion \verb|handleClick()| in der Komponente aufgerufen. Diese Funktion erhöht die Anzahl der Klicks im state um eins. Durch den aktualisierten state wird auch die Komponente neu gerendert, so dass nun auch die neue Klickzahl angezeigt wird. \\
-
-Die Komponente im obigen Beispiel ist also Stateful. Wie schon früher in diesem Kapitel erwähnt, ist es aber Ziel der Komponentenbasierten Softwareentwicklung, wiederverwendbare Komponenten zu schreiben.\\
-Diese Komponente ließe sich an jeder Stelle der Anwendung wiederverwenden, an der Klicks über einen Button gezählt werden müssen, jedoch ist die Wahrscheinlichkeit hoch, dass diese Anwendungsfall eher selten vorkommt. Außerdem ist die Wahrscheinlichkeit recht hoch, dass ein Button oder ein Element zur Darstellung von Werten in der Anwendung häufiger verwendet werden (natürlich würde eine einfache Darstellung wie im obigen Beispiel kein Sinn ergeben, für dieses Beispiel soll daher eine komplexere Darstellung der Daten angenommen werde, beispielsweise durch eine Progress-Bar).
-Eigentlich liegen hier also drei Komponenten vor: Eine Komponente, die Logik enthält und zwei weitere, die lediglich Daten darstellen, somit also stateless sind.\\
-
-Mit dem release von React 0.14\footnotemark wurde eine simplifizierte Schreibweise für stateless components eingeführt. Die beiden Komponente aus dem Beispiel könnten somit wie folgt definiert werden:
-
-\footnotetext{\url{https://facebook.github.io/react/blog/2015/09/10/react-v0.14-rc1.html}}
-
-\begin{lstlisting}
-  export default function Button = (props) => {
+\begin{lstlisting}[caption={Simplifizierte Schreibweise für Komponenten ohne \textit{state}}, label=lst:stateless]
+  const Button = (props) => {
   	return (
   		<button onClick={props.onClick}>Click me!</button>
   	)
   }
+
+  export default Button
 \end{lstlisting}
 
-und
-
-\begin{lstlisting}
-  export default function ValueDisplay = (props) => {
-  	return (
-  		<div>{props.value}</div>
-  	)
-  }
-\end{lstlisting}
-
-Die Werte für diese Komponenten werden ihnen in der Oberkomponente als \verb|props| übergeben:
-
-\begin{lstlisting}
-  class ClickCounter extends React.Component{
-  	constructor(props) {
-  		super(props)
-
-  		this.state = {clicks: 0}
-  	}
-
-    handleClick() {
-  		this.setState((prevState) => {
-    			return {clicks: prevState.clicks + 1};
-  		});
-  	}
-
-  	render() {
-  		return (
-  			<Button onClick={this.handleClick} />
-  			<ValueDisplay value={this.state.clicks} />
-  		)
-  	}
-  }
-\end{lstlisting}
-
-Ziel muss es also sein, so viele Komponenten wie möglich so klein wie möglich, optimaler Weise mit nur einer einzigen Aufgabe zu schreiben, um die Wiederverwendbarkeit zu erhöhen.
-
-\textbf{Hier irgendwo eine Referenz auf Beispielhafte Verwendung von Komponenten in der Anwendung}
+Ein Beispiel für die Verwendung von Komponenten mit und ohne \textit{state} innerhalb der hier geschriebenen Anwendung findet sich in Kapitel \ref{chap:state_component}.
 
 \subsection{JSX}
-Hier soll nicht tiefer auf die Kompilierung und Prozess von JSX eigegangen werden, jedoch ist JSX ein elementarer Teil von React-Anwendung und sei der Vollständigkeit halber hier erwähnt. Im folgenden soll vorrangig auf die Unterschiede zwischen JSX und HTML und die Besonderheiten und Pitfalls während der Entwicklung mit JSX eingegangen werden.
+JSX ist eine (eigens von Facebook für die Verwendung mit React entwickelte) Syntax-Erweiterung für ECMAScript, die es Erlaubt, React-Komponenten innerhalb der \verb|render()|-Methode ähnlich wie HTML-Tags zu deklarieren.
 
-JSX ist eine (eigens für die Verwendung mit React entwickelte) Syntax-Erweiterung für JavaScript, die es Erlaubt, HTML-Ähnliche Tags in der \verb|render()|-Methode von React Komponenten zu verwenden (der Einsatz von JSX konnte bereits in den vorhergehenden Beispielen beobachtet werden).
-JSX ist dabei lediglich eine syntaktische Verschönerung der Funktion \verb|React.createElement(component, props, ...children)| \cite{ReactJSX}, auch wenn die Syntax der HTML-Syntax ähnlich sieht, werden alle JSX-Elemente in die genannte JavaScript-Funktion kompiliert.
-
-JSX unterstütz die Deklaration von regulären HTML-Elementen, als auch die von React-Komponenten. Unterschieden werden die beiden Varianten dabei nach Groß- und Kleinschreibung, wobei React-Komponenten groß- und reguläre HTML-Elemente klein geschrieben sind.
-React-Komponenten können dabei, wie oben bereits erwähnt, \verb|props| mitgegeben werden.
-Der Schritt von HTML zu JSX stellt in der Entwicklung keine große Herausforderung dar.
-Der wichtigste Punkt ist die Verwendung von \verb|class|. Auch bei der Entwicklung mit React werden für DOM-Elemente häufig Klassen vergeben. Da JSX-Code aber in JavaScript kompiliert wird, kann das in JavaScript reservierte Wort\footnotemark \verb|class|  nicht verwendet werden. Es muss stattdessen auf \verb|className| zurück gegriffen werden.
+JSX ist dabei lediglich eine syntaktische Verschönerung der Funktion \verb|React.createElement(component, props, ...children)| \cite{ReactJSX}, die für die tatsächliche Definition von Komponenten verwendet wird.
+Obwohl die JSX-Syntax der HTML-Syntax ähnlich sieht, gibt es hier einige Besonderheiten, die Beachtet werden müssen.
+Zum einen werden die Deklarationen von React-Komponenten und regulären HTML-Tags durch unterschiedliche Schreibweisen getrennt (React-Komponenten werden Groß geschrieben).
+Zum anderen können hier keine Schlüsselwörter verwendet werden, die durch die ECMAScript-Spezifikation geschützt sind\footnotemark{}. Dies betrifft in erste Linie das \verb|class|-Attribut, das in HTML für das vergeben von Klassen verwendet wird. Für die Vergabe von CSS-Klassen muss in JSX auf \verb|className| zurück gegriffen werden.
 
 \footnotetext{\url{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar}}
 
-
 \section{Einstieg in Redux}
-Redux\footnotemark  erlaubt die zentrale Verwaltung des state bzw. des Zustandes der Anwendung im sogenannten redux store. Dabei ersetzt der redux store nicht zwangsweise den state von einzelnen Komponenten. Es gibt keine genauen Richtlinien dafür, wann ein state in der Komponente und wann im redux store verwaltet werden sollte, jedoch bietet es sich als Richtlinie an, nur Zustände im redux store zu verwalten, die von mehr als nur einer einzigen Komponente verwendet werden.
-Redux besteh dabei aus drei Grundbestandteilen: Dem \textit{Store}, den \textit{Actions} und den \textit{Reducern}.
+Mit zunehmender Komplexität einer React-Anwendung kann das Verwalten von Zuständen unübersichtlich werden. Diese Gefahr besteht vor allem dann, wenn Zustände über verschiedene Bestandteile der Anwendung hinweg bekannt sein müssen.
 
-\footnotetext{\url{http://redux.js.org/}}
+Um das Verwalten des Zustandes der Anwendung an einem zentralen Ort zu ermöglichen und auf diesen Zustand strukturiert zuzugreifen und diesen zu verändern kann die Library Redux.js\footnotemark{} verwendet werden. Die Dokumentation der Library definiert deren Ziel wie folgt:
 
-Wie bereits erwähnt wird im Store der Zustand der Anwendung verwaltet. Der \textit{Store} an sich kann dabei ein beliebiges JavaSCript Objekt (Funktionen ausgenommen) oder Primitiv sein. Für diesen \textit{Store} hat die Anwendung nur Leserecht, er darf nicht direkt manipuliert werden. Für eine Änderung des Stores werden die anderen beiden Bestandteile benötigt.
+\footnotetext{\url{http://redux.js.org/}, zuletzt abgerufen am 11.08.2017}
 
-\textit{Actions} beschreiben Aktionen und sind JavaScript Objekte. Sie müssen mindestens einen \verb|type| Parameter haben, der beschreibt, welche Aktion ausgeführt werden soll. Weiterhin können sie Daten definieren, die für die Änderung des stores von Bedeutung sind. Das absenden dieser actions ist der einzige weg, mit dem die Anwendung den \textit{Store} verändern kann.
+\begin{quote}
+  \textbf{Redux attempts to make state mutations predictable} by imposing certain restrictions on how and when updates can happen. \cite{ReduxMotivation}
+\end{quote}
 
-\textit{Reducer} definieren, wie der Zustand der Anwendung je nach erhaltener Aktion verändert werden muss. Ist beispielsweise der \verb|type| einer \textit{Action} \verb|INCREMENT_DOWNLOADS_COUNT| kann im \textit{Reducer} definiert sein, dass beim erhalten dieser action das Feld \verb|downloadsCount| im \textit{Store} um eins erhöht werden muss.
+Für ein Grundverständnis der Funktionsweise der Library sind drei Konzepte von Bedeutung:
 
-Ein \textit{Provider} macht den \textit{Store} dann für Container-Komponenten verfügbar. Diese verteilen den \textit{Store} und die actions als props an representative Komponenten. Ändert sich der \textit{Store} erhalten die entsprechen betroffenen Komponenten also neue \textit{props} und werden somit neu gerendert.
-Abb XYZ zeigt einen schematischen Ablauf einer Aktualisierung des redux stores.
+\begin{itemize}
+  \item \textit{Store}
+  \item \textit{Actions}
+  \item \textit{Reducer}
+\end{itemize}
 
-Detailliertere Erläuterungen zur Implementation von redux im Rahmen der Anwendung finden sich in Kapitel ABC.
+Der \textit{Store} ist ein JavaScript-Objekt, in dem der Zustand der Anwendung gespeichert ist. \textit{Actions} beschreiben, welche Veränderungen am \textit{Store} vorgenommen werden sollen. Auch diese sind einfache JavaScript-Objekte. \textit{Reducer} definieren, auf welche weise der Zustand der Anwendung bei Aufruf einer \textit{Action} verändert werden soll. \cite{ReduxCore}
+
+Die Implementierung von Redux in der hier zu entwickelnden Anwendung wird in Kapitel \ref{chap:redux} beschrieben.
