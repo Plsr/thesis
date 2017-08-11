@@ -16,17 +16,42 @@ Insgesamt ist 25knots eine sehr interaktive Anwendung, in der Informationen eher
 
 Daher wurde bei der Gestaltung großer Wert darauf gelegt, klar zu kommunizieren, welche Bereiche interaktiv sind und welche Auswirkungen eine Interaktion mit diesen Bereichen hat.
 Um diese Abgrenzung zu gewährleisten, wurde ein schlichtes Farbschema verwendet, in dem nur zwei Farben, Blau und Rot, verwendet wurden, die zur Anzeige von Interaktivität dienen.
-Die beiden Farben haben dabei festgelegte Rollen: Blau zeigt Interaktivität innerhalb eines Schrittes der Anwendung an, Rot zeigt zwischen verschiedenen Schritten übergreifende Aktivitäten an. Abbildung ZXC zeigt die Ausführung dieser Idee am Beispiel des Einstiegs in die Anwendung. Die blauen Elemente erlauben eine Auswahl innerhalb des Einstiegs (nächster Zwischenschritt, Auswahl eines Entwicklungsziels), der rote Button am unteren Rand erlaub das wechseln zum nächsten Abschnitt in der Anwendung.
+Die beiden Farben haben dabei festgelegte Rollen: Blau zeigt Interaktivität innerhalb eines Schrittes der Anwendung an, Rot zeigt zwischen verschiedenen Schritten übergreifende Aktivitäten an. Abbildung \ref{fig:entrance} zeigt die Ausführung dieser Idee am Beispiel des Einstiegs in die Anwendung. Die blauen Elemente erlauben eine Auswahl innerhalb des Einstiegs (nächster Zwischenschritt, Auswahl eines Entwicklungsziels), der rote Button am unteren Rand erlaub das wechseln zum nächsten Abschnitt in der Anwendung.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{images/25knots_entrance.png}
+    \caption{Farben verschiedener interaktiver Elemente}
+    \label{fig:entrance}
+\end{figure}
 
 Weiterhin gilt es zu beachten, dass der Nutzer die Anwendung verwendet, um eine Gestaltung für sein Projekt zu erstellen. Der Fokus der Anwendung sollte daher darauf liegen, dem Nutzer die von ihm erarbeitete Gestaltung zu zeigen. Die Anwendung sollte sich nur in bestimmten Fällen (beispielsweise beim Auftreten eines Fehlers oder wenn eine Interaktion notwendig ist) in den Vordergrund stellen. Daher wurde darauf geachtet, die Anwendung so simpel wie möglich zu gestalten und auf unnötige gestalterische Spielereien zu verzichten. Der größte Teil der Anwendung ist in Weiß- und Grautönen gehalten, um sie die Gestaltung des Nutzers und dessen Entscheidungen besser in den Vordergrund stellen zu können.
 
-Dieses Vorgehen lässt sich anhand von zwei Beispielen gut verdeutlichen. Zum Einen seien hier die Fehlermeldungen im Bereich Typographie genannt. Diese sind in einem Auffälligen Gelb hinterlegt, dass nur an dieser Stelle (im Sinne von: Zum anzeigen von Fehlern) verwendet wird und dem Nutzer dafür schnell auffällt (s. Abb. ZXY).
-Zum Anderen zeig die Auswahl von Farben gut, wie Interaktive Elemente der Anwendung gleichzeitig auch die Gestaltung des Nutzer zeigen können. Die Buttons zur Auswahl einer Farbe (s. Abb. ASH) bestehen hier lediglich aus der Farbe selbst, die Gestaltung der Anwendung wird hier als visuelle Zwischenebene also komplett entfernt.
+Dieses Vorgehen lässt sich anhand von zwei Beispielen gut verdeutlichen. Zum Einen seien hier die Fehlermeldungen im Bereich Typographie genannt. Diese sind in einem auffälligen Gelb hinterlegt, dass nur an dieser Stelle (im Sinne von: Zum anzeigen von Fehlern) verwendet wird und dem Nutzer dafür schnell auffällt (siehe Abbildung \ref{fig:warning}).
+Zum Anderen zeig die Auswahl von Farben gut, wie Interaktive Elemente der Anwendung gleichzeitig auch die Gestaltung des Nutzer zeigen können. Die Buttons zur Auswahl einer Farbe (siehe Abbildung \ref{fig:accent}) bestehen hier lediglich aus der Farbe selbst, die Gestaltung der Anwendung wird hier als visuelle Zwischenebene also komplett entfernt.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/25knots_Warning.png}
+    \caption{Fehlermeldungen im Bereich Typographie}
+    \label{fig:warning}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{images/25knots_color_button.png}
+    \caption{Buttons zum Auswählen einer Akzentfarbe}
+    \label{fig:accent}
+\end{figure}
+
 
 \subsection{Vorgehen}
-\textbf{TBD}
+Während der Gestaltung wurde sehr agil gearbeitet. Diese Agilität zeigt sich auf verschiedene Weise.
+So waren der Entwicklungsprozess (gemeint ist hier die tatsächliche Programmierung) und der Gestaltungsprozess (das Entwickeln von MockUps in einem entsprechenden Programm) nicht strikt von einander getrennt, sondern überschnitten sich. Diese Überschneidung zeigt sich sowohl in einer Langfristigen betrachten, als auch in einer kurzfristigen. Es gab nicht einen Gestaltungsprozess, nach dessen Fertigstellung die Entwicklung startete, sondern vielmehr einen Gestaltungsprozess pro Schritt der Anwendung, der umgesetzt wurde. Auch innerhalb eines Schrittes war das Vorgehen nicht linear und es wurden häufig während der Entwicklung Aspekte in der Gestaltung verändert. Die Gründe hierfür sind vor allem eine bessere Möglichkeit zum testen der Interaktion während der Entwicklung.\\
+Durch die in Kapitel \ref{chap:spacing} und \ref{chap:styleguide} erläuterten Aspekte konnten hier auch häufig kleinere Änderungen in der Gestaltung während der Entwicklung, ohne das Anpassen von MockUps, vorgenommen werden.
 
 \subsection{Abstände}
+\label{chap:spacing}
 Um den Gedanken von innerhalb der Anwendung wiederverwendbaren Komponenten zu unterstützen liegt der Gedanke nahe, auch Abstände innerhalb der Gestaltung (und später auch in der Umsetzung) wiederverwendbar zu gestalten. Die Grundlage für diesen Gedanken lieferte ein Artikel von Nathan Curtis \cite{CurtisSpace16}. Der Artikel enthält zwei Grundgedanken:
 
 \begin{enumerate}
@@ -55,6 +80,7 @@ Während der Arbeit stellte sich heraus, dass die Definition er Abstände als ei
 Weiterhin ist der Raum für Inkonsistenzen begrenzt, da die Abstände nur in den vorgegebenen Größen angegeben werden können. Dies wurde, gerade mit Blick auf die spätere Weiterentwicklung und Veröffentlichung, als ausreichend großer Vorteil angesehen, um eine Definition als eigenständige Komponente zu rechtfertigen.
 
 \subsection{Styleguide}
+\label{chap:styleguide}
 Da zu einem späteren Zeitpunk unter Umständen verschiedene Personen an der Weiterentwicklung der Anwendung beteiligt sein werden, macht das Festhalten der bisher gestalteten Elemente und der Grundlagen der Gestaltung durchaus Sinn.
 Während der Gestaltung wurde nur ein minimalistischer Styleguide mit Informationen über Farben, Schriftgrößen und Abstände geführt, der für die Gestaltung dieser ersten Version mit nur einer Person im Team ausreichend war.
 
@@ -73,11 +99,19 @@ besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
 
 \subsection{Redux}
 \label{chap:redux}
-\begin{itemize}
-  \item Trennung in verschiedene Sub-Stores
-  \item Container
-  \item Kein direktes dispatch in Components mehr
-\end{itemize}
+
+Im laufe der Anwendung müssen bestimmte Informationen üner die Gesamte Anwendung hinweg für bestimmte Komponenten abrufbar sein. Die betrifft vor allem, aber nicht ausschließelich die von Nutzer zu beginn der Interaktion mit der Anwendung definierten \textit{scopes}, die von jedem Teil der Anwendung für die korrekte Darstellung der angepassten Inhalte überprüft werden. Ein weiteres Beispiel stellt die zusammenfassung am Ende der Interaktion mit der Anwednung dar, die zugriff auf alle vom Nutzer definierten Werte benötigt. Der Redux-Store für die Anwendung umfasst daher Werte aus den Schritten \textit{Intro}, \textit{Typographie} und \textit{Farben}, die vollständige Struktur kann Listing ZXC entnommen werden.
+Um die Arbeit mir dem Store zu simplifizieren und ein übermäßiges traversieren durch das Store-Objekt zu vermeiden, wurde für jeden der Bereiche ein dedizierter reducer geschrieben, der sich ausschließlich mit der Manipulation der diesem Schritt zugehörigen Werte befasst. In der Datei \verb|ApplicationState.js| werden diese mit Hilfe der Funktion \verb|combineReducers|, die von Redux zur Verfügung gestellt wird dann zu einem Objekt zusammengefügt (siehe Listing \ref{lst:combine_reducer}).
+
+\begin{lstlisting}[caption={Zusammenfügen der dedizierten Reducer zu einem Objekt}, label=lst:combine_reducer]
+  const ApplicationState = combineReducers({
+    setup: setup,
+    typography: typography,
+    colors: colors
+})
+\end{lstlisting}
+
+\subsubsection{Beispielhaftes Verändern des Redux Store}
 
 
 \subsection{CSS-Architektur}
