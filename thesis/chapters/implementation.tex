@@ -1,20 +1,17 @@
 \chapter{Umsetzung der Anwendung}
 \thispagestyle{fancy}
-Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
-Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
-auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
-und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
-besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
+Im folgenden soll die Umsetzung der Anwendung thematisiert werden. Umsetzung meint hier sowohl die Programmierung der Anwendung und alle Bereiche, die mit dieser zusammen hängen, als auch die visuelle Gestaltung. Dieses Kapitel geht auf Konzepte ein, die währen der Gestaltung der Anwendung eine zentrale Rolle spielten und schildert das generelle Vorgehen. Es werden einige strukturelle Entscheidungen erläutert, die währen der Umsetzung von Relevanz waren und einige konkrete Codebeispiele gezeigt, die als besonders interessant erachtet wurden.
 
 \section{Gestaltung}
-Bereits in Kapitel XZC “Relevanz” wird deutlich, welche zentrale Rolle die Gestaltung in allen Projekten einnimmt. Auch dieses Projekt ist davon nicht ausgenommen. Um eine gute Benutzbarkeit des Tools zu gewährleisten, ist eine solide Gestaltung unabdingbar.
-Insgesamt ist 25knots eine sehr interaktive Anwendung, in der Informationen eher Grafisch und durch Interaktionen des Benutzers übertragen werden, als Beispielswiese durch Texte. Steve Krug schreibt über die Gestaltung von Webseiten:
+Bereits in Kapitel \ref{sec:relevance} wird deutlich, welche zentrale Rolle die Gestaltung in jedwedem Projekt einnimmt. Auch das hier bearbeitete Projekt ist davon nicht ausgenommen. Um eine gute Benutzbarkeit des Tools zu gewährleisten, ist eine solide Gestaltung unabdingbar.\\
+Steve Krug schreibt über die Gestaltung von Webseiten:
 
 \begin{quote}
   Die Seiten offensichtlich zu gestalten, ist wie eine gute Beleuchtung in einem Geschäft: Alles erscheint einfach besser. Die Nutzung einer Website, die uns nicht zum Nachdenken über Unwichtiges zwingt, fühlt sich mühelos an, wogegen das Kopfzerbrechen über Dinge, die uns nichts bedeuten, Energie und Enthusiasmus raubt — und Zeit. \cite[S. 19]{Krug201410}
 \end{quote}
 
-Daher wurde bei der Gestaltung großer Wert darauf gelegt, klar zu kommunizieren, welche Bereiche interaktiv sind und welche Auswirkungen eine Interaktion mit diesen Bereichen hat.
+Insgesamt ist \textit{25knots} eine sehr interaktive Anwendung, in der Informationen eher Grafisch und durch Interaktionen des Benutzers übertragen werden, als Beispielswiese durch Texte.
+Daher wurde bei der Gestaltung großer Wert darauf gelegt, klar zu kommunizieren, welche Bereiche interaktiv sind und welche Auswirkungen eine Interaktion mit diesen Bereichen hat.\\
 Um diese Abgrenzung zu gewährleisten, wurde ein schlichtes Farbschema verwendet, in dem nur zwei Farben, Blau und Rot, verwendet wurden, die zur Anzeige von Interaktivität dienen.
 Die beiden Farben haben dabei festgelegte Rollen: Blau zeigt Interaktivität innerhalb eines Schrittes der Anwendung an, Rot zeigt zwischen verschiedenen Schritten übergreifende Aktivitäten an. Abbildung \ref{fig:entrance} zeigt die Ausführung dieser Idee am Beispiel des Einstiegs in die Anwendung. Die blauen Elemente erlauben eine Auswahl innerhalb des Einstiegs (nächster Zwischenschritt, Auswahl eines Entwicklungsziels), der rote Button am unteren Rand erlaub das wechseln zum nächsten Abschnitt in der Anwendung.
 
@@ -25,7 +22,7 @@ Die beiden Farben haben dabei festgelegte Rollen: Blau zeigt Interaktivität inn
     \label{fig:entrance}
 \end{figure}
 
-Weiterhin gilt es zu beachten, dass der Nutzer die Anwendung verwendet, um eine Gestaltung für sein Projekt zu erstellen. Der Fokus der Anwendung sollte daher darauf liegen, dem Nutzer die von ihm erarbeitete Gestaltung zu zeigen. Die Anwendung selbst sollte sich nur in bestimmten Fällen (beispielsweise beim Auftreten eines Fehlers oder wenn eine Interaktion notwendig ist) in den Vordergrund stellen. Daher wurde darauf geachtet, die Anwendung so simpel wie möglich zu gestalten und auf unnötige gestalterische Experimente zu verzichten. Der größte Teil der Anwendung ist in Weiß- und Grautönen gehalten, um sie die Gestaltung des Nutzers und dessen Entscheidungen besser in den Vordergrund stellen zu können.
+Weiterhin gilt es zu beachten, dass der Nutzer die Anwendung verwendet, um eine Gestaltung für sein Projekt zu erstellen. Der Fokus der Anwendung sollte daher darauf liegen, dem Nutzer die von ihm erarbeitete Gestaltung zu zeigen. Die Anwendung selbst sollte sich nur in bestimmten Fällen (beispielsweise beim Auftreten eines Fehlers oder wenn eine Interaktion notwendig ist) in den Vordergrund stellen. Daher wurde darauf geachtet, die Anwendung so simpel wie möglich zu gestalten und auf unnötige gestalterische Experimente zu verzichten. Der größte Teil der Anwendung ist in Weiß- und Grautönen gehalten, um die Gestaltung des Nutzers und dessen Entscheidungen besser in den Vordergrund stellen zu können.
 
 Dieses Vorgehen lässt sich anhand von zwei Beispielen gut verdeutlichen.\\
 Zum Einen seien hier die Fehlermeldungen im Bereich Typographie genannt. Diese sind in einem auffälligen Gelb hinterlegt, dass nur für diesen bestimmten Anwendungsfall (das hervorheben von Fehlern) verwendet wird und dem Nutzer dadurch schnell auffällt (siehe Abbildung \ref{fig:warning}).
@@ -47,11 +44,11 @@ Zum Anderen zeigt die Auswahl von Farben (vor allem in den \textit{scopes} Andro
 
 
 \subsection{Vorgehen}
-Während der Gestaltung wurde sehr agil gearbeitet, was sich auf verschiedene Weise zeigt.\\
-Der Entwicklungsprozess (gemeint ist hier die tatsächliche Programmierung) und der Gestaltungsprozess (das Erstellen von MockUps in einem entsprechenden Grafikprogramm) waren nicht strikt von einander getrennt, sondern überschnitten sich. Diese Überschneidung zeigt sich sowohl in einer langfristigen, als auch in einer kurzfristigen Betrachtung.\\
+Das Vorgehen während der Gestaltung lässt sich als \textit{agil} bezeichnen. Diese Agilität drückt sich auf verschiedene Weise aus.\\
+Der Entwicklungsprozess (gemeint ist hier die tatsächliche Programmierung) und der Gestaltungsprozess (das Erstellen von Mock-Ups in einem entsprechenden Grafikprogramm) waren nicht strikt von einander getrennt, sondern überschnitten sich. Diese Überschneidung zeigt sich sowohl in einer langfristigen, als auch in einer kurzfristigen Betrachtung.\\
 So gab es nicht einen Gestaltungsprozess, nach dessen Fertigstellung die Entwicklung startete, sondern vielmehr einen Gestaltungsprozess pro Schritt der Anwendung, der umgesetzt wurde.\\
-Auch innerhalb eines Schrittes war das Vorgehen nicht linear, häufig wurden während der Entwicklung Aspekte in der Gestaltung verändert. Die Gründe hierfür liegen vor allem in einer besseren Testbarkeit und Validierung von Interaktionen während der Umsetzung (im Vergleich zu statischen MockUps).\\
-Durch die in Kapitel \ref{chap:spacing} und \ref{chap:styleguide} erläuterten Aspekte konnten außerdem häufig kleinere Änderungen in der Gestaltung während der Entwicklung, ohne das Anpassen von MockUps, vorgenommen werden.
+Auch innerhalb eines Schrittes war das Vorgehen nicht linear, häufig wurden während der Entwicklung Aspekte in der Gestaltung verändert. Die Gründe hierfür liegen vor allem in den verbesserten Möglichkeiten zum testen und validieren von Interaktionen und Konzepten in einer prototypischen Realisierung im Vergleich zu statischen Mock-Ups.
+Durch die in Kapitel \ref{chap:spacing} und \ref{chap:styleguide} erläuterten Aspekte konnten außerdem problemlos kleinere Änderungen in der Gestaltung während der Entwicklung vorgenommen werden, ohne, dass dabei ein vorheriges Anpassen der Mock-Ups nötig war.
 
 \subsection{Abstände}
 \label{chap:spacing}
@@ -66,8 +63,16 @@ Diese Gedanken wurden in der Gestaltung und Umsetzung des Projektes übernommen.
 Erstellt, die nach Kleidergrößen, von XS bis XXL, benannt wurden.
 Diese Abstufungen wurden in einer eigenen Datei als JavaScript-Objekt deklariert, so dass über die gesamte Anwendung hinweg diese festgelegten Größen verwendet werden können.
 
-Curtis definiert 6 verschieden Arten von Abständen (vgl. Abb. ZXC), von denen 5 innerhalb der Anwendung als eigenständige Komponenten definiert wurden.\\
-Die Komponenten nehmen die Größe des Abstandes als \verb|prop| in einer der definierten Kleidergrößen entgegen und erzeugen ein \verb|div|, das die Abstände als \verb|padding| oder \verb|margin| anwendet.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{images/spacing_types.png}
+    \caption{Die 5 implementierten Arten von Spacing nach \cite{CurtisSpace16}}
+    \label{fig:spacing}
+\end{figure}
+
+
+Curtis definiert 6 verschieden Arten von Abständen, von denen 5 innerhalb der Anwendung als eigenständige Komponenten definiert wurden (siehe Abbildung \ref{fig:spacing}).\\
+Die Komponenten nehmen die Größe des Abstandes als \verb|prop| in einer der definierten Kleidergrößen entgegen und erzeugen ein \verb|div| Element, das die Abstände als \verb|padding| oder \verb|margin| anwendet.
 Die Pixelwerte für die jeweilige Abstandsgröße erhält die Komponente dabei durch den Aufruf des für die Abstandsgrößen zuständigen JavaScript-Objekts (zum Beispiel \verb|spacing.l|). Alle diese Komponenten rendern außerdem die ihnen übergebenen Kinder, sodass eine Verwendung der \verb|SpacingInset| Komponente wie in Listing \ref{lst:spacingInset} möglich wird.
 
 \begin{lstlisting}[caption=Beispielhafte Verwendung einer Komponente für Abstände, label=lst:spacingInset]
@@ -142,7 +147,7 @@ Um diesen Umstand zu vermeiden, wird die Methode als Referenz weiter gegeben (Ab
 \begin{figure}[h]
     \centering
     \includegraphics[width=1\textwidth]{images/redux_store_flow.png}
-    \caption{Übergabe der \texttt{dispatch()} Methode als Referenz durch verschiedene Komponenten}
+    \caption{Übergabe der \texttt{dispatch()} Methode als Referenz}
     \label{fig:redux_flow}
 \end{figure}
 
@@ -171,13 +176,7 @@ Die \textit{SecondaryButton} Komponente führt auf einen Klick die ihr als \verb
 In der Entwicklung von Webanwendungen wird es als gutes Vorgehen angesehen, Inhalte und deren Gestaltung voneinander zu trennen \cite[S. 56]{goodman2002dynamic}. Diese Trennung erfolgt in der Regel durch das definieren von dedizierten HTML- und CSS-Dateien, die sich nur mit der Struktur von Inhalten bzw. deren Aussehen befassen.
 Eine der aktuell verbreitetsten Möglichkeiten, Regeln für die Darstellung von Inhalten zu definieren, ist das vergeben von Klassen über das \verb|class|-attribut, die dann in der CSS-Datei über einen Selektor (zum Beispiel \verb|.myClass|) aufgerufen werden können.
 
-Auch React.js bietet die Möglichkeit, diese Architektur abzubilden. In Kapitel ZXC wurde bereits erwähnt, dass hier wegen der Verwendung von JavaScript in Komponenten das Attribut \verb|className| verwendet werden muss. Listing ZXV zeigt ein Beispiel. [VIELLEICHT KOMMT DAS NOCH WEG]
-
-\begin{lstlisting}
-	<ReactComponent className='myClass'>
-	 	Content
-	</ReactComponent>
-\end{lstlisting}
+Auch React.js bietet die Möglichkeit, diese Architektur abzubilden. In Kapitel ZXC wurde bereits erwähnt, dass hier wegen der Verwendung von JavaScript in Komponenten das Attribut \verb|className| verwendet werden muss.
 
 Durch die Verwendung einer solchen Architektur werden für Komponenten jedoch Abhängigkeiten geschaffen, da für die korrekte Darstellung der Komponente auch immer die entsprechenden Regeln in der CSS-Datei verfügbar sein müssen.
 Diese Abhängig von ihrer Umwelt ist jedoch nicht Konform mit den in Kapitel AZS definierten Anforderungen an eine Komponente innerhalb dieser Arbeit.
@@ -188,11 +187,11 @@ React.js ermöglicht die Verwendung dieses Attributes innerhalb von Komponenten 
 Die Verwendung des \verb|style|-attributes zum Festlegen des Aussehens birgt jedoch einige Nachteile. So können über das Attribut keine Pseudo-Klassen, wie zum Beispiel \verb|:hover| oder \verb|:before| angesprochen werden. \cite{w3c2017styles}
 Für die Entwicklung der Anwendung sind die Pseudo-Klassen jedoch notwendig.
 Um dieses Problem zu lösen, wurden im Bereich der \textit{JavaScript-SPAs} viele Bibliotheken entwickelt. Im Rahmen dieses Projektes wurde die Bibliothek Aphrodite\footnotemark{} verwendet.
-Diese Bibliothek erlaubt eine Notation der CSS-Regeln wie sie React.js auch nativ ermöglicht, unterstützt aber beispielsweise Pseudo-Klassen (Listing ASD zeigt ein simples Beispiel).
+Diese Bibliothek erlaubt eine Notation der CSS-Regeln wie sie React.js auch nativ ermöglicht, unterstützt aber beispielsweise Pseudo-Klassen (Listing \ref{lst:aphro} zeigt ein simples Beispiel).
 
 \footnotetext{\url{https://github.com/Khan/aphrodite}, zuletzt abgerufen am 12.08.2017}
 
-\begin{lstlisting}
+\begin{lstlisting}[caption=Beipspielhafte Verwendung der Bibliothek Aphrodite, label=lst:aphro]
 	import React from 'react'
 	import { StyleSheet, css } from 'aphrodite'
 
@@ -214,15 +213,25 @@ Diese Bibliothek erlaubt eine Notation der CSS-Regeln wie sie React.js auch nati
 Während der Entwicklung wurde nicht jegliche Art von Gestaltung innerhalb von Komponenten realisiert. Verschiedene native HTML-Elemente, die über die Anwendung hinweg verwendet werden, wurden in einer globalen CSS-Datei definiert. Dies hat den Vorteil, dass zum Beispiel für die Verwendung einer Überschrift keine eigene Komponente geschrieben werden muss, die funktional equivalent zu einem nativen HTML-Element (beispielsweise \verb|<h1>|) ist, nur um dessen Aussehen anzupassen.
 
 \section{Interessante Aspekte in der Entwicklung}
+Nachfolgend sollen einige konkrete Beispiele aus der Entwicklung der Anwendung erläutert werden. Die verschiedenen Beispiele wurden dabei aus unterschiedlichen Gründen Gewählt:
+Kapitel \ref{chap:state_component} zeigt einen zentralen Aspekt der Umsetzung einer komponentenbasierten Anwendung mit React.js, Kapitel \ref{chap:display_scope} eine der zentralen Arbeitsweisen der Anwendung. Die Kapitel \ref{chap:colors_dev} und \ref{chap:pdf} zeigen die Lösung von Problemen, die für die Funktionalität der Anwendung eine hohe Relevanz besitzen.
+
 
 \subsection{State in Komponenten}
 \label{chap:state_component}
-Das Konzept des \textit{state} in React.js wurde Bereits in Kapitel \ref{chap:stateless} angesprochen. Hier soll an einem konkreten Bespiel verdeutlicht werden, wie der \textit{state} genutzt werden kann, um auf Nutzereingaben zu reagieren und an welcher Stelle sich der \textit{Component State} und der \textit{Application State} unterscheiden.
+Das Konzept des \textit{state} in React.js wurde Bereits in Kapitel \ref{chap:stateless} angesprochen. Hier soll an einem konkreten Bespiel verdeutlicht werden, wie der \textit{state} genutzt werden kann, um auf Nutzereingaben zu reagieren und an inwiefern sich der Zustand einer Komponente vom Zustand der gesamten Anwendung unterscheidet.
 Als Beispiel wurde die Auswahl des Zielmediums durch den Nutzer im ersten Schritt der Anwendung gewählt, die in mehreren Schritten durchgeführt wird.
 Der Ablauf der Interaktion mit der Anwendung sieht dabei wie folgt aus:
 Die Anwendung präsentiert dem Nutzer drei Optionen, aus denen dieser wählen kann. Wählt der Nutzer eine der Optionen aus, gibt die Anwendung ihm eine visuelle Rückmeldung über die ausgewählte Option. Ist der Nutzer mit seiner Wahl zufrieden, bestätigt er diese durch einen Button und  ihm wir der nächste Schritt im Wizard angezeigt.
 
-Für diese Interaktion werden verschiedene Komponenten eingesetzt (vgl. Abbildung ZXC), von denen die meisten \textit{stateless} sind, lediglich die Komponente \verb|SetupProgress|, die in Listing \ref{lst:setup} zu sehen ist\footnotemark{}, verwaltet einen Zustand.
+Für diese Interaktion werden verschiedene Komponenten eingesetzt (siehe dazu Abbildung \ref{fig:components}), von denen die meisten \textit{stateless} sind, lediglich die Komponente \verb|SetupProgress|, die in Listing \ref{lst:setup} zu sehen ist\footnotemark{}, verwaltet einen Zustand.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{images/components.png}
+    \caption{Komponenten im der Festlegung des Zielmediums}
+    \label{fig:components}
+\end{figure}
 
 \footnotetext{Teile des Quellcodes, die für diesen Anwendungsfall nicht relevant sind, wurden gekürzt. Die gesamte Datei kann der beiliegenden CD entnommen werden}
 
@@ -341,6 +350,7 @@ Der  \verb|IconButton| Komponente selbst ist dabei der Kontext, in dem sie verwe
 Der hier gezeigte Ablauf hätte sich auch durch die Verwendung des Redux-Stores realisieren lassen, jedoch ist die gewählte Option zunächst nicht für die gesamte Anwendung von Relevanz (so kann der Nutzer seine Auswahl zum Beispiel noch ändern). Erst, wenn der Nutzer sich durch den Klick auf den \textit{Next}-Button auf einen Wert festlegt, wird dieser auch der ganzen Anwendung, über den Redux-Store, bekannt gemacht.
 
 \subsection{Anzeige von Inhalten nach Scope}
+\label{chap:display_scope}
 Ein Hauptaugenmerk währen der Entwicklung lag auf der Anwendung der vom Nutzer gewählten \textit{scope} in der Anwendung. In Abhängigkeit dieser Scopes muss die Anwendung verschiedene Daten präsentieren. Dabei muss die Möglichkeit bestehen, diese Daten zu erweitern oder zu verändern, ohne dass die Anwendung selbst dafür umstrukturiert werden muss. Diese Datenhaltung soll hier am Beispiel der verschiedenen Schriftfamilien, die im Bereich Typographie Verwendung finden können, gezeigt werden.
 
 Da die Anwendung keine Datenbank implementiert, werden diese Daten in eigenen Dateien als JavaScript-Objekte gespeichert. Listing \ref{lst:fonts_object} zeigt das Objekt, in dem die verschiedenen Schriftarten der \textit{scopes} als Arrays gespeichert sind. Bei Betrachtung des Objektes fällt auf, dass sich Daten teilweise wiederholen. Obwohl hier gegen das Prinzip \textit{Don’t Repeat Yourself} verstoßen wird, ist eine solche Struktur mit Blick auf eine Weiterentwicklung der Anwendung nötig, um ein möglichst einfaches Verändern eines einzelnen \textit{scopes} gewährleisten zu können.
@@ -383,6 +393,7 @@ Da die \textit{keys} im \verb|FONTS| Objekt dabei exakt den möglichen \textit{s
 \end{lstlisting}
 
 \subsection{Erstellen von Farbkontrasten}
+\label{chap:colors_dev}
 Die Grundlegende Logik zum errechnen von bestimmten Kontrasten wurde bereits im Praxisprojekt definiert. Im ersten Schritt muss die Grundfarbe hierfür in den HSL-Farbraum überführt werden. Für diese Umwandlung wurde in der Anwendung die Bibliothek tinycolor\footnotemark{} verwendet, die verschiedene Funktionen zur Arbeit mit Farben bereit stellt (unter anderem auch das Umwandeln in den HSL-Farbraum).
 Nach der Umwandlung in den HSL-Farbraum gibt die Bibliothek ein JavaScript-Objekt zurück, in dem \textit{Hue}, \textit{Saturation}, \textit{Lightness} und \textit{Alpha} als \textit{Key-Value}-Paare vorhanden sind, mit denen die Berechnungen für die Farbkontraste vorgenommen werden können.
 
@@ -535,6 +546,7 @@ Die Ähnlichkeit zweier Farben wird in  der Funktion \verb|colorsAreSimilar| in 
 
 
 \subsection{Erstellen von PDF-Dateien}
+\label{chap:pdf}
 Wie in Kapitel \ref{chap:results} bereits angesprochen, soll dem Nutzer im letzten Schritt der Anwendung, neben der einfachen Darstellung, die Möglichkeit gegeben werden, seine Ergebnisse in Form einer PDF-Datei zu speichern.\\
 Für die generierung einer PDF-Datei bieten sich verschiedene Möglichkeiten. Da in der Anwendung kein Backend enthalten ist, können Lösungen, die einer Serverseitige Generierung von PDF-Dateien implementieren, bereits zu Beginn ausgeschlossen werden.\\
 
@@ -546,10 +558,41 @@ Eine weitere Möglichkeit stellt die Bibliothek html2canvas\footnotemark{} dar. 
 
 Die Entscheidung viel aus diesen Gründen hier auf die Bibliothek jsPDF\footnotemark{}. Diese erlaubt das erstellen von PDF-Dateien im Browser und auch das einfügen von DOM-Elementen in PDF-Dateien.
 Das Einfügen von DOM-Elementen ist zwar Komfortabel, bedeutet aber auch einen (zumindest teilweisen) Verlust der Kontrolle über die Struktur und das Aussehen der PDF-Datei.
-Aus diesem Grund würde die Möglichkeit für die manuelle Erzeugung von PDF-Dateien genutzt, die die Bibliothek ebenfalls ermöglicht. Hierfür steht eine API zur Verfügung, mit der verschiedene Elemente (wie Text oder geometrische Formen), unter Angabe der Position auf der x- und y-Achse, in die Datei eingefügt werden können. Listing XZY zeigt eine gekürzte Version der Funktion, die die PDF-Datei erzeugt und speichert, Abbildung XZY eine beispielhafte PDF-Datei, die von der Anwendung erstellt wurde.
+Aus diesem Grund würde die Möglichkeit für die manuelle Erzeugung von PDF-Dateien genutzt, die die Bibliothek ebenfalls ermöglicht. Hierfür steht eine API zur Verfügung, mit der verschiedene Elemente (wie Text oder geometrische Formen), unter Angabe der Position auf der x- und y-Achse, in die Datei eingefügt werden können. Listing \ref{lst:pdf} zeigt eine gekürzte Version der Funktion, die die PDF-Datei erzeugt und speichert, Abbildung \ref{fig:pdf} eine beispielhafte PDF-Datei, die von der Anwendung erstellt wurde.
+
+\begin{lstlisting}[caption={Beispilehafte Generierung einer PDF-Datei}, label=lst:pdf]
+  export function generatePDF(typography, colors) {
+    var pdf = new pdfConverter('p', 'mm', 'a4')
+
+    // shortened for readability
+
+    pdf.addImage(imgData, 'PNG', 65, 10, 81, 30)
+    pdf.setFontSize(10)
+    pdf.text('These are the values you gathered with the help of 25knots', 10, 50)
+
+    pdf.setFontSize(20)
+    pdf.text('Typography', 10, 70)
+    pdf.setFontSize(10)
+    pdf.text('Font Family:', 10, 80)
+    pdf.text(typography.general.fontFamily, 50, 80)
+
+    // shortened for readability
+
+    let date = new Date()
+    let dateString = date.getFullYear() + '-' + (date.getMonth() + 1 ) + '-' + date.getDate() + '-' + date.getHours() + '-' + date.getMinutes()
+    pdf.save('25knots_' + dateString + '.pdf')
+  }
+\end{lstlisting}
 
 \footnotetext{\url{https://github.com/MrRio/jsPDF}}
 
 Für den aktuellen Umfang der Anwendung ist diese Lösung praktikabel, bei einer Erweiterung des Funktionsumfangs muss diese Methode jedoch erneut, auf das Verhältnis von Aufwand und Nutzen hin evaluiert werden
 
 Um dem Nutzer eine spätere Zuordnung der Datei zu vereinfachen, wird diese im Namen mit dem aktuellen Datum und der Uhrzeit versehen. Eine bessere Möglichkeit wäre hier, es dem Nutzer zu ermöglichen, sein Projekt zu beginn der Benutzung der Anwendung namentlich zu benennen.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{images/pdf_generated.png}
+    \caption{Beispiel einer generierten PDF-Datei}
+    \label{fig:pdf}
+\end{figure}
