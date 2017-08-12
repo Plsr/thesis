@@ -182,85 +182,50 @@ Die \textit{SecondaryButton} Komponente hat also selsbt kein Wissen darüber, we
 
 
 \section{CSS-Architektur}
-Für den Umgang mit CSS in React.js bieten sich verschiedene Möglichkeiten an. Nativ sind zwei Vorgehensweisen möglich: Anwenden von CSS über ausgelagerte Stylesheets (wie es in der Regel bei allen Webseiten gemacht wird) oder das verwenden von Inline-Styles.
+In der Entwicklung von Webanwendungen wird es als gutes Vorgehen angesehen, Inhalte und deren Gestaltung voneinander zu trennen \cite[S. 56]{goodman2002dynamic}. Diese Trennung erfolgt in der Regel durch das definieren von dedizierten HTML- und CSS-Dateien, die sich nur mit der Struktur von Inhalten bzw. deren Aussehen befassen. 
+Eine der aktuell verbreitetsten Möglichkeiten, Regeln für die Darstellung von Inhalten zu definieren, ist das vergeben von Klassen über das \verb|class|-attribut, die dann in der CSS-Datei über einen Selektor (zum Beispiel \verb|.myClass|) aufgerufen werden können.
 
-Das verwenden von klassischen Stylesheets unterscheidet sich nicht sehr von der Verwendung bei einer statischen Webseite. Auch in React werden Klassennamen oder IDs festgelegt, über die dann im Stylesheet das Aussehen definiert wird (natürlich sind auch alle anderen validen CSS Selektoren anwendbar, Klassen und IDs seine hier nur als die populärsten Varianten beispielhaft genannt).
-Auch die Verwendung von CSS-Präsporzessoren wie zum Beispiel SCSS stellt kein Problem dar, die kompilierung dieser Dateien muss lediglich in den Build-Prozess von React.js mit eingebunden werden. Eine simplifizierte Anwendung sähe beispielsweise wie folgt aus:
-
-\begin{lstlisting}
-<ReactComponent className='myClass'>
- Content
-</ReactComponent>
-\end{lstlisting}
-
-Die kompilierte Dom-Node wäre dabei
+Auch React.js bietet die Möglichkeit, diese Architektur abzubilden. In Kapitel ZXC wurde bereits erwähnt, dass hier wegen der Verwendung von JavaScript in Komponenten das Attribut \verb|className| verwendet werden muss. Listing ZXV zeigt ein Beispiel. [VIELLEICHT KOMMT DAS NOCH WEG]
 
 \begin{lstlisting}
-  <ReactComponent class='myClass'>
-   Content
-  </ReactComponent>
+	<ReactComponent className='myClass'>
+	 	Content
+	</ReactComponent>
 \end{lstlisting}
 
-Und könnte im Stylesheet über
+Durch die Verwendung einer solchen Architektur werden für Komponenten jedoch Abhängigkeiten geschaffen, da für die korrekte Darstellung der Komponente auch immer die entsprechenden Regeln in der CSS-Datei verfügbar sein müssen.
+Diese Abhängig von ihrer Umwelt ist jedoch nicht Konform mit den in Kapitel AZS definierten Anforderungen an eine Komponente innerhalb dieser Arbeit.
+
+Um das Aussehen innerhalb von HTML-Elementen zu verändern, kann das \verb|style|-attribut verwendet werden. Auch dieses akzeptiert CSS-Syntax, die das Aussehen des jeweiligen Elements definiert.
+React.js ermöglicht die Verwendung dieses Attributes innerhalb von Komponenten und somit auch die Deklaration von Inhalt und Aussehen innerhalb einer Komponenten, ohne die Notwendigkeit weiterer Abhängigkeiten.
+
+Die Verwendung des \verb|style|-attributes zum Festlegen des Aussehens birgt jedoch einige Nachteile. So können über das Attribut keine Pseudo-Klassen, wie zum Beispiel \verb|:hover| oder \verb|:before| angesprochen werden. \cite{w3c2017styles}
+Für die Entwicklung der Anwendung sind die Pseudo-Klassen jedoch notwendig.
+Um dieses Problem zu lösen, wurden im Bereich der \textit{JavaScript-SPAs} viele Bibliotheken entwickelt. Im Rahmen dieses Projektes wurde die Bibliothek Aphrodite\footnotemark{} verwendet.
+Diese Bibliothek erlaubt eine Notation der CSS-Regeln wie sie React.js auch nativ ermöglicht, unterstützt aber beispielsweise Pseudo-Klassen (Listing ASD zeigt ein simples Beispiel).
+
+\footnotetext{\url{https://github.com/Khan/aphrodite}, zuletzt abgerufen am 12.08.2017}
 
 \begin{lstlisting}
-  .myClass {
-    color: red
-  }
+	import React from 'react'
+	import { StyleSheet, css } from 'aphrodite'
+
+	function myComponent(props) {
+		<div className={css(styles.componentStyles)} >
+			{props.children}
+		</div>
+
+		const styles = StyleSheet.create({
+			componentStyles: {
+				color: 'blue',
+				':hover': {
+					color: 'red'
+			}
+		})
+	}
 \end{lstlisting}
 
-Angesprochen werden. Auch die Verwendung von Methodiken wie BEM oder SMACCS ist mit diesem Ansatz ohne Probleme möglich.
-Für den Rahmen dieses Projektes wurde sich jedoch gegen diese Vorgehensweise entschieden, da bewusst ein Fokus auf eine komponentenbasierte Architektur gelegt werden sollte. Auch mit einer komponentenbasierten CSS-Architektur ist eine Komponente immer noch auf zwei Orte aufgeteilt: Die Funktion und das Markup, und das Styling.
-
-[HIER LIESSE SICH AUCH DIE DISKUSSION NOCH AUSFÜHREN, DASS EIGENTLICH LEUTE LANGE DAFÜR GESPROCHEN HABEN, AUSSEHEN UND MARKUP ZU TRENNEN UND WARUM DAS HIER OKAY IST]
-
-Um das Styling und die Funktion einer Komponente an einem Ort zu halten, bieten sich inline-styles an. Wie auch bei statischen Webseiten werden inline-styles direkt im \verb|style|-Attribut eines Elementes definiert. In React.js werden diese als JavaScript-Objekt übergeben. Eine Beispielhafte Anwendung findet sich in Quellcode XYZ
-
-\begin{lstlisting}
-  const styles = {
-    backgroundColor: 'red',
-    fontSize: '12px'
-  }
-
-  export default function myComponent(props) {
-    return (
-      <div styles=({styles}) >
-  		{props.children}
-  	  </div>
-    )
-  }
-\end{lstlisting}
-
-Auf den ersten Blick wirkt die Verwendung von inline-styles problematisch, vielleicht weil diese auf statischen Seiten viele Nachteile mit sich bringen. In einem Komponentenbasierten System wie React.js sind diese Nachteile jedoch nicht present. Durch die Komponentenbasierte Struktur und das damit einhergehende Ziel der Wiederverwendung von Komponenten, müssen Stylingänderungen auch hier nur an einer Stelle vorgenommen werden. Da jede Komponente nur für ihr eigenes Styling verantwortlich ist und nicht für das von Kindern, und auch kein CSS außerhalb der inline-styles verwendet wird (abgesehen von CSS-Reset und einigen globalen Regeln wie der Schriftart), kann es zu keinen Problemen mit der Spezifität von CSS-Regeln kommen.
-
-Allerdings weisen inline-styles einige Limitierungen auf. So können beispielsweise keine Pseudo-Elemente wie \verb|:after| oder \verb|:before| verwendet werden. Auch das definieren von hover-states via \verb|:hover| wird nicht unterstützt.
-
-[HIER NOCH VERWEIS AUF SPEZIFIKATION]
-
-Zwar sind diese Limitierung zum aktuellen Stand des Projektes noch nicht von allzu großer Bedeutung, mit Blick auf eine Weiterentwicklung der Anwendung nach der Abschlussarbeit können diese in Zukunft jedoch eine größere Rolle spielen.
-Um diese  Limitierungen zu umgehen, wurde das Framework Aphrodite verwendet. Das Framework erlaubt das Festlegen von styles innerhalb der Komponente ähnlich wie inline-styles, erzeugt aber für jedes neue style-objekt eine einzigartige CSS-Klasse, die via \verb|className| angewendet wird. Die Einzigartigkeit der Klasse wird durch das hinzufügen eines Hauses am Ende des Klassennamens gewährleistet.  Listing XYZ zeigt ein Beispiel
-
-\begin{lstlisting}
-  import React from 'react'
-  import { StyleSheet, css } from 'aphrodite'
-
-  function myComponent(props) {
-  	<div className={css(styles.componentStyles)} >
-  		{props.children}
-  	</div>
-
-  	const styles = StyleSheet.create({
-  		componentStyles: {
-  			color: 'blue'
-  		}
-  	})
-  }
-\end{lstlisting}
-
-Die Struktur der style-objekte ist dabei der von inline-style-objekten gleich.
-
-Mit der Verwendung von Aphrodite können also Aussehen und Funktion von Komponenten in der gleichen Datei gehalten werden, ohne dabei den Limitierungen von inline-styles zu unterliegen.
-
+Während der Entwicklung wurde nicht jegliche Art von Gestaltung innerhalb von Komponenten realisiert. Verschiedene native HTML-Elemente, die über die Anwendung hinweg verwendet werden, wurden in einer globalen CSS-Datei definiert. Dies hat den Vorteil, dass zum Beispiel für die Verwendung einer Überschrift keine eigene Komponente geschrieben werden muss, die funktional equivalent zu einem nativen HTML-Element (beispielsweise \verb|<h1>|) ist, nur um dessen Aussehen anzupassen.
 
 \section{Interessante Aspekte in der Entwicklung}
 
