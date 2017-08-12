@@ -388,10 +388,10 @@ Nach der Umwandlung in den HSL-Farbraum gibt die Bibliothek ein JavaScript-Objek
 
 \footnotetext{\url{https://github.com/bgrins/TinyColor}, zuletzt abgerufen am 10.8.2017}
 
-Für einen Komplementär-Kontrast muss der \textit{Hue}-Wert der Grundfarbe um 180° verändert werden. Die Berechnung erwies sich mit Hilfe des HSL-JavaScript-Objektes als recht simpel, hier musste lediglich darauf geachtet werden, den einen Wert von 360 nicht zu überschreiten. Listing \ref{lst:complementary} zeigt die Funktion \verb|calculateComplemntary|, die diese Berechnung ausführt.
+Für einen Komplementär-Kontrast muss der \textit{Hue}-Wert der Grundfarbe um 180° verändert werden. Die Berechnung erwies sich mit Hilfe des HSL-JavaScript-Objektes als recht simpel, hier musste lediglich darauf geachtet werden, den einen Wert von 360 nicht zu überschreiten. Listing \ref{lst:complementary} zeigt die Funktion \verb|calculateComplementary|, die diese Berechnung ausführt.
 
 \begin{lstlisting}[caption=Berechnung eines Komplementär-Kontrastes, label=lst:complementary]
-  export function calculateComplemntary(baseColor) {
+  export function calculateComplementary(baseColor) {
     let complementary = Object.assign({}, baseColor)
     let hue = complementary.h
 
@@ -424,26 +424,44 @@ Für jede Farbe müssen hier also verschiedene Entscheidungen getroffen werden. 
 Um hier dynamischere Ergebnisse liefern zu können, wird diese Entscheidung in der Funktion \verb|calculateMonochromaticColors|, die Listing \ref{lst:mono} zeigt, zufällig getroffen.
 
 \begin{lstlisting}[caption=Berechnung eines Monochromatischen Farbschemas, label=lst:mono]
-  calculateMonochromaticColors(amount) {
+  /**
+   * Calculates a color scheme of monochromatic colors based on a base color with a variable amount of colors.
+   * The colors returned by this function are random in saturation and lightness.
+   * The colors returned by this function are guaranteed to not be equal to either each other, nor the base color.
+   *
+   * NOTE: Since the colors cannot be similar to each other, the amount of options in limited. Therefor, the number of colors to be returned should not be too high (6 will probably still work fine, whereas 25 will cause the function to break.)
+   *
+   * @param amount The number of colors that should be returned
+   * @param baseColor A HEX-Value of a color that is the basis of the color scheme
+   * @returns An Array of HEX-Values that build a monochromatic color scheme
+   */
+  export function calculateMonochromaticColors(amount, baseColor) {
 
+    let hslColor = convertToHsl(baseColor)
     let colors = []
 
     for (var i = 0; i < amount; i++) {
-      let currentColor = Object.assign({}, convertToHsl(this.props.baseColor))
-      // Figure out if only one or two values should be changed
-      // Random: 0 = Lightness, 1 = Saturation, 2 = Both
-      let randomOption = Math.floor(Math.random() * 3)
-      let changedColor = this.changeValuesOfColor(randomOption, currentColor)
+      let currentColor = Object.assign({}, hslColor)
+      let randomOption = CHANGABLE_COLOR_ATTRIBUTES[Math.floor(Math.random() * 3)]
+      let changedColor = changeValuesOfColor(randomOption, currentColor)
+
+      // Check, if the color is similar to the base color
+      let similarToBaseColor = colorsAreSimilar(hslColor, changedColor)
+      while (similarToBaseColor) {
+        changedColor = changeValuesOfColor(randomOption, changedColor)
+        similarToBaseColor = colorsAreSimilar(hslColor, changedColor)
+      }
 
       if (colors.length < 1) {
-        colors.push(changedColor)
+        colors.push(convertToHex(changedColor))
       } else {
-        let similarColors = this.checkForSimilarColors(colors, changedColor)
-        while (similarColors) {
-          changedColor = this.changeValuesOfColor(randomOption, changedColor)
-          similarColors = this.checkForSimilarColors(colors, changedColor)
+        // Check, if the new color is similar to other colors that were calculated
+        let similarColorsPresent = colorInArrayIsSimilar(colors, changedColor)
+        while (similarColorsPresent) {
+          changedColor = changeValuesOfColor(randomOption, changedColor)
+          similarColorsPresent = colorsAreSimilar(colors, changedColor)
         }
-        colors.push(changedColor)
+        colors.push(convertToHex(changedColor))
       }
     }
 
@@ -451,28 +469,33 @@ Um hier dynamischere Ergebnisse liefern zu können, wird diese Entscheidung in d
   }
 \end{lstlisting}
 
-Im nächsten Schritt müssen die Veränderungen in den bestimmten Werten vorgenommen werden. Auch hier werden diese Werte zufällig gewählt, wobei die Farben nicht zu Dunkel oder zu hell sein dürfen. Diese Zuweisung findet in der Funktion \verb|changeValuesOfColor| statt (siehe Listing \ref{lst:hsl}).
-
-[ HIER NOCH ERKLÄREN, WIE HELLE UND DUNKLE FARBEN AUSGESCHLOSSEN WERDEN ]
+Im nächsten Schritt müssen die Veränderungen in den bestimmten Werten vorgenommen werden, auch hier werden diese Werte zufällig gewählt. Um auszuschließen, dass die definierten Werte zu hell oder zu dunkel sind (also fast Schwarz oder fast Weiss und damit sehr wenig Farbe aufweisen), wurden die Wertebereiche, in denen \textit{Lightness} und \textit{Saturation} verändert werden können, begrenzt. Dieser Vorgang findet in der Funktion \verb|changeValuesOfColor| statt (siehe Listing \ref{lst:hsl}).
 
 \begin{lstlisting}[caption=Setzen der HSL-Werte, label=lst:hsl]
-  changeValuesOfColor(values, color) {
+  /**
+   * Changes the lightness and/or saturation value of an HSL color object to a random value and returns a copy of that object.
+   * The random values are restricted to prevent them from beign colorless (i.e. almost black or almost white).
+   * A switch case determines, which attribute(s) of the color should be changed.
+   *
+   * @param attributeToChange The attribute on the color to be changed
+   * @param color An HSL color object on which's hue the new color will be based
+   * @returns An HSL color object with the manipulated attributes
+   */
+  function changeValuesOfColor(attributeToChange, color) {
     let manipulatedColor = Object.assign({}, color)
-    // Switch case
-    // Do the changes that need to be DropdownController
-    switch (values) {
-      case 0:
-        // change lightness
-        manipulatedColor.l = Math.random().toFixed(2)
+    let lightnessVal = Math.random() * 0.85 + 0.15
+    let saturationVal = Math.random() * 0.65 + 0.15
+
+    switch (attributeToChange) {
+      case 'LIGHTNESS':
+        manipulatedColor.l = lightnessVal.toFixed(2)
         break
-      case 1:
-        // change Saturation
-        manipulatedColor.s = Math.random().toFixed(2)
+      case 'SATURATION':
+        manipulatedColor.s = saturationVal.toFixed(2)
         break
-      case 2:
-        // change lightning and saturation
-        manipulatedColor.l = Math.random().toFixed(2)
-        manipulatedColor.s = Math.random().toFixed(2)
+      case 'LIGHTNESS_SATURATION':
+        manipulatedColor.l = lightnessVal.toFixed(2)
+        manipulatedColor.s = saturationVal.toFixed(2)
         break
       default:
         throw new 'Oops, seems like the randomizer messed something up.'
@@ -484,21 +507,29 @@ Im nächsten Schritt müssen die Veränderungen in den bestimmten Werten vorgeno
 
 Nachdem die Farben festgelegt sind muss außerdem überprüft werden, ob  eine generierte Farbe a) zu ähnlich der Grundfarbe oder b) zu ähnlich einer anderen generierten Farbe ist.
 Als \textit{zu ähnlich} zueinander wurden hier zwei Farben definiert, der \textit{Saturation}- \textbf{und} \textit{Lightness}-Werte eine Differenz kleiner als 0.1 aufweisen. Farben, die nur in einem der Beiden Werte eine zu kleine Differenz aufweisen, werden nicht als \textit{zu ähnlich} verstanden.
-Die Ähnlichkeit zweier Farben wird in  der Funktion \verb|checkForSimilarColors| in Listing \ref{lst:similar} deutlich. Die Funktion gibt dabei \verb|true| zurück, wenn die beiden übergebenen Werte zu ähnlich sind. Anstatt der betroffenen Farbe wird dann eine neue generiert.
+Die Ähnlichkeit zweier Farben wird in  der Funktion \verb|colorsAreSimilar| in Listing \ref{lst:similar} deutlich. Die Funktion gibt dabei \verb|true| zurück, wenn die beiden übergebenen Werte zu ähnlich sind. Anstatt der betroffenen Farbe wird dann in der Funktion \verb|calculateMonochromaticColors| eine neue generiert.
 
 \begin{lstlisting}[caption=Überprüfen der Ähnlichkeit zweier Farben, label=lst:similar]
-  checkForSimilarColors(colors, candidate) {
-    let similarValues = false
-    for (var j = 0; j < colors.length; j++) {
-      let saturationDifference = Math.abs(colors[j].s - candidate.s)
-      let lightnessDifference = Math.abs(colors[j].l - candidate.l)
+  /**
+   * Checks if two HSL color objects are similar.
+   * Similarity is defined as the Lightness and Saturation being less than 0.1 apart,
+   * with the Hue being exactly the same.
+   *
+   * NOTE: The Hue of the colors is not taken into consideration.
+   *
+   * @param color The first HSL color object
+   * @param candidate The second HSL color object
+   * @returns true if the two colors are found to be similar
+   */
+  function colorsAreSimilar(color, candidate) {
+    let saturationDifference = Math.abs(color.s - candidate.s)
+    let lightnessDifference = Math.abs(color.l - candidate.l)
 
-      if (saturationDifference < 0.1 && lightnessDifference < 0.1) {
-        similarValues = true
-      }
+    if (saturationDifference < 0.1 && lightnessDifference < 0.1) {
+      return true
     }
 
-    return similarValues
+    return false
   }
 \end{lstlisting}
 
