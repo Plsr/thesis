@@ -1,39 +1,30 @@
 \chapter{Veröffentlichung der Anwendung}
 \thispagestyle{fancy}
 
-Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
-Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
-auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
-und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
-besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
+Der letzte Schritt, der für die Entwicklung einer marktfähigen Webanwendung von Bedeutung ist, ist deren Veröffentlichung. Dabei müssen in diesem Fall zwei verschiedene Aspekte angesprochen werden: Zum Einen muss die Anwendung für den Endnutzer verfügbar sein, zum Anderen ist es aber auch Ziel dieser Arbeit, eine spätere Weiterentwicklung der Anwendung durch die Community zu ermöglichen. Daher muss auch der Quellcode der Anwendung zugänglich und Möglichkeiten zur Mitarbeit definiert sein.
 
-\section{Hosting}
+\section{Ausliefern der Anwendung}
 \label{chap:hosting}
-Um den Zugang zur Anwendung für die Community möglichst einfach zu gestalten, bietet es sich an, diese zu hosten (einer andere, weniger geeignete Möglichkeit, wäre beispielsweise nur die Veröffentlichung des Quellcodes und das lokale hosten durch den Nutzer selbst).
-Da es sich bei der Anwendung um eine rein Clientseitige handelt, stehen eine Vielzahl von Möglichkeiten für das hosting zu Verfügung, da der Server lediglich statische html- und JavaScript-Dateien ausliefern muss.
+Ein Verfügbar machen von Ressourcen und Anwendungen im World Wide Web suggeriert in der Regel die Verwendung eines Servers zum ausliefern dieser Ressourcen. Da es sich bei dieser Anwendung um eine \textit{Single Page Application} handelt, sind die technischen Ansprüche an einen solchen Server äußerst gering. Dieser muss lediglich in der Lage sein, zwei statische Dateien auszuliefern.
+Hier sollen zunächst drei Lösungsmöglichkeiten näher betrachtet werden:
 
-In die nähere Auswahl kamen in diesem Projekt Github Pages und Heroku. Ein hosting auf einem privaten Server wurde schnell ausgeschlossen, um die mögliche zusätzliche Arbeit möglichst gering zu halten.
-Da der Quellcode der Anwendung bereits auf Github veröffentlich wurde, scheint das Hosting über Github Pages zunächst die naheliegendste und einfachste Lösung. Ein Deployment auf Github Pages erfolgt nach entsprechenden Einstellungen im Repository einfach durch einen push auf den gh-pages branch. Die Anwenudung ist danach über die Domain username.github.io/rpository erreichbar. Größter Vorteil ist dabei, dass kein externer Service benötigt wird. Es treten aber auch einige Limitierungen auf. Beim testen der Hosting-Möglichkeiten wurde deutlich, dass das Modul React-Router den zusätzlichen Path nicht ohne weiteres unterstützt. Zwar bieten sich hier relative einfach Lösungen wie das verwenden von hashes anstatt von Pfaden im React-Router an, jedoch wurde mit blick auf die bereits bei simplen dingen auftretenden Probleme diese Möglichkeit zunächst als weniger geeignet eingestuft.
+\begin{itemize}
+  \item das manuelle verwalten eines Servers
+  \item die Verwendung von \textit{Github Pages}
+  \item die Verwendung des PaaS \textit{heroku}
+\end{itemize}
 
-Für das Hosting wurde sich für den Service Heroku entschieden. Heroku ist ein Saas, das ein Deployment und hosting ohne Setup und Konfiguration erlaubt. Ein Deployment auf Heroku läuft dabei über einen remote branch im git repository, kann also mit dem Befehl \verb|git push heroku master| gestartet werden. Heroku erkennt die verwendete Sprache automatisch und stellt alles nötige automatisch ein.
-Jedoch unterstützt Heroku lediglich Serverseitige Progrmmiersprachen und beitet keinen Support für das Hosting von statischen files. Um diese Anwendung zu hosten, muss also ein Server geschreiben werden. Da dieser nur statische Files hosten muss, ist dieser sehr simple in Node.js und dem Framework express geschrieben:
+Ein manuell verwalteter Server bietet von allen Möglichkeiten die flachste Lernkurve. Es müssen keine neuen Konzepte erlernt werden und aufgrund des niedrigen technischen Anspruches muss keine komplizierte Konfiguration des Servers erfolgen.\\
+Von Nachteil ist hierbei jedoch die niedrige Flexibilität. Jede neue Version der Anwendung muss manuell auf dem Server abgelegt werden oder ein Automatismus muss implementiert werden.
 
-\begin{lstlisting}
-  const express = require('express')
-  const app = express()
+Da der Quellcode der Anwendung auf Github veröffentlich wurde (siehe dazu Kapitel ASD), ist die verwendung von \textit{Github Pages} eine naheliegende Option. Die Erweiterung der Plattform erlaubt es, den Quellcode eines bestimmten \textit{branches} innerhalb eines \textit{Repository} statisch verfügbar zu machen.\\
+Die veröffentlichung einer neuen Version der Anwendung ist dabei sehr einfach, außerdem muss keine weitere Plattform in den Ablauf integriert werden. Während der Tests mit \textit{Github Pages} kam es jedoch zu Konflikten mit einer der verwendeten Bibliotheken. Auch wenn diese Konflikte lösbar waren, lassen diese doch auf mögliche Probleme in der Zukunft schließen.
 
-  app.use(express.static(__dirname + '/dist'))
-  app.listen(process.env.PORT || 8080)
-\end{lstlisting}
+\textit{Heroku} erlaubt die Veröffentlichung von Komplexen Anwendung mit wenig Konfiguration. Der Service ist dabei auf das asuliefern von dynamischen Backends spezialisiert und eigentlich nicht für das Ausliefern von statischen Dateien gedacht. \textit{Heroku} bietet jedoch von allen genannten Lösungen die einfachsten Möglichkeiten, Prozesse zu automatisieren und zu skalieren.
 
-Der Server hostet dabei den ordner \verb|dist|, in dem sich die gebuildeten Files befinden (unter anderem auch die Datei \verb|index.html|, auf die ein Browser automatisch zurück greift). Mit der Datei \verb|Procfile| wird Heroku dann mitgeteilt, welche Befehle beim Deployment der Anwendung ausgeführt werden soll. Im Falles dieser Anwendung ist das die Datei \verb|server.js|. Das \verb|Procfile| besteht alsolediglich aus der Zeile
+Auch wenn alle hier angesprochenen Lösungen von einem technischen Standpunkt gesehen für die Auslieferung der Anwendung in Frage kommen würden, wird vor dem Hintergrund der möglichen Weiterentwicklung der Anwendung in Zukunft \textit{Heroku} verwendet.
 
-\begin{lstlisting}
-  web: node server.js
-\end{lstlisting}
-
-Da sowohl Github Pages, als auch Heroku von sich aus eine recht kryptische URL verwenden, wurde weiterhin die Domain \verb|25knots.de| gekauft, um auch hier den Einstieg für potentielle Nutzer so einfach wie möglich zu gestalten.
-
+Für eine leichte Zugänglichkeit ist außerdem eine prägnante URL, unter der die Anwendung aufgerufen werden kann, von Vorteil. Aus diesem Grund wurde die Domain \url{25knots.de} registriert, unter der die Anwendung abgerufen werden kann.
 
 \section{Weiterentwicklung}
 Nachfolgend soll außerdem auf eine mögliche Weiterentwicklung der Anwendung nach dem Abschluss dieser Arbeit eingegangen werden. In diesem Zusammenhang stellen sich vor allem drei Fragen:
@@ -71,19 +62,6 @@ Grober Aufbau für diese Sektion:
   \item Dokumentation innerhalb des Codes
   \item Dokumentation außerhalb des Codes
 \end{enumerate}
-
-
-\subsection{Contribution Guidelines}
-zahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
-auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
-und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
-besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
-
-\subsection{Tests}
-zahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
-auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
-und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
-besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
 
 \section{Vermarktung}
 Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
