@@ -395,31 +395,11 @@ Da die \textit{keys} im \verb|FONTS| Objekt dabei exakt den möglichen \textit{s
 \subsection{Erstellen von Farbkontrasten}
 \label{chap:colors_dev}
 Die Grundlegende Logik zum errechnen von bestimmten Kontrasten wurde bereits im Praxisprojekt definiert. Im ersten Schritt muss die Grundfarbe hierfür in den HSL-Farbraum überführt werden. Für diese Umwandlung wurde in der Anwendung die Bibliothek tinycolor\footnotemark{} verwendet, die verschiedene Funktionen zur Arbeit mit Farben bereit stellt (unter anderem auch das Umwandeln in den HSL-Farbraum).
-Nach der Umwandlung in den HSL-Farbraum gibt die Bibliothek ein JavaScript-Objekt zurück, in dem \textit{Hue}, \textit{Saturation}, \textit{Lightness} und \textit{Alpha} als \textit{Key-Value}-Paare vorhanden sind, mit denen die Berechnungen für die Farbkontraste vorgenommen werden können.
+Nach der Umwandlung in den HSL-Farbraum gibt die Bibliothek ein JavaScript-Objekt zurück, in dem \textit{Hue}, \textit{Saturation}, \textit{Lightness} und \textit{Alpha} als \textit{Key-Value}-Paare vorhanden sind, mit denen die Berechnungen für die Farbkontraste vorgenommen werden können. Die Bibliothek selbst bietet auch einige Funktionen zum Erstellen von Farbkontrasten, die Ergebnisse dieser Funktionen wurden für den Rahmen dieser Arbeit jedoch als nicht geeignet befunden.
 
 \footnotetext{\url{https://github.com/bgrins/TinyColor}, zuletzt abgerufen am 10.8.2017}
 
-Für einen Komplementär-Kontrast muss der \textit{Hue}-Wert der Grundfarbe um 180° verändert werden. Die Berechnung erwies sich mit Hilfe des HSL-JavaScript-Objektes als recht simpel, hier musste lediglich darauf geachtet werden, den einen Wert von 360 nicht zu überschreiten. Listing \ref{lst:complementary} zeigt die Funktion \verb|calculateComplementary|, die diese Berechnung ausführt.
-
-\begin{lstlisting}[caption=Berechnung eines Komplementär-Kontrastes, label=lst:complementary]
-  export function calculateComplementary(baseColor) {
-    let complementary = Object.assign({}, baseColor)
-    let hue = complementary.h
-
-    hue += 180
-    if (hue > 360) {
-      hue -= 360
-    }
-
-    complementary.h = hue
-    return complementary
-  }
-\end{lstlisting}
-
-Hier wurde außerdem darauf geachtet, das Farbobjekt mit Hilfe der Funktion \verb|Object.assign()| zu kopieren, um keine ungewünschten Veränderungen im \verb|baseColor|-Objekt zu erzeugen\footnotemark{}.
-
-\footnotetext{Objekte in JavaScript werden als \textit{Referenz} übergeben, siehe dazu \cite{Aggarwal2017Explaining}}
-
+Für einen Komplementär-Kontrast muss der \textit{Hue}-Wert der Grundfarbe um 180° verändert werden. Die Berechnung erwies sich mit Hilfe des HSL-JavaScript-Objektes als recht simpel, hier musste lediglich darauf geachtet werden, den einen Wert von 360 nicht zu überschreiten.
 Die Berechnung des triadischen Kontrastes gestaltet sich ähnlich, Hier wurde der \textit{Hue}-Wert jedoch um 30° erhöht beziehungsweise verringert, um den gewünschten Effekt zu erzielen.
 
 Deutlich komplexer gestaltet die Generierung von monochromatischen Farbschemata, da die Farben hier in ihrem \textit{Hue}-Wert unverändert bleiben, jedoch in ihrem \textit{Saturation} und/oder ihrem \textit{Lightness}-Wert verändert werden können. Weiterhin werden für dies Farbschema mehr Farben benötigt (die Anwendung arbeitet mit der Grundfarbe und drei weitern, veränderten Farben).
