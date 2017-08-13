@@ -1,11 +1,11 @@
 \chapter{Veröffentlichung der Anwendung}
 \thispagestyle{fancy}
 
-Der letzte Schritt, der für die Entwicklung einer marktfähigen Webanwendung von Bedeutung ist, ist deren Veröffentlichung. Dabei müssen in diesem Fall zwei verschiedene Aspekte angesprochen werden: Zum Einen muss die Anwendung für den Endnutzer verfügbar sein, zum Anderen ist es aber auch Ziel dieser Arbeit, eine spätere Weiterentwicklung der Anwendung durch die Community zu ermöglichen. Daher muss auch der Quellcode der Anwendung zugänglich und Möglichkeiten zur Mitarbeit definiert sein.
+Der letzte Schritt, der für die Entwicklung einer marktfähigen Webanwendung von Bedeutung ist, ist deren Veröffentlichung. Dabei müssen in diesem Fall zwei Aspekte angesprochen werden: Zum Einen muss die Anwendung für den Endnutzer verfügbar sein, zum Anderen ist es aber auch Ziel dieser Arbeit, eine spätere Weiterentwicklung der Anwendung durch die Community zu ermöglichen. Daher muss auch der Quellcode der Anwendung zugänglich und Möglichkeiten zur Mitarbeit definiert sein.
 
 \section{Ausliefern der Anwendung}
 \label{chap:hosting}
-Ein Verfügbar machen von Ressourcen und Anwendungen im World Wide Web suggeriert in der Regel die Verwendung eines Servers zum ausliefern dieser Ressourcen. Da es sich bei dieser Anwendung um eine \textit{Single Page Application} handelt, sind die technischen Ansprüche an einen solchen Server äußerst gering. Dieser muss lediglich in der Lage sein, zwei statische Dateien auszuliefern.
+Ein publizieren von Ressourcen und Anwendungen im World Wide Web suggeriert in der Regel die Verwendung eines Servers zum ausliefern dieser Ressourcen. Da es sich bei dieser Anwendung um eine \textit{Single Page Application} handelt, sind die technischen Ansprüche an einen solchen Server äußerst gering. Dieser muss lediglich in der Lage sein, zwei statische Dateien auszuliefern.
 Hier sollen zunächst drei Lösungsmöglichkeiten näher betrachtet werden:
 
 \begin{itemize}
@@ -15,16 +15,16 @@ Hier sollen zunächst drei Lösungsmöglichkeiten näher betrachtet werden:
 \end{itemize}
 
 Ein manuell verwalteter Server bietet von allen Möglichkeiten die flachste Lernkurve. Es müssen keine neuen Konzepte erlernt werden und aufgrund des niedrigen technischen Anspruches muss keine komplizierte Konfiguration des Servers erfolgen.\\
-Von Nachteil ist hierbei jedoch die niedrige Flexibilität. Jede neue Version der Anwendung muss manuell auf dem Server abgelegt werden oder ein Automatismus muss implementiert werden.
+Von Nachteil ist hierbei jedoch die niedrige Flexibilität. Jede neue Version der Anwendung muss manuell auf dem Server abgelegt oder wahlweise ein Automatismus hierfür entwickelt werden.
 
-Da der Quellcode der Anwendung auf Github veröffentlich wurde (siehe dazu Kapitel ASD), ist die verwendung von \textit{Github Pages} eine naheliegende Option. Die Erweiterung der Plattform erlaubt es, den Quellcode eines bestimmten \textit{branches} innerhalb eines \textit{Repository} statisch verfügbar zu machen.\\
-Die veröffentlichung einer neuen Version der Anwendung ist dabei sehr einfach, außerdem muss keine weitere Plattform in den Ablauf integriert werden. Während der Tests mit \textit{Github Pages} kam es jedoch zu Konflikten mit einer der verwendeten Bibliotheken. Auch wenn diese Konflikte lösbar waren, lassen diese doch auf mögliche Probleme in der Zukunft schließen.
+Da der Quellcode der Anwendung auf Github veröffentlich wurde (siehe dazu auch Kapitel \ref{chap:contribution}), ist die Verwendung von \textit{Github Pages} eine naheliegende Option. Die Erweiterung der Plattform erlaubt es, den Quellcode eines bestimmten \textit{Branches} innerhalb eines \textit{Repository} statisch auszuliefern.\\
+Die Veröffentlichung einer neuen Version der Anwendung ist dabei sehr einfach, außerdem muss keine weitere Plattform in den Ablauf integriert werden. Während der Tests mit \textit{Github Pages} kam es jedoch zu Konflikten mit einer der verwendeten Bibliotheken. Auch wenn diese Konflikte lösbar waren, lassen diese doch auf mögliche Probleme in der Zukunft schließen.
 
-\textit{Heroku} erlaubt die Veröffentlichung von Komplexen Anwendung mit wenig Konfiguration. Der Service ist dabei auf das asuliefern von dynamischen Backends spezialisiert und eigentlich nicht für das Ausliefern von statischen Dateien gedacht. \textit{Heroku} bietet jedoch von allen genannten Lösungen die einfachsten Möglichkeiten, Prozesse zu automatisieren und zu skalieren.
+\textit{Heroku} erlaubt die Veröffentlichung von komplexen Anwendungen mit wenig Konfiguration. Der Service ist dabei auf dynamische Backends spezialisiert und eigentlich nicht für das Ausliefern von statischen Dateien gedacht. \textit{Heroku} bietet jedoch von allen genannten Lösungen die einfachsten Möglichkeiten, Prozesse zu automatisieren und mit wachsender Größe der Anwendung zu skalieren.
 
-Auch wenn alle hier angesprochenen Lösungen von einem technischen Standpunkt gesehen für die Auslieferung der Anwendung in Frage kommen würden, wird vor dem Hintergrund der möglichen Weiterentwicklung der Anwendung in Zukunft \textit{Heroku} verwendet.
+Auch wenn alle hier angesprochenen Lösungen von einem technischen Standpunkt gesehen für die Auslieferung der Anwendung in Frage kommen würden, wird vor dem Hintergrund der möglichen Weiterentwicklung der Anwendung der Service \textit{Heroku} verwendet.
 
-Für eine leichte Zugänglichkeit ist außerdem eine prägnante URL, unter der die Anwendung aufgerufen werden kann, von Vorteil. Aus diesem Grund wurde die Domain \url{25knots.de} registriert, unter der die Anwendung abgerufen werden kann.
+Für eine leichte Zugänglichkeit ist außerdem eine prägnante URL von Vorteil. Aus diesem Grund wurde die Domain \url{25knots.de} registriert, unter der die Anwendung abgerufen werden kann.
 
 \section{Weiterentwicklung}
 Für eine mögliche Weiterentwicklung der Anwendung ist es Voraussetzung, dass Personen ein Interesse daran haben, die Anwendung zu verbessern. Zunächst stellt sich also die Frage, wie Personen dazu gebracht werden können, sich an der Weiterentwicklung der Anwendung zu beteiligen.\\
@@ -38,7 +38,7 @@ correlation between stars and forks (Spearman rank correlation coefficient = 0.5
 only a few systems have more forks than stars. \cite{borges2015popularity}
 \end{quote}
 
-Mit der Menge der Personen, die ein generelles Interesse an der Anwendung und deren Nutzung haben steigt also auch die Menge der Personen, die ein Interesse an der Weiterentwicklung haben. Ein Weg, Personen für die Weiterentwicklung zu gewinnen ist also, die Anwendung möglichst vielen Personen bekannt zu machen.
+Mit der Menge der Personen, die ein generelles Interesse an der Anwendung und deren Nutzung haben steigt also auch die Menge der Personen, die ein Interesse an deren Weiterentwicklung haben. Ein Weg, Personen für die Weiterentwicklung zu gewinnen ist also, die Anwendung möglichst vielen Personen bekannt zu machen.
 
 Aus einer Mitarbeit einer unbekannt großen Gruppe von Personen ergeben sich außerdem weitere Anforderungen an die Anwendung:
 
@@ -49,26 +49,36 @@ Aus einer Mitarbeit einer unbekannt großen Gruppe von Personen ergeben sich au�
 
 Diese Anforderungen sollen in den folgenden Kapiteln näher ausgeführt werden.
 
+\subsection{Vereinfachung der Mitarbeit}
+\label{chap:contribution}
+Ziel muss es sein, den Aufwand, der zwischen dem Moment liegt, in dem eine Person sich für die Mitarbeit an der Weiterentwicklung des Projektes entscheidet und dem Moment, an dem diese tatsächlich etwas zur Entwicklung beitragen kann, so gering wie möglich zu gestalten.
+Dies bedeutet in erste Linie, dass diese Person über das Wissen verfügen muss, \textit{wo} und \textit{wie} sie mit der Mitarbeit beginnen kann.
+
+Bereits im vorhergehenden Abschnitt wurde deutlich, dass Personen die an einer Anwendung mitarbeiten zuvor häufig Personen sind, die die Anwendung auch benutzen. Um diese Personengruppe ansprechen zu können, wird im letzten Schritt der Anwendung auf das Github-Repository verwiesen und erläutert, dass dort eine Mitarbeit an der Weiterentwicklung der Anwendung möglich ist. Jeder Nutzer der Anwendung verfügt somit über das Wissen, \textit{wo} eine Mitarbeit möglich ist.
+
+Um die Frage, \textit{wie} eine Mitarbeit aussehen kann zu beantworten, bietet die Plattform Github selbst einige Hilfsmittel\footnotemark{}.
+Eine erste Erklärung gibt die Datei \verb|README.md|, in der sich generelle Informationen zum Projekt und dessen Ausführung finden, aber auch eine Erklärung, auf welche Arten eine Mitarbeit am Projekt erfolgen (zum Beispiel durch Programmierung, Arbeit konzeptioneller Art oder das Melden von Fehlern innerhalb der Anwendung) und an welcher Stelle der Prozess der Mitarbeit begonnen werden kann.
+
+
+\footnotetext{Siehe hierzu \url{https://help.github.com/articles/helping-people-contribute-to-your-project/}, zuletzt abgerufen am 13.08.2017}
+
+Außerdem wurden Vorlagen zum erstellen von Issues\footnotemark{}. und Pull Requests geschrieben, die eine Hilfestellung zu den Inhalten bieten, die wünschenswert sind.\\
+Die Inhalte dieser Dateien können der CD entnommen werden, die dieser Arbeit beiliegt.
+
+\footnotetext{Ein \textit{Issue} kann genutzt werden, um Probleme oder Verbesserungen an einer zentralen Stelle zu diskutieren}
+
 \subsection{Sicherung der Code-Qualität}
-Nach der Veröffentlichung der Anwendung ist es beabsichtigt, dass weitere Leute den Quellcode der Anwendung erweitern und bearbeiten. Hier kann nicht von einem festen Team ausgegangen werden, so ist es durchaus auch möglich, dass einzelne Personen nur ein einziges Mal und an einem kleinen Teil er Anwendung arbeiten. Für die Anwendung ist es von Vorteil einen durchgängigen Code-Stil zu verwenden, um die Lesbarkeit durch die verschiedenen Bereiche der Anwendung zu verbessern. Personen, die allerdings nur für einen kurzen Moment Kontakt mit der Anwendung haben, kann  jedoch nicht abverlangt werden, dass diese sich vorher eingehend mit den verschiedenen Code-Styles der Anwendung befasst haben. Uns diesem Grund wurde die Bibliothek eslint eingebunden, zur Unterstützung der Einhaltung von Coding-Styles innerhalb einer Anwendung dient.
-In der Datei .eslintrc wird dabei festgelegt, welche Conventions befolgt werden sollen. Durch das einbinden des Bibliothek im Webpack-Build-Prozess können dann Warnung und error-messages ausgegeben werden, wenn gegen die Guidelines verstoßen wurde. Für einige Verstöße (wie zum Beispiel Fehler bei der Einrückung) lässt sich auch eine automatische  Fehlerbehebung einstellen.
+Innerhalb von Programmiersprachen können Befehle auf unterschiedliche Arten formatiert werden. Da bei einer Weiterentwicklung der Anwendung verschiedene Personen mit verschiedenen Hintergründen beteiligt sein können ist anzunehmen, dass auch verschiedene Präferenzen für die Formatierung von Code bestehen werden.
+Häufige Stilwechsel können für die Lesbarkeit des Quellcodes, gerade für Personen, die sich zum ersten Mal mit diesem befassen, jedoch nachteilig sein. Ein einheitlicher Stil innerhalb des Quellcodes ist daher erstrebenswert. Jedoch kann nicht davon ausgegangen werden, dass sich alle Personen, die an der Mitarbeit der Anwendung beteiligt sind, lange mit dieser befassen. Unter umständen wollen diese nur einen kleinen Fehler beheben und sich nicht lange mit Richtlinien für die Formatierung des Codes auseinandersetzen.
 
-Auch wenn die Fehlermeldungen Webpack daran hindern, die Anwendung zu kompilieren, ist es dennoch möglich, Code auf GitHub zu pushen, der gegen die Conventions verstößt. Um hier eine weiter Sicherung einzubauen, wurden die beiden Branchen master und development, die jeweils in Verbindung mit der Staging- und Production-Umgebung stehen, geschützt. In diese Branches kann also nicht mehr direkt committed werden, sondern nur noch über Pull Requests.
+Aus diesem Grund wurde ein \textit{Linter} in die Anwendung integriert. Dieser analysiert den Quellcode auf die Einhaltung von vorher definierten Regeln. Zu diesen Regeln gehören beispielsweise die Überprüfung der Einrückung oder die Schreibweise von Funktionen.
+Wird währen der Entwicklung gegen diese Regeln verstoßen, gibt der \textit{Linter} eine Fehlermeldung aus. Kleinere Fehler, wie zum Beispiel das inkorrekte Einrücken werden dabei automatisch korrigiert.
 
-Für die Überprüfung von neuen Pull Request wurde der Service Travis eingebunden. Dieser service kann bei jedem neuen Pull Request bestimmte Programme ablaufen lassen und nur wenn diese keine Fehler ausgeben, kenn der Pull Request gemerged werden (s. Abb ZXC). Dies bietet sich zum Beispiel für das Ausführen von Tests an, aber auch für das testen der Code-Styles mit eslint.
+Um den Zustand des Codes außerdem an einer zentralen Stelle überprüfen zu können, wurde der Service \textit{Travis CI}\footnotemark{} in das Repository eingebunden. Dieser erlaubt das ausführen von bestimmten Skripten bei erstellen eines neuen Pull Request und das anzeigen der Ergebnisse dieser Skripte. So kann die Einhaltung der definierten Regeln auf der Plattform Github automatisch überprüft werden.
 
-\subsection{Dokumentation}
-Grober Aufbau für diese Sektion:
-
-\begin{enumerate}
-  \item Was zeichnet eine gute Dokumentation aus?
-  \item Dokumentation innerhalb des Codes
-  \item Dokumentation außerhalb des Codes
-\end{enumerate}
+\footnotetext{\url{https://travis-ci.org/}}
 
 \section{Vermarktung}
-Bei der Textgestaltung und automatischen Änderung von Abbildungsnummern, Querverweisen,
-Seitenzahlen, Gliederungen, Literaturhinweisen etc. bietet sich der Rückgriff
-auf moderne Textverarbeitungsprogramme an. Nutzen Sie diese zur besseren Lesbarkeit
-und Strukturierung des Textes, aber vermeiden Sie überflüssige Spielereien. Da
-besonders bei Textdokumenten mit eingebundenen Objekten wie Bildern, Formeln
+Im Kapitel Weiterentwicklung wurde die Rolle des Bekanntheitsgrades einer Anwendung bereits verdeutlicht. Obwohl die Bekanntmachung der Anwendung nicht explizit Teil dieser Arbeit ist, soll dieser Bereich trotzdem kurz angesprochen werden.\\
+Aufgrund der Zielgruppe ist die naheliegendste und erfolgsversprechendste Strategie eine Bekanntmachung direkt an der Technischen Hochschule Köln, vorrangig am Campus Gummersbach. Hier bieten sich verschiedene Möglichkeiten im Internet an, aber auch Veranstaltungen am Campus selbst. Vor allem der \textit{Medieninformatik Showcase} eignet sich hier.
+Im weiteren Rahmen eigenen sich aber auch Informelle Vorträge oder sogenannte \textit{Meetups} für eine Vorstellung der Anwendung.
