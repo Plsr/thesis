@@ -26,8 +26,8 @@ Die Idee, Webseiten dynamischer und interaktiver zu gestalten geht dabei fast so
   Very early on, software engineers realized that the client-server architecture of the Web provided a powerful platform in which the browser could be a universal user interface to applications that may run locally or remotely on a server \cite{Jazayeri:2007:TWA:1253532.1254719}
 \end{quote}
 
-Um diese Interaktivität und Dynamik umzusetzen wurden zunächst Plattformen mit eigenen Laufzeitumgebungen genutzt. Lawton \cite{lawton2008new} nennt hier beispielsweise Microsoft Silverlight, Adobe Flash oder JavaFX.
-Die Verwendung von eigenen Laufzeitumgebungen dieser Plattformen  bedeutete für den Nutzer jedoch,  dass dieser bestimmte Programme auf seinem Rechner oder Plugins in seinem Browser installieren musste, um zugriff auf die so gewonnene Interaktivität zu erhalten. Somit musste auf einen der größten Vorteile der Entwicklung von Webanwendungen verzichtet werden: Um Webanwendungen nutzen zu können muss der Nutzer keine Installation der Software an seinem Endgerät durchführen.
+Um diese Interaktivität und Dynamik umzusetzen, wurden zunächst Plattformen mit eigenen Laufzeitumgebungen genutzt. Lawton nennt hier beispielsweise Microsoft Silverlight, Adobe Flash oder JavaFX  \cite{lawton2008new}.
+Die Verwendung von eigenen Laufzeitumgebungen dieser Plattformen  bedeutete für den Nutzer jedoch,  dass dieser bestimmte Programme auf seinem Rechner oder Plugins in seinem Browser installieren musste, um Zugriff auf die so mögliche Interaktivität zu erhalten. Auf einen der größten Vorteile der Entwicklung von Webanwendungen, das Ausführen der Anwendung ohne vorherige Installation, musste somit verzichtet werden.
 
 Durch das Verabschieden von neuen Web-Standards wie HTML5 oder ECMAScript 6 können viele Funktionen der oben genannten Plattformen nativ in einem Browser abgebildet werden. So empfiehlt Adobe beispielsweise, Flash nicht für Funktionen zu nutzen, die auch mit Hilfe von HTML5 abgebildet werden können\footnotemark{}.\\
 Für die Realisierung dieser Interaktivität im Browser wird vor allem JavaScript verwendet.
@@ -35,67 +35,67 @@ Für die Realisierung dieser Interaktivität im Browser wird vor allem JavaScrip
 \footnotetext{siehe dazu \url{https://blogs.adobe.com/conversations/2015/11/flash-html5-and-open-web-standards.html}, zuletzt abgerufen am 11.08.2017}
 
 \subsection{Single Page Applications}
-Das Prinzip der \textit{Single Page Applications (SPA)} lässt sich bereits an der Wortbedeutung gut erkennen: Es handelt sich um Anwendungen, die auf einer einzigen HTML-Seite ausgeliefert werden.
+Das Prinzip der \textit{Single Page Applications (SPAs)} lässt sich bereits an der Wortbedeutung gut erkennen: Es handelt sich um Anwendungen, die auf einer einzigen HTML-Seite ausgeliefert werden.
 Mikowski und Powell definieren SPAs als
 
 \begin{quote}
   […] an application delivered to the browser that doesn’t reload the page during use. Like all applications, it’s intended to help the user complete a task, such as “write a document” or “administer a web server.” We can think of an SPA as a fat client that’s loaded from a web server. \cite{MikowskiPowell201309}
 \end{quote}
 
-Single Page Applications können somit als Untereinheit der \textit{Rich Internet Applications} bezeichnet werden.\\
-Eine der ältesten Möglichkeiten, eine Single Page Application zu realisieren stellt AJAX dar. AJAX erlaubt das nachladen von Inhalten  vom Server, ohne, dass die Seite, die im Client geöffnet ist, neu geladen werden muss \cite{paulson2005building}.\\
+\textit{Single Page Applications (SPAs)} können somit als Untereinheit der \textit{Rich Internet Applications} bezeichnet werden.\\
+Eine der ältesten Möglichkeiten, eine Single Page Application zu realisieren stellt AJAX dar. AJAX erlaubt das Nachladen von Inhalten vom Server, ohne das erneute Laden der im Client geöffneten Seite zu erzwingen \cite{paulson2005building}.\\
 Da eine Anforderung an die zu entwickelnde Anwendung aber die Absenz eines Backends ist, kann AJAX als Möglichkeit zur Umsetzung ausgeschlossen werden.
 
-Aufgrund der Möglichkeiten, die mit den bereits erwähnten, neuen Web-Standards einhergehen, entstanden in den letzten Jahren jedoch viele JavaScript-Frameworks, die sich auf die Entwicklung von Single Page Applications spezialisieren.
+Aufgrund der Möglichkeiten, die mit den bereits erwähnten, neuen Web-Standards einhergehen, entstanden in den letzten Jahren jedoch viele JavaScript-Frameworks, die sich auf die Entwicklung von \textit{Single Page Applications (SPAs)} spezialisieren.
 
 
 \subsubsection{JavaScript Single Page Application Frameworks}
 
-Aus der Menge der verfügbaren JavaScript-Frameworks, die sich für die Umsetzung einer SPA eignen, wurden hier drei für eine Untersuchung auf die Tauglichkeit für die Umsetzung der konzipierten Anwendung hin untersucht.
+Aus der Menge der verfügbaren JavaScript-Frameworks, die sich für die Umsetzung einer \textit{SPA} eignen, wurden hier drei für eine Untersuchung auf die Tauglichkeit für die Umsetzung der konzipierten Anwendung hin untersucht.
 Die Auswahl der Frameworks erfolgte dabei nach Verbreitung und tatsächlicher Verwendung.\\
-Da die genaue Messung der Verbreitung einer Software sich als schwierig gestaltet, wurde als Indikator für die Beliebtheit und Verbreitung die Zahl der \textit{stars}\footnotemark{}, die den verschiedenen Frameworks auf der Plattform GitHub  zugeordnet sind, verwendet.
+Da sich die genaue Messung der Verbreitung einer Software schwierig gestaltet, wurde als Indikator für die Beliebtheit und Verbreitung die Zahl der \textit{stars}\footnotemark{}, die den verschiedenen Frameworks auf der Plattform GitHub  zugeordnet sind, verwendet.
 
 \footnotetext{Ein \textit{star} sagt aus, dass eine Person Interesse an dieser Software zeigt.}
 
-Im folgenden werden die Frameworks Vue.js, Angular.js und React.js verglichen.
+Im Folgenden werden die Frameworks Vue.js, Angular.js und React.js verglichen.
 
-\textbf{Vue.js}\cite{vue} wurde im Dezember 2013 veröffentlicht und ist mittlerweile in der Version zwei .
+\textbf{Vue.js} \cite{vue} wurde im Dezember 2013 veröffentlicht.
 Vue beschreibt sich selbst in der Einführung der Documentation wie folgt:
 
 \begin{quote}
   Vue […] is a progressive framework for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is very easy to pick up and integrate with other libraries or existing projects. \cite{VueIntro}
 \end{quote}
 
-Vue.js ist dabei (wie die anderen hier behandelten Libraries und Frameworks auch) Komponentenbasiert. Um das User Interface effektiv zu aktualisieren, verwendet es einen \textit{Virtual DOM}. Dieser ist eine Abstraktion des DOMs, wie ihn beispielsweise das w3c spezifiziert \cite{w3cDOM}:
+Vue.js ist dabei (wie die anderen hier behandelten Libraries und Frameworks auch) Komponentenbasiert. Um das User Interface effektiv zu aktualisieren, verwendet es einen \textit{Virtual DOM}. Dieser ist eine Abstraktion des DOMs, wie ihn beispielsweise das W3C spezifiziert:
 
 \begin{quote}
-  The Document Object Model (DOM) is a programming API for HTML and XML documents. It defines the logical structure of documents and the way a document is accessed and manipulated.
+  The Document Object Model (DOM) is a programming API for HTML and XML documents. It defines the logical structure of documents and the way a document is accessed and manipulated.  \cite{w3cDOM}
 \end{quote}
 
-Das \textit{Virtual DOM} wird von Frameworks wie Vue.js dafür verwendet, Änderungen am DOM performanter durchzuführen. Die genaue Funktionsweise sei im Rahmen dieser Arbeit nicht erläutert, jedoch beschreibt die Vue.js Dokumentation die abstrakten Vorgänge wie folgt \cite{VueTemplate}:
+Das \textit{Virtual DOM} wird von Frameworks wie Vue.js dafür verwendet, Änderungen am DOM performanter durchführen zu können. Die genaue Funktionsweise sei im Rahmen dieser Arbeit nicht erläutert, jedoch beschreibt die Vue.js Dokumentation die abstrakten Vorgänge wie folgt:
 
 \begin{quote}
-  Under the hood, Vue compiles the templates into Virtual DOM render functions. Combined with the reactivity system, Vue is able to intelligently figure out the minimal amount of components to re-render and apply the minimal amount of DOM manipulations when the app state changes.
+  Under the hood, Vue compiles the templates into Virtual DOM render functions. Combined with the reactivity system, Vue is able to intelligently figure out the minimal amount of components to re-render and apply the minimal amount of DOM manipulations when the app state changes. \cite{VueTemplate}
 \end{quote}
 
-Für das Darstellen von Inhalten verwendet Vue.js eine Templating-Engine, Erweiterungen wie Routing oder Verwaltung des Zustandes der Anwendung müssen über externe Bibliotheken eingefügt werden.
+Für das Darstellen von Inhalten verwendet Vue.js eine Templating-Engine, Erweiterungen, wie Routing oder Verwaltung des Zustandes der Anwendung, müssen über externe Bibliotheken eingefügt werden.
 
-Das von Google Entwickelte \textbf{Angular.js}\cite{angular} ist das älteste der hier behandelten Frameworks. Es wurde zuerst im Oktober 2010 veröffentlicht.\\
-Insgesamt ist Angular deutlich komplexer als Vue.js und React.js. Viele Erweiterungen (wie zum Beispiel das Routing), die in Vue.js und React.js durch externe Bibliotheken implementiert werden müssen sind beispielsweise in Angular.js bereits enthalten.
-Auch weisen Angular-Anwendungen eine deutlich Komplexere Architektur auf, die unter anderem aus Teilen wie Modulen, Komponenten und Templates besteht. Auch hier wird für die Darstellung von Inhalten also eine Templating-Engine verwendet.
+Das von Google Entwickelte Framework \textbf{Angular.js} \cite{angular} ist das älteste der hier behandelten Frameworks, die erste Version wurde im Oktober 2010 veröffentlicht.\\
+Insgesamt ist Angular deutlich komplexer als Vue.js und React.js. Viele Erweiterungen, wie zum Beispiel das Routing, die in Vue.js und React.js durch externe Bibliotheken implementiert werden müssen, sind beispielsweise in Angular.js bereits enthalten.
+Auch weisen Angular-Anwendungen eine deutlich Komplexere Architektur auf, die unter anderem aus Teilen wie Modulen, Komponenten und Templates besteht. Auch hier wird für die Darstellung von Inhalten eine Templating-Engine verwendet.
 
-\textbf{React.js}\cite{react} wurde im Juli 2013 von Facebook veröffentlicht.\\
-Wie Vue.js implementiert auch React.js einen Virtual DOM um Änderungen in der Benutzeroberfläche performanter abbilden zu können.
+\textbf{React.js} \cite{react} wurde im Juli 2013 von Facebook veröffentlicht.\\
+Wie Vue.js implementiert auch React.js ein Virtual DOM, um Änderungen in der Benutzeroberfläche performanter abbilden zu können.
 Anders als Vue.js und Angluar.js verwendet React jedoch keine Templating Engine, React Applikationen sind daher als komplett in JavaScript-Funktionen geschrieben, die zur Laufzeit in HTML umgewandelt werden.
-Ähnlich wie Vue.js ist auch React.js in seiner Funktionalität sehr auf die wesentlichen Funktionen komprimiert, Erweiterungen wie Routing oder Application State müssen auch hier über externe Bibliotheken eingebunden werden.
+Ähnlich wie Vue.js ist auch React.js in seiner Funktionalität sehr auf die wesentlichen Funktionen reduziert, Erweiterungen wie Routing oder Application State müssen auch hier über externe Bibliotheken eingebunden werden.
 
-Aus dem Vergleich wird zunächst deutlich, dass alle Frameworks ähnliche Ziele verfolgen und somit auch alle Frameworks für die Umsetzung der hier vorliegenden Anwendung grundsätzlich geeignet sind.
+Aus dem Vergleich wird zunächst deutlich, dass alle Frameworks ähnliche Ziele verfolgen und somit auch jedes der betrachteten Frameworks für die Umsetzung der hier vorliegenden Anwendung grundsätzlich geeignet sind.
 Angular.js wurde ausgeschlossen, da die relativ komplexe Grundstruktur für eine eher kleinere Anwendung, wie sie hier entwickelt werden soll, als unpassend erachtet wurde.
-Die abschließende Entscheidung fiel auf das Framework React.js, aus dem pragmatischen Grund, dass bereits im Vorfeld dieser Arbeit ein Proof of Concept entstand, der ebenfalls auf dem Framework React.js aufbaut. Hiervon wurde sich eine simpleres übertragen bestimmter Teile aus dem Proof of Concept versprochen.
+Die abschließende Entscheidung fiel auf das Framework React.js, aus dem pragmatischen Grund, dass bereits im Vorfeld dieser Arbeit ein Proof of Concept entstand, der ebenfalls auf dem Framework React.js aufbaut. Hiervon wurde sich eine simpleres Übertragen bestimmter Teile aus dem Proof of Concept versprochen.
 
 
 \section{Einstieg in React.js}
-Das Framework React.js definiert einige spezielle Konzepte und Vorgänge, auf die im Folgenden eingegangen werden soll. Der Umfang soll dabei so gering wie möglich bleiben, aber trotzdem ein Verständnis der später in dieser Arbeit gezeigten Codebeispiele und des Quellcodes auf der Begleit-CD ermöglichen.
+Das Framework React.js definiert einige spezielle Konzepte und Vorgänge, auf die im Folgenden eingegangen werden soll. Der Umfang soll dabei so gering wie möglich bleiben, aber trotzdem ein Verständnis der später in dieser Arbeit gezeigten Codebeispiele und des Quellcodes auf der beiliegenden CD ermöglichen.
 
 \subsection{Komponenten}
 Die komponentenbasierte Entwicklung ist einer der Hauptbestandteile der Architektur einer React-Anwendung \cite[S. 28]{Gackenheimer201509}. \\
@@ -121,7 +121,7 @@ Für den Rahmen dieser Arbeit können daraus für Komponenten also folgende Eige
 Eine Komponente ist nur ein einzelner Teil der ganzen Anwendung. Dieser Teil sollte (nach Möglichkeit) auch an anderen Stellen in der Anwendung wiederverwendbar sein und sollte weiterhin keine Abhängigkeit von seiner Umwelt besitzen.
 
 \subsubsection{Komponenten in React.js}
-Die React.js-Dokumentation selbst enthält eine weiter Definition einer Komponente:
+Die React.js-Dokumentation selbst enthält eine weitere Definition einer Komponente:
 
 \begin{quote}
   Conceptually, components are like JavaScript functions. They accept arbitrary inputs (called "props") and return React elements describing what should appear on the screen. \cite{ReactProps}
@@ -138,7 +138,7 @@ Jede Komponente in React.js ist eine Subklasse der Basisklasse \verb|React.Compo
 Für jeden dieser Zustände können verschiedene Funktionen aus der Basisklasse \verb|React.Component| überschrieben werden, um diese in der Komponente zu verwenden.
 
 \textit{Mounting} und \textit{Unmounting} beschreiben den Anfang beziehungsweise das Ende des Lebenszyklus und Funktionen, die diesen Zuständen zugehörig sind, werden demnach nur einmal aufgerufen.
-Funktionen, die  dem Zustand \textit{Updating} zugehörig sind, können beliebig oft aufgerufen werden, jedes Mal, wenn ein Update der Komponente initiiert wird. Von besonderer Bedeutung ist hier die Funktion \verb|render()|, in der definiert wird, welchen Inhalt die Komponente ausgeben soll.
+Funktionen, die  dem Zustand \textit{Updating} zugehörig sind, können beliebig oft aufgerufen werden. Dieser Aufruf geschieht jedes Mal, wenn ein Update der Komponente initiiert wird. Von besonderer Bedeutung ist hier die Funktion \verb|render()|, in der definiert wird, welchen Inhalt die Komponente ausgeben soll.
 
 Für das Arbeiten mit Komponenten in React ist weiterhin das Konzept der \textit{props} und des \textit{state} relevant \cite{ReactProps}.\\
 Dabei bezeichnen \textit{props} JavaScript-Objekte, die von einer Elternkomponente zur Kindkomponente übergeben werden können. Besonders interessant ist die Möglichkeit, Referenzen auf Funktionen übergeben zu können. Somit kann in einer Elternkomponente auf die Interaktion mit einer Kindkomponente reagiert werden.\\
@@ -149,7 +149,7 @@ Hier zeigt sich außerdem der Grundgedanke der Interaktivität in React.js: Werd
 \subsubsection{Zustandslose Komponenten}
 \label{chap:stateless}
 Nicht jede Komponente in React.js muss einen Zustand verwalten, viele Komponenten innerhalb einer Anwendung dienen nur der Darstellung von Inhalten, die ihnen von ihren Elternkomponenten übergeben werden. Vor den in Kapitel \ref{chap:component} definierten Anforderungen an eine Komponente ist es Sinnvoll, viele in sich abgeschlossene und in ihren Funktionen limitierte Komponenten zu implementieren, die dann von einigen wenigen Komponenten kontrolliert werden.\\
-Da zustandslose Komponenten keine der im vorhergehenden Kapitel erwähnten Methoden des Lebenszyklus implementieren, wurde mit dem Release von React 0.14\footnotemark{} eine simplifizierte Schreibweise für diese Komponenten eingeführt (Listing \ref{lst:stateless} zeigt diese). Hier wird zum Einen das unnötige Schreiben von Code vermeiden, zum anderen kann während der Entwicklung auf den ersten Blick festgestellt werden, ob eine Komponente einen Zustand verwaltet oder nicht.
+Da zustandslose Komponenten keine der im vorhergehenden Kapitel erwähnten Methoden des Lebenszyklus implementieren, wurde mit dem Release von React 0.14\footnotemark{} eine simplifizierte Schreibweise für diese Komponenten eingeführt (Listing \ref{lst:stateless} zeigt diese). Hier wird zum Einen das unnötige Schreiben von Code vermeiden, zum Anderen kann während der Entwicklung auf den ersten Blick festgestellt werden, ob eine Komponente einen Zustand verwaltet oder nicht.
 
 \footnotetext{Siehe dazu \url{https://facebook.github.io/react/blog/2015/09/10/react-v0.14-rc1.html}, zuletzt abgerufen am 11.08.2017}
 
@@ -169,16 +169,16 @@ Ein Beispiel für die Verwendung von Komponenten mit und ohne \textit{state} inn
 JSX ist eine (eigens von Facebook für die Verwendung mit React entwickelte) Syntax-Erweiterung für ECMAScript, die es Erlaubt, React-Komponenten innerhalb der \verb|render()|-Methode ähnlich wie HTML-Tags zu deklarieren.
 
 JSX ist dabei lediglich eine syntaktische Verschönerung der Funktion \verb|React.createElement(component, props, ...children)| \cite{ReactJSX}, die für die tatsächliche Definition von Komponenten verwendet wird.
-Obwohl die JSX-Syntax der HTML-Syntax ähnlich sieht, gibt es hier einige Besonderheiten, die Beachtet werden müssen.
-Zum einen werden die Deklarationen von React-Komponenten und regulären HTML-Tags durch unterschiedliche Schreibweisen getrennt (React-Komponenten werden Groß geschrieben).
-Zum anderen können hier keine Schlüsselwörter verwendet werden, die durch die ECMAScript-Spezifikation geschützt sind\footnotemark{}. Dies betrifft in erste Linie das \verb|class|-Attribut, das in HTML für das vergeben von Klassen verwendet wird. Für die Vergabe von CSS-Klassen muss in JSX auf \verb|className| zurück gegriffen werden.
+Obwohl die JSX-Syntax der HTML-Syntax ähnlich sieht, gibt es hier einige Besonderheiten, die beachtet werden müssen.
+Zum Einen werden die Deklarationen von React-Komponenten und regulären HTML-Tags durch unterschiedliche Schreibweisen getrennt (React-Komponenten werden Groß geschrieben).
+Zum Anderen können hier keine Schlüsselwörter verwendet werden, die durch die ECMAScript-Spezifikation geschützt sind\footnotemark{}. Dies betrifft in erste Linie das \verb|class|-Attribut, das in HTML für das Vergeben von Klassen verwendet wird. Für die Vergabe von CSS-Klassen muss in JSX auf \verb|className| zurück gegriffen werden.
 
 \footnotetext{\url{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar}}
 
 \section{Einstieg in Redux}
 Mit zunehmender Komplexität einer React-Anwendung kann das Verwalten von Zuständen unübersichtlich werden. Diese Gefahr besteht vor allem dann, wenn Zustände über verschiedene Bestandteile der Anwendung hinweg bekannt sein müssen.
 
-Um das Verwalten des Zustandes der Anwendung an einem zentralen Ort zu ermöglichen und auf diesen Zustand strukturiert zuzugreifen und diesen zu verändern kann die Library Redux.js\footnotemark{} verwendet werden. Die Dokumentation der Library definiert deren Ziel wie folgt:
+Um den Zustand einer Anwendung an einem zentralen Ort verwalten und diesen strukturiert verändern zu können, kann die Library Redux.js\footnotemark{} verwendet werden. Die Dokumentation der Library definiert deren Ziel wie folgt:
 
 \footnotetext{\url{http://redux.js.org/}, zuletzt abgerufen am 11.08.2017}
 
@@ -194,6 +194,6 @@ Für ein Grundverständnis der Funktionsweise der Library sind drei Konzepte von
   \item \textit{Reducer}
 \end{itemize}
 
-Der \textit{Store} ist ein JavaScript-Objekt, in dem der Zustand der Anwendung gespeichert ist. \textit{Actions} beschreiben, welche Veränderungen am \textit{Store} vorgenommen werden sollen. Auch diese sind einfache JavaScript-Objekte. \textit{Reducer} definieren, auf welche weise der Zustand der Anwendung bei Aufruf einer \textit{Action} verändert werden soll. \cite{ReduxCore}
+Der \textit{Store} ist ein JavaScript-Objekt, in dem der Zustand der Anwendung gespeichert ist. \textit{Actions} beschreiben, welche Veränderungen am \textit{Store} vorgenommen werden sollen. Auch diese sind einfache JavaScript-Objekte. \textit{Reducer} definieren, auf welche Weise der Zustand der Anwendung bei Aufruf einer \textit{Action} verändert werden soll. \cite{ReduxCore}
 
 Die Implementierung von Redux in der hier zu entwickelnden Anwendung wird in Kapitel \ref{chap:redux} beschrieben.
