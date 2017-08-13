@@ -27,24 +27,27 @@ Auch wenn alle hier angesprochenen Lösungen von einem technischen Standpunkt ge
 Für eine leichte Zugänglichkeit ist außerdem eine prägnante URL, unter der die Anwendung aufgerufen werden kann, von Vorteil. Aus diesem Grund wurde die Domain \url{25knots.de} registriert, unter der die Anwendung abgerufen werden kann.
 
 \section{Weiterentwicklung}
-Nachfolgend soll außerdem auf eine mögliche Weiterentwicklung der Anwendung nach dem Abschluss dieser Arbeit eingegangen werden. In diesem Zusammenhang stellen sich vor allem drei Fragen:
-\begin{enumerate}
-  \item Wie können Personen aus der Community dazu gebracht werden, an einer Weiterentwicklung mitzuarbeiten?
-  \item Wie kann eine durchgängig hohe Qualität des Quellcodes garantiert werden, auch wenn viele verschiedene Menschen daran arbeiten?
-  \item Wie kann das Mitwirken für Interessenten möglichst einfach gestaltet werden?
-\end{enumerate}
-
-Eine konkrete Beantwortung der ersten Frage gestaltet sich recht schwierig. Es lässt sich jedoch ein logischer Zusammenhang zwischen der Anzahl der Nutzer und der Anzahl der Mitwirkenden eines Projektes feststellen. Am Beispiel der Plattform Github können \textit{stars} als relativ sichere Mindestzahl der Nutzer gesehen werden. Laut \cite{borges2015popularity} besteht ein Zusammenhang zwischen \textit{stars} und der anzahl der Mitwirkenden an einem Projekt:
+Für eine mögliche Weiterentwicklung der Anwendung ist es Voraussetzung, dass Personen ein Interesse daran haben, die Anwendung zu verbessern. Zunächst stellt sich also die Frage, wie Personen dazu gebracht werden können, sich an der Weiterentwicklung der Anwendung zu beteiligen.\\
+Auch wenn eine konkrete Antwort auf diese Frage schwierig ist, liefern Borges, Valente, Hora und Coelho einen guten Ansatz:
 
 \begin{quote}
   In git-based systems, forks are used to either propose changes to an application or as
 a starting point for a new project. In both cases, the number of forks can be seen as a proxy
 for the importance of a project in GitHub. [...] Two facts can be observed in this figure. First, there is a strong positive
 correlation between stars and forks (Spearman rank correlation coefficient = 0.55). Second,
-only a few systems have more forks than stars.
+only a few systems have more forks than stars. \cite{borges2015popularity}
 \end{quote}
 
-Somit ist eine Steigerung der Mitwirkenden also automatisch mit einer Steigerung der Nutzer der Anwendung verbunden. Der Inhalt diese Abschnittes soll also vorrangig mit der Beantwortung der zweiten und dritten Frage beschäftigen.
+Mit der Menge der Personen, die ein generelles Interesse an der Anwendung und deren Nutzung haben steigt also auch die Menge der Personen, die ein Interesse an der Weiterentwicklung haben. Ein Weg, Personen für die Weiterentwicklung zu gewinnen ist also, die Anwendung möglichst vielen Personen bekannt zu machen.
+
+Aus einer Mitarbeit einer unbekannt großen Gruppe von Personen ergeben sich außerdem weitere Anforderungen an die Anwendung:
+
+\begin{itemize}
+  \item Der Arbeitsaufwand, um mit der tatsächlichen Entwicklung beginnen zu können, muss so gering wie möglich sein
+  \item Der Quellcode muss in Qualität und Stil gleich bleiben
+\end{itemize}
+
+Diese Anforderungen sollen in den folgenden Kapiteln näher ausgeführt werden.
 
 \subsection{Sicherung der Code-Qualität}
 Nach der Veröffentlichung der Anwendung ist es beabsichtigt, dass weitere Leute den Quellcode der Anwendung erweitern und bearbeiten. Hier kann nicht von einem festen Team ausgegangen werden, so ist es durchaus auch möglich, dass einzelne Personen nur ein einziges Mal und an einem kleinen Teil er Anwendung arbeiten. Für die Anwendung ist es von Vorteil einen durchgängigen Code-Stil zu verwenden, um die Lesbarkeit durch die verschiedenen Bereiche der Anwendung zu verbessern. Personen, die allerdings nur für einen kurzen Moment Kontakt mit der Anwendung haben, kann  jedoch nicht abverlangt werden, dass diese sich vorher eingehend mit den verschiedenen Code-Styles der Anwendung befasst haben. Uns diesem Grund wurde die Bibliothek eslint eingebunden, zur Unterstützung der Einhaltung von Coding-Styles innerhalb einer Anwendung dient.
