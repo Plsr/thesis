@@ -539,7 +539,7 @@ Eine weitere Möglichkeit stellt die Bibliothek html2canvas\footnotemark{} dar. 
 
 Die Entscheidung viel aus diesen Gründen auf die Bibliothek jsPDF\footnotemark{}. Diese erlaubt das Erstellen von PDF-Dateien im Browser und auch das Einfügen von DOM-Elementen in PDF-Dateien.
 Das Einfügen von DOM-Elementen ist zwar komfortabel, bedeutet aber auch einen (zumindest teilweisen) Verlust der Kontrolle über die Struktur und das Aussehen der PDF-Datei.
-Aus diesem Grund wurde die Möglichkeit für die manuelle Erzeugung von PDF-Dateien genutzt, die die Bibliothek ebenfalls ermöglicht. Hierfür steht eine API zur Verfügung, mit der verschiedene Elemente (wie Text oder geometrische Formen), unter Angabe der Position auf der x- und y-Achse, in die Datei eingefügt werden können. Listing \ref{lst:pdf} zeigt eine gekürzte Version der Funktion, die die PDF-Datei erzeugt und speichert, Abbildung \ref{fig:pdf} eine beispielhafte PDF-Datei, die von der Anwendung erstellt wurde.
+Aus diesem Grund wurde die Möglichkeit für die manuelle Erzeugung von PDF-Dateien genutzt, die die Bibliothek ebenfalls ermöglicht. Hierfür stehen einige Funktionen zur Verfügung, mit der verschiedene Elemente (wie Text oder geometrische Formen), unter Angabe der Position auf der x- und y-Achse, in die Datei eingefügt werden können. Listing \ref{lst:pdf} zeigt eine gekürzte Version der Funktion, die die PDF-Datei erzeugt und speichert, Abbildung \ref{fig:pdf} eine beispielhafte PDF-Datei, die von der Anwendung erstellt wurde.
 
 \begin{lstlisting}[caption={Beispilehafte Generierung einer PDF-Datei}, label=lst:pdf]
   export function generatePDF(typography, colors) {
