@@ -10,10 +10,10 @@ Steve Krug schreibt über die Gestaltung von Webseiten:
   Die Seiten offensichtlich zu gestalten, ist wie eine gute Beleuchtung in einem Geschäft: Alles erscheint einfach besser. Die Nutzung einer Website, die uns nicht zum Nachdenken über Unwichtiges zwingt, fühlt sich mühelos an, wogegen das Kopfzerbrechen über Dinge, die uns nichts bedeuten, Energie und Enthusiasmus raubt — und Zeit. \cite[S. 19]{Krug201410}
 \end{quote}
 
-Insgesamt ist \textit{25knots} eine sehr interaktive Anwendung, in der Informationen eher Grafisch und durch Interaktionen des Benutzers übertragen werden, als beispielswiese durch Texte.
+Insgesamt ist \textit{25knots} eine sehr interaktive Anwendung, in der Informationen eher Grafisch und durch Interaktionen des Benutzers übertragen werden, als beispielsweise durch Texte.
 Daher wurde bei der Gestaltung großer Wert darauf gelegt, klar zu kommunizieren, welche Bereiche interaktiv sind und welche Auswirkungen eine Interaktion mit diesen Bereichen hat.\\
 Um diese Abgrenzung zu gewährleisten, wurde ein schlichtes Farbschema verwendet, in dem nur zwei Farben, Blau und Rot, verwendet wurden, die zur Anzeige von Interaktivität dienen.
-Die beiden Farben haben dabei festgelegte Rollen: Blau zeigt Interaktivität innerhalb eines Schrittes der Anwendung an, Rot zeigt zwischen verschiedenen Schritten übergreifende Aktivitäten an. Abbildung \ref{fig:entrance} zeigt die Ausführung dieser Idee am Beispiel des Einstiegs in die Anwendung. Die blauen Elemente erlauben eine Auswahl innerhalb des Einstiegs (nächster Zwischenschritt, Auswahl eines Entwicklungsziels), der rote Button am unteren Rand erlaub das wechseln zum nächsten Abschnitt in der Anwendung.
+Die beiden Farben haben dabei festgelegte Rollen: Blau zeigt Interaktivität innerhalb eines Schrittes der Anwendung an, Rot zeigt zwischen verschiedenen Schritten übergreifende Aktivitäten an. Abbildung \ref{fig:entrance} zeigt die Ausführung dieser Idee am Beispiel des Einstiegs in die Anwendung. Die blauen Elemente erlauben eine Auswahl innerhalb des Einstiegs (nächster Zwischenschritt, Auswahl eines Entwicklungsziels), der rote Button am unteren Rand erlaubt das Wechseln zum nächsten Abschnitt in der Anwendung.
 
 \begin{figure}[h]
     \centering
@@ -60,7 +60,7 @@ Um den Gedanken von innerhalb der Anwendung wiederverwendbaren Komponenten zu un
   \item Es gibt verschiedene Arten von Abständen, die die verschiedenen Größen auf unterschiedliche Weise einsetzen und kombinieren.
 \end{enumerate}
 
-Diese Gedanken wurden in der Gestaltung und Umsetzung des Projektes übernommen. Zunächst wurden die verschiedenen Abstände, aufbauend auf der von Curtis empfohlenen Basisgröße von 16px, definiert. Aufbauend auf der Basisgröße wurden anschließend Abstufungen in beide Richtungen
+Diese Gedanken wurden in der Gestaltung und Umsetzung des Projektes übernommen. Zunächst wurden die verschiedenen Abstände, aufbauend auf der von Curtis empfohlenen Basisgröße von \texttt{16px}, definiert. Aufbauend auf der Basisgröße wurden anschließend Abstufungen in beide Richtungen
 erstellt, die nach Kleidergrößen, von XS bis XXL, benannt wurden.
 Diese Abstufungen wurden in einer eigenen Datei als JavaScript-Objekt deklariert, so dass über die gesamte Anwendung hinweg diese festgelegten Größen verwendet werden können.
 
@@ -90,7 +90,7 @@ Weiterhin ist der Raum für Inkonsistenzen begrenzt, da die Abstände nur in den
 
 \subsection{Styleguide}
 \label{chap:styleguide}
-Da zu einem späteren Zeitpunk unter Umständen verschiedene Personen an der Weiterentwicklung der Anwendung beteiligt sein werden, macht das Festhalten der bisher gestalteten Elemente und der Grundlagen der Gestaltung durchaus Sinn.
+Da zu einem späteren Zeitpunkt unter Umständen verschiedene Personen an der Weiterentwicklung der Anwendung beteiligt sein werden, macht das Festhalten der bisher gestalteten Elemente und der Grundlagen der Gestaltung durchaus Sinn.
 Während der Gestaltung wurde nur ein minimalistischer Styleguide mit Informationen über Farben, Schriftgrößen und Abstände geführt, der für die Gestaltung dieser ersten Version mit nur einer beteiligten Person ausreichend war.
 
 Vor dem Hintergrund einer späteren Weiterentwicklung ist ein zentraler Ort, der einen Überblick über die bereits erstellten Komponenten gibt, von großem Vorteil.
@@ -142,7 +142,7 @@ Um diese Veränderung im Redux-Store möglich zu machen, muss zunächst eine \te
     })
 \end{lstlisting}
 
-Die \textit{action} kann innerhalb der Anwendung durch den Aufruf der Methode \texttt{dispatch(setBaseColors(colors))} ausgelöst werden. Der Aufruf dieser Methode ist theoretisch direkt in der Komponente möglich, die den Button definiert, auf den der Nutzer klickt. Dieses Vorgehen wäre allerdings nicht mit den in Kapitel \ref{chap:component} definierten Anforderungen an eine Komponenten konform. So könnte dieser Button nur an Stellen eingesetzt werden, an denen die Grundfarbe für den Bereich Farben im Redux-Store gesetzt werden soll (realistisch betrachtet würde diese Komponente also an genau einer Stelle eingesetzt werden).\\
+Die \textit{action} kann innerhalb der Anwendung durch den Aufruf der Methode \texttt{dispatch(setBaseColors(colors))} ausgelöst werden. Der Aufruf dieser Methode ist theoretisch direkt in der Komponente möglich, die den Button definiert, auf den der Nutzer klickt. Dieses Vorgehen wäre allerdings nicht mit den in Kapitel \ref{chap:component} definierten Anforderungen an eine Komponente konform. So könnte dieser Button nur an Stellen eingesetzt werden, an denen die Grundfarbe für den Bereich Farben im Redux-Store gesetzt werden soll (realistisch betrachtet würde diese Komponente also an genau einer Stelle eingesetzt werden).\\
 Um diesen Umstand zu vermeiden, wird die Methode als Referenz weiter gegeben (Abbildung \ref{fig:redux_flow} zeigt eine informelle Darstellung aller beteiligter Komponenten).
 
 \begin{figure}[h]
@@ -180,10 +180,10 @@ Eine der aktuell verbreitetsten Möglichkeiten, Regeln für die Darstellung von 
 Auch React.js bietet die Möglichkeit, diese Architektur abzubilden. In Kapitel \ref{chap:jsx} wurde bereits erwähnt, dass hier wegen der Verwendung von JavaScript in Komponenten das Attribut \texttt{className} verwendet werden muss.
 
 Durch die Verwendung einer solchen Architektur werden für Komponenten jedoch Abhängigkeiten geschaffen, da für die korrekte Darstellung der Komponente auch immer die entsprechenden Regeln in der CSS-Datei verfügbar sein müssen.
-Diese Abhängig von ihrer Umwelt ist jedoch nicht Konform mit den in Kapitel \ref{chap:component} definierten Anforderungen an eine Komponente innerhalb dieser Arbeit.
+Diese Abhängig von ihrer Umwelt ist jedoch nicht konform mit den in Kapitel \ref{chap:component} definierten Anforderungen an eine Komponente innerhalb dieser Arbeit.
 
 Um das Aussehen innerhalb von HTML-Elementen zu verändern, kann das \texttt{style}-attribut verwendet werden. Auch dieses akzeptiert CSS-Syntax, die das Aussehen des jeweiligen Elements definiert.
-React.js ermöglicht die Verwendung dieses Attributes innerhalb von Komponenten und somit auch die Deklaration von Inhalt und Aussehen innerhalb einer Komponenten, ohne die Notwendigkeit weiterer Abhängigkeiten.
+React.js ermöglicht die Verwendung dieses Attributes innerhalb von Komponenten und somit auch die Deklaration von Inhalt und Aussehen innerhalb einer Komponente, ohne die Notwendigkeit weiterer Abhängigkeiten.
 
 Die Verwendung des \texttt{style}-attributes zum Festlegen des Aussehens birgt jedoch einige Nachteile. So können über das Attribut keine Pseudo-Klassen, wie zum Beispiel \texttt{:hover} oder \texttt{:before} angesprochen werden. \cite{w3c2017styles}
 Für die Entwicklung der Anwendung sind die Pseudo-Klassen jedoch notwendig.
@@ -211,16 +211,16 @@ Diese Bibliothek erlaubt eine Notation der CSS-Regeln wie sie React.js auch nati
 	}
 \end{lstlisting}
 
-Während der Entwicklung wurde nicht jegliche Art von Gestaltung innerhalb von Komponenten realisiert. Verschiedene native HTML-Elemente, die über die Anwendung hinweg verwendet werden, wurden in einer globalen CSS-Datei definiert. Dies hat den Vorteil, dass zum Beispiel für die Verwendung einer Überschrift keine eigene Komponente geschrieben werden muss, die funktional equivalent zu einem nativen HTML-Element (beispielsweise \texttt{<h1>}) ist, nur um dessen Aussehen anzupassen.
+Während der Entwicklung wurde nicht jegliche Art von Gestaltung innerhalb von Komponenten realisiert. Verschiedene native HTML-Elemente, die über die Anwendung hinweg verwendet werden, wurden in einer globalen CSS-Datei definiert. Dies hat den Vorteil, dass zum Beispiel für die Verwendung einer Überschrift keine eigene Komponente geschrieben werden muss, die funktional äquivalent zu einem nativen HTML-Element (beispielsweise \texttt{<h1>}) ist, nur um dessen Aussehen anzupassen.
 
 \section{Interessante Aspekte in der Entwicklung}
-Nachfolgend sollen einige konkrete Beispiele aus der Entwicklung der Anwendung erläutert werden. Die verschiedenen Beispiele wurden dabei aus unterschiedlichen Gründen Gewählt:
+Nachfolgend sollen einige konkrete Beispiele aus der Entwicklung der Anwendung erläutert werden. Die verschiedenen Beispiele wurden dabei aus unterschiedlichen Gründen gewählt:
 Kapitel \ref{chap:state_component} zeigt einen zentralen Aspekt der Umsetzung einer komponentenbasierten Anwendung mit React.js, Kapitel \ref{chap:display_scope} eine der zentralen Arbeitsweisen der Anwendung. Die Kapitel \ref{chap:colors_dev} und \ref{chap:pdf} zeigen die Lösung von Problemen, die für die Funktionalität der Anwendung eine hohe Relevanz aufweisen.
 
 
 \subsection{State in Komponenten}
 \label{chap:state_component}
-Das Konzept des \textit{state} in React.js wurde Bereits in Kapitel \ref{chap:stateless} angesprochen. Hier soll an einem konkreten Bespiel verdeutlicht werden, wie der \textit{state} genutzt werden kann, um auf Nutzereingaben zu reagieren und inwiefern sich der Zustand einer Komponente vom Zustand der gesamten Anwendung unterscheidet.
+Das Konzept des \textit{state} in React.js wurde bereits in Kapitel \ref{chap:stateless} angesprochen. Hier soll an einem konkreten Beispiel verdeutlicht werden, wie der \textit{state} genutzt werden kann, um auf Nutzereingaben zu reagieren und inwiefern sich der Zustand einer Komponente vom Zustand der gesamten Anwendung unterscheidet.
 Als Beispiel wurde die Auswahl des Zielmediums durch den Nutzer im ersten Schritt der Anwendung gewählt, die in mehreren Schritten durchgeführt wird.
 Der Ablauf der Interaktion mit der Anwendung sieht dabei wie folgt aus:
 Die Anwendung präsentiert dem Nutzer drei Optionen, aus denen dieser wählen kann. Wählt der Nutzer eine der Optionen aus, gibt die Anwendung ihm eine visuelle Rückmeldung über die ausgewählte Option. Ist der Nutzer mit seiner Wahl zufrieden, bestätigt er diese durch einen Button und  ihm wir der nächste Schritt im Wizard angezeigt.
@@ -352,7 +352,7 @@ Der hier gezeigte Ablauf hätte sich auch durch die Verwendung des Redux-Stores 
 
 \subsection{Anzeige von Inhalten nach Scope}
 \label{chap:display_scope}
-Ein Hauptaugenmerk währen der Entwicklung lag auf der Anwendung der vom Nutzer gewählten \textit{scope} in der Anwendung. In Abhängigkeit dieser Scopes muss die Anwendung verschiedene Daten präsentieren. Dabei muss die Möglichkeit bestehen, diese Daten zu erweitern oder zu verändern, ohne dass die Anwendung selbst dafür umstrukturiert werden muss. Diese Datenhaltung soll hier am Beispiel der verschiedenen Schriftfamilien, die im Bereich Typographie Verwendung finden können, gezeigt werden.
+Ein Hauptaugenmerk während der Entwicklung lag auf der Anwendung der vom Nutzer gewählten \textit{scopes} in der Anwendung. In Abhängigkeit dieser Scopes muss die Anwendung verschiedene Daten präsentieren. Dabei muss die Möglichkeit bestehen, diese Daten zu erweitern oder zu verändern, ohne dass die Anwendung selbst dafür umstrukturiert werden muss. Diese Datenhaltung soll hier am Beispiel der verschiedenen Schriftfamilien, die im Bereich Typographie Verwendung finden können, gezeigt werden.
 
 Da die Anwendung keine Datenbank implementiert, werden diese Daten in eigenen Dateien als JavaScript-Objekte gespeichert. Listing \ref{lst:fonts_object} zeigt das Objekt, in dem die verschiedenen Schriftarten der \textit{scopes} als Arrays gespeichert sind. Bei Betrachtung des Objektes fällt auf, dass Daten teilweise doppelt auftreten. Obwohl hier gegen das Prinzip \textit{Don’t Repeat Yourself} verstoßen wird, ist eine solche Struktur mit Blick auf eine Weiterentwicklung der Anwendung nötig, um ein möglichst einfaches Verändern eines einzelnen \textit{scopes} gewährleisten zu können.
 
@@ -384,7 +384,7 @@ Da die Anwendung keine Datenbank implementiert, werden diese Daten in eigenen Da
 
 Da die \textit{keys} im \texttt{FONTS} Objekt dabei exakt den möglichen \textit{scopes} entsprechen\footnotemark{}, ist ein einfaches Ermitteln der benötigten Schriftfamilien, wie es in Listing \ref{lst:fonts_access} gezeigt wird, möglich.
 
-\footnotetext{Auch die verschiedenen \textit{scopes} sind Konstanten, die in einem Objekt gespeichert werden.}
+\footnotetext{Auch die verschiedenen \textit{scopes} sind konstanten, die in einem Objekt gespeichert werden.}
 
 \begin{lstlisting}[caption=Zugriff auf Werte des \texttt{FONTS} Objektes, label=lst:fonts_access]
   determineFontFamilies() {
@@ -395,7 +395,7 @@ Da die \textit{keys} im \texttt{FONTS} Objekt dabei exakt den möglichen \textit
 
 \subsection{Erstellen von Farbkontrasten}
 \label{chap:colors_dev}
-Die Grundlegende Logik zum Errechnen verschiedener Kontrasten wurde bereits im Praxisprojekt definiert. Im ersten Schritt muss die Grundfarbe hierfür in den HSL-Farbraum überführt werden. Für diese Umwandlung wurde in der Anwendung die Bibliothek tinycolor\footnotemark{} verwendet, die verschiedene Funktionen zur Arbeit mit Farben bereit stellt (unter anderem auch das Umwandeln in den HSL-Farbraum).
+Die grundlegende Logik zum Errechnen verschiedener Kontrasten wurde bereits im Praxisprojekt definiert. Im ersten Schritt muss die Grundfarbe hierfür in den HSL-Farbraum überführt werden. Für diese Umwandlung wurde in der Anwendung die Bibliothek tinycolor\footnotemark{} verwendet, die verschiedene Funktionen zur Arbeit mit Farben bereit stellt (unter anderem auch das Umwandeln in den HSL-Farbraum).
 Nach der Umwandlung in den HSL-Farbraum gibt die Bibliothek ein JavaScript-Objekt zurück, in dem \textit{Hue}, \textit{Saturation}, \textit{Lightness} und \textit{Alpha} als \textit{Key-Value}-Paare vorhanden sind, mit denen die Berechnungen für die Farbkontraste vorgenommen werden können. Die Bibliothek selbst bietet einige Funktionen zum Erstellen von Farbkontrasten, die Ergebnisse dieser Funktionen wurden für den Rahmen dieser Arbeit jedoch als nicht geeignet befunden.
 
 \footnotetext{\url{https://github.com/bgrins/TinyColor}, zuletzt abgerufen am 10.8.2017}
@@ -461,7 +461,7 @@ Um hier dynamischere Ergebnisse liefern zu können, wird diese Entscheidung in d
   }
 \end{lstlisting}
 
-Im nächsten Schritt müssen die Veränderungen in den bestimmten Werten vorgenommen werden, auch hier werden diese Werte zufällig gewählt. Um auszuschließen, dass die definierten Werte zu hell oder zu dunkel (also fast Schwarz oder fast Weiss) sind und damit sehr wenig Farbe aufweisen, wurden die Wertebereiche, in denen \textit{Lightness} und \textit{Saturation} verändert werden können, begrenzt. Dieser Vorgang findet in der Funktion \texttt{changeValuesOfColor} statt (siehe Listing \ref{lst:hsl}).
+Im nächsten Schritt müssen die Veränderungen in den bestimmten Werten vorgenommen werden, auch hier werden diese Werte zufällig gewählt. Um auszuschließen, dass die definierten Werte zu hell oder zu dunkel (also fast Schwarz oder fast Weiß) sind und damit sehr wenig Farbe aufweisen, wurden die Wertebereiche, in denen \textit{Lightness} und \textit{Saturation} verändert werden können, begrenzt. Dieser Vorgang findet in der Funktion \texttt{changeValuesOfColor} statt (siehe Listing \ref{lst:hsl}).
 
 \begin{lstlisting}[caption=Setzen der HSL-Werte, label=lst:hsl]
   /**
@@ -498,7 +498,7 @@ Im nächsten Schritt müssen die Veränderungen in den bestimmten Werten vorgeno
 \end{lstlisting}
 
 Nachdem die Farben festgelegt sind muss außerdem überprüft werden, ob  eine generierte Farbe a) zu ähnlich der Grundfarbe oder b) zu ähnlich einer anderen generierten Farbe ist.
-Als \textit{zu ähnlich} zueinander wurden hier zwei Farben definiert, der \textit{Saturation}- \textbf{und} \textit{Lightness}-Werte eine Differenz kleiner als 0.1 aufweisen. Farben, die nur in einem der Beiden Werte eine zu kleine Differenz aufweisen, werden nicht als zu ähnlich verstanden.
+Als \textit{zu ähnlich} zueinander wurden hier zwei Farben definiert, der \textit{Saturation}- \textbf{und} \textit{Lightness}-Werte eine Differenz kleiner als 0.1 aufweisen. Farben, die nur in einem der beiden Werte eine zu kleine Differenz aufweisen, werden nicht als zu ähnlich verstanden.
 Die Ähnlichkeit zweier Farben wird in  der Funktion \texttt{colorsAreSimilar} in Listing \ref{lst:similar} deutlich. Die Funktion gibt dabei \texttt{true} zurück, wenn die beiden übergebenen Werte zu ähnlich sind. Anstatt der betroffenen Farbe wird dann in der Funktion \texttt{calculateMonochromaticColors} eine neue generiert.
 
 \begin{lstlisting}[caption=Überprüfen der Ähnlichkeit zweier Farben, label=lst:similar]
@@ -538,7 +538,7 @@ Eine weitere Möglichkeit stellt die Bibliothek html2canvas\footnotemark{} dar. 
 \footnotetext{\url{https://github.com/niklasvh/html2canvas}}
 
 Die Entscheidung viel aus diesen Gründen auf die Bibliothek jsPDF\footnotemark{}. Diese erlaubt das Erstellen von PDF-Dateien im Browser und auch das Einfügen von DOM-Elementen in PDF-Dateien.
-Das Einfügen von DOM-Elementen ist zwar Komfortabel, bedeutet aber auch einen (zumindest teilweisen) Verlust der Kontrolle über die Struktur und das Aussehen der PDF-Datei.
+Das Einfügen von DOM-Elementen ist zwar komfortabel, bedeutet aber auch einen (zumindest teilweisen) Verlust der Kontrolle über die Struktur und das Aussehen der PDF-Datei.
 Aus diesem Grund wurde die Möglichkeit für die manuelle Erzeugung von PDF-Dateien genutzt, die die Bibliothek ebenfalls ermöglicht. Hierfür steht eine API zur Verfügung, mit der verschiedene Elemente (wie Text oder geometrische Formen), unter Angabe der Position auf der x- und y-Achse, in die Datei eingefügt werden können. Listing \ref{lst:pdf} zeigt eine gekürzte Version der Funktion, die die PDF-Datei erzeugt und speichert, Abbildung \ref{fig:pdf} eine beispielhafte PDF-Datei, die von der Anwendung erstellt wurde.
 
 \begin{lstlisting}[caption={Beispilehafte Generierung einer PDF-Datei}, label=lst:pdf]
