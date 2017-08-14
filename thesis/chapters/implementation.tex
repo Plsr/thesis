@@ -73,8 +73,8 @@ Diese Abstufungen wurden in einer eigenen Datei als JavaScript-Objekt deklariert
 
 
 Curtis definiert 6 verschieden Arten von Abständen, von denen 5 innerhalb der Anwendung als eigenständige Komponenten definiert wurden (siehe Abbildung \ref{fig:spacing}).\\
-Die Komponenten nehmen die Größe des Abstandes als \verb|prop| in einer der definierten Kleidergrößen entgegen und erzeugen ein \verb|div| Element, das die Abstände als \verb|padding| oder \verb|margin| anwendet.
-Die Pixelwerte für die jeweilige Abstandsgröße erhält die Komponente dabei durch den Aufruf des für die Abstandsgrößen zuständigen JavaScript-Objekts (zum Beispiel \verb|spacing.l|). Alle diese Komponenten geben außerdem die ihnen übergebenen Kinder aus, sodass eine Verwendung der \verb|SpacingInset| Komponente wie in Listing \ref{lst:spacingInset} möglich wird.
+Die Komponenten nehmen die Größe des Abstandes als \texttt{prop} in einer der definierten Kleidergrößen entgegen und erzeugen ein \texttt{div} Element, das die Abstände als \texttt{padding} oder \texttt{margin} anwendet.
+Die Pixelwerte für die jeweilige Abstandsgröße erhält die Komponente dabei durch den Aufruf des für die Abstandsgrößen zuständigen JavaScript-Objekts (zum Beispiel \texttt{spacing.l}). Alle diese Komponenten geben außerdem die ihnen übergebenen Kinder aus, sodass eine Verwendung der \texttt{SpacingInset} Komponente wie in Listing \ref{lst:spacingInset} möglich wird.
 
 \begin{lstlisting}[caption=Beispielhafte Verwendung einer Komponente für Abstände, label=lst:spacingInset]
   <SpacingInset size='l' >
@@ -106,7 +106,7 @@ Im Laufe der Verwendung müssen bestimmte Informationen über die gesamte Anwend
 Ein weiteres Beispiel stellt die Zusammenfassung am Ende der Interaktion mit der Anwendung dar, für die ein Zugriff auf alle vom Nutzer definierten Werte nötig ist. Der Redux-Store für die Anwendung umfasst daher Werte aus den Bereichen \textit{Intro}, \textit{Typographie} und \textit{Farben}.\\
 
 Um die Arbeit mit dem Store zu simplifizieren und eine übermäßige Ver­schach­te­lung des Store-Objekts zu vermeiden, wurde für jeden der oben genannten Bereiche ein eigener \textit{Reducer} geschrieben, der ausschließlich für die Bearbeitung der diesem Bereich zugehörigen Werte verantwortlich ist.\\
-In der Datei \verb|ApplicationState.js| werden diese mit Hilfe der Funktion \verb|combineReducers|, die von Redux zur Verfügung gestellt wird, dann zu einem Objekt zusammengefügt (siehe Listing \ref{lst:combine_reducer}).
+In der Datei \texttt{ApplicationState.js} werden diese mit Hilfe der Funktion \texttt{combineReducers}, die von Redux zur Verfügung gestellt wird, dann zu einem Objekt zusammengefügt (siehe Listing \ref{lst:combine_reducer}).
 
 \begin{lstlisting}[caption={Zusammenfügen der dedizierten Reducer zu einem Objekt}, label=lst:combine_reducer]
   const ApplicationState = combineReducers({
@@ -142,7 +142,7 @@ Um diese Veränderung im Redux-Store möglich zu machen, muss zunächst eine \te
     })
 \end{lstlisting}
 
-Die \textit{action} kann innerhalb der Anwendung durch den Aufruf der Methode \verb|dispatch(setBaseColors(colors))| ausgelöst werden. Der Aufruf dieser Methode ist theoretisch direkt in der Komponente möglich, die den Button definiert, auf den der Nutzer klickt. Dieses Vorgehen wäre allerdings nicht mit den in Kapitel \ref{chap:component} definierten Anforderungen an eine Komponenten konform. So könnte dieser Button nur an Stellen eingesetzt werden, an denen die Grundfarbe für den Bereich Farben im Redux-Store gesetzt werden soll (realistisch betrachtet würde diese Komponente also an genau einer Stelle eingesetzt werden).\\
+Die \textit{action} kann innerhalb der Anwendung durch den Aufruf der Methode \texttt{dispatch(setBaseColors(colors))} ausgelöst werden. Der Aufruf dieser Methode ist theoretisch direkt in der Komponente möglich, die den Button definiert, auf den der Nutzer klickt. Dieses Vorgehen wäre allerdings nicht mit den in Kapitel \ref{chap:component} definierten Anforderungen an eine Komponenten konform. So könnte dieser Button nur an Stellen eingesetzt werden, an denen die Grundfarbe für den Bereich Farben im Redux-Store gesetzt werden soll (realistisch betrachtet würde diese Komponente also an genau einer Stelle eingesetzt werden).\\
 Um diesen Umstand zu vermeiden, wird die Methode als Referenz weiter gegeben (Abbildung \ref{fig:redux_flow} zeigt eine informelle Darstellung aller beteiligter Komponenten).
 
 \begin{figure}[h]
@@ -152,11 +152,11 @@ Um diesen Umstand zu vermeiden, wird die Methode als Referenz weiter gegeben (Ab
     \label{fig:redux_flow}
 \end{figure}
 
-In der Komponente \textit{ColorsContainer} wir die Referenz auf die \verb|dispatch()| Methode als \verb|prop| mit dem Namen \verb|setBaseColors| an die Komponente \textit{Colors} übergeben.
+In der Komponente \textit{ColorsContainer} wir die Referenz auf die \texttt{dispatch()} Methode als \texttt{prop} mit dem Namen \texttt{setBaseColors} an die Komponente \textit{Colors} übergeben.
 
-Die Komponente \textit{Colors} implementiert die Funktion \verb|determineNextStep|, die definiert, welcher Schritt in Abhängigkeit vom Entwicklungsziel des Nutzers der Nächste ist, der angezeigt werden soll. Die Referenz auf \verb|setBaseColors| wird dabei auf jeden Fall aufgerufen. Die Komponente \textit{Colors} gibt nun eine Referenz auf die Funktion \verb|determineNextStep| an die Komponente \textit{BaseColorController} weiter. Diese wiederum gibt diese Referenz an die Komponente \textit{SecondaryButton} weiter, die die Komponente darstellt, mit der der Nutzer interagiert.
+Die Komponente \textit{Colors} implementiert die Funktion \texttt{determineNextStep}, die definiert, welcher Schritt in Abhängigkeit vom Entwicklungsziel des Nutzers der Nächste ist, der angezeigt werden soll. Die Referenz auf \texttt{setBaseColors} wird dabei auf jeden Fall aufgerufen. Die Komponente \textit{Colors} gibt nun eine Referenz auf die Funktion \texttt{determineNextStep} an die Komponente \textit{BaseColorController} weiter. Diese wiederum gibt diese Referenz an die Komponente \textit{SecondaryButton} weiter, die die Komponente darstellt, mit der der Nutzer interagiert.
 
-Die \textit{SecondaryButton} Komponente ruft auf einen Klick hin die ihr als \verb|prop| übergebene Referenz auf eine Funktion auf (siehe Listing \ref{lst:sec_btn}) und hat selbst kein Wissen darüber, welche Funktion innerhalb der Anwendung sie ausführt. Hierdurch werden die übergebenen Referenzen in rückläufiger Reihenfolge wieder aufgerufen und so der \verb|dispatch()| ausgelöst.
+Die \textit{SecondaryButton} Komponente ruft auf einen Klick hin die ihr als \texttt{prop} übergebene Referenz auf eine Funktion auf (siehe Listing \ref{lst:sec_btn}) und hat selbst kein Wissen darüber, welche Funktion innerhalb der Anwendung sie ausführt. Hierdurch werden die übergebenen Referenzen in rückläufiger Reihenfolge wieder aufgerufen und so der \texttt{dispatch()} ausgelöst.
 
 \begin{lstlisting}[caption={Aufruf der übergebenen Funktion in der Komponente \textit{SecondaryButton}}, label=lst:sec_btn]
   function SecondaryButton(props) {
@@ -175,17 +175,17 @@ Die \textit{SecondaryButton} Komponente ruft auf einen Klick hin die ihr als \ve
 
 \section{CSS-Architektur}
 In der Entwicklung von Webanwendungen wird es als gutes Vorgehen angesehen, Inhalte und deren Gestaltung voneinander zu trennen \cite[S. 56]{goodman2002dynamic}. Diese Trennung erfolgt in der Regel durch das Definieren von dedizierten HTML- und CSS-Dateien, die sich nur mit der Struktur von Inhalten bzw. deren Aussehen befassen.
-Eine der aktuell verbreitetsten Möglichkeiten, Regeln für die Darstellung von Inhalten zu definieren, ist das Vergeben von Klassen über das \verb|class|-attribut, die dann in der CSS-Datei über einen Selektor (zum Beispiel \verb|.myClass|) aufgerufen werden können.
+Eine der aktuell verbreitetsten Möglichkeiten, Regeln für die Darstellung von Inhalten zu definieren, ist das Vergeben von Klassen über das \texttt{class}-attribut, die dann in der CSS-Datei über einen Selektor (zum Beispiel \texttt{.myClass}) aufgerufen werden können.
 
-Auch React.js bietet die Möglichkeit, diese Architektur abzubilden. In Kapitel \ref{chap:jsx} wurde bereits erwähnt, dass hier wegen der Verwendung von JavaScript in Komponenten das Attribut \verb|className| verwendet werden muss.
+Auch React.js bietet die Möglichkeit, diese Architektur abzubilden. In Kapitel \ref{chap:jsx} wurde bereits erwähnt, dass hier wegen der Verwendung von JavaScript in Komponenten das Attribut \texttt{className} verwendet werden muss.
 
 Durch die Verwendung einer solchen Architektur werden für Komponenten jedoch Abhängigkeiten geschaffen, da für die korrekte Darstellung der Komponente auch immer die entsprechenden Regeln in der CSS-Datei verfügbar sein müssen.
 Diese Abhängig von ihrer Umwelt ist jedoch nicht Konform mit den in Kapitel \ref{chap:component} definierten Anforderungen an eine Komponente innerhalb dieser Arbeit.
 
-Um das Aussehen innerhalb von HTML-Elementen zu verändern, kann das \verb|style|-attribut verwendet werden. Auch dieses akzeptiert CSS-Syntax, die das Aussehen des jeweiligen Elements definiert.
+Um das Aussehen innerhalb von HTML-Elementen zu verändern, kann das \texttt{style}-attribut verwendet werden. Auch dieses akzeptiert CSS-Syntax, die das Aussehen des jeweiligen Elements definiert.
 React.js ermöglicht die Verwendung dieses Attributes innerhalb von Komponenten und somit auch die Deklaration von Inhalt und Aussehen innerhalb einer Komponenten, ohne die Notwendigkeit weiterer Abhängigkeiten.
 
-Die Verwendung des \verb|style|-attributes zum Festlegen des Aussehens birgt jedoch einige Nachteile. So können über das Attribut keine Pseudo-Klassen, wie zum Beispiel \verb|:hover| oder \verb|:before| angesprochen werden. \cite{w3c2017styles}
+Die Verwendung des \texttt{style}-attributes zum Festlegen des Aussehens birgt jedoch einige Nachteile. So können über das Attribut keine Pseudo-Klassen, wie zum Beispiel \texttt{:hover} oder \texttt{:before} angesprochen werden. \cite{w3c2017styles}
 Für die Entwicklung der Anwendung sind die Pseudo-Klassen jedoch notwendig.
 Um dieses Problem zu lösen, wurden im Bereich der \textit{JavaScript-SPAs} viele Bibliotheken entwickelt. Im Rahmen dieses Projektes wurde die Bibliothek Aphrodite\footnotemark{} verwendet.
 Diese Bibliothek erlaubt eine Notation der CSS-Regeln wie sie React.js auch nativ ermöglicht, unterstützt aber beispielsweise Pseudo-Klassen (Listing \ref{lst:aphro} zeigt ein simples Beispiel).
@@ -211,7 +211,7 @@ Diese Bibliothek erlaubt eine Notation der CSS-Regeln wie sie React.js auch nati
 	}
 \end{lstlisting}
 
-Während der Entwicklung wurde nicht jegliche Art von Gestaltung innerhalb von Komponenten realisiert. Verschiedene native HTML-Elemente, die über die Anwendung hinweg verwendet werden, wurden in einer globalen CSS-Datei definiert. Dies hat den Vorteil, dass zum Beispiel für die Verwendung einer Überschrift keine eigene Komponente geschrieben werden muss, die funktional equivalent zu einem nativen HTML-Element (beispielsweise \verb|<h1>|) ist, nur um dessen Aussehen anzupassen.
+Während der Entwicklung wurde nicht jegliche Art von Gestaltung innerhalb von Komponenten realisiert. Verschiedene native HTML-Elemente, die über die Anwendung hinweg verwendet werden, wurden in einer globalen CSS-Datei definiert. Dies hat den Vorteil, dass zum Beispiel für die Verwendung einer Überschrift keine eigene Komponente geschrieben werden muss, die funktional equivalent zu einem nativen HTML-Element (beispielsweise \texttt{<h1>}) ist, nur um dessen Aussehen anzupassen.
 
 \section{Interessante Aspekte in der Entwicklung}
 Nachfolgend sollen einige konkrete Beispiele aus der Entwicklung der Anwendung erläutert werden. Die verschiedenen Beispiele wurden dabei aus unterschiedlichen Gründen Gewählt:
@@ -225,7 +225,7 @@ Als Beispiel wurde die Auswahl des Zielmediums durch den Nutzer im ersten Schrit
 Der Ablauf der Interaktion mit der Anwendung sieht dabei wie folgt aus:
 Die Anwendung präsentiert dem Nutzer drei Optionen, aus denen dieser wählen kann. Wählt der Nutzer eine der Optionen aus, gibt die Anwendung ihm eine visuelle Rückmeldung über die ausgewählte Option. Ist der Nutzer mit seiner Wahl zufrieden, bestätigt er diese durch einen Button und  ihm wir der nächste Schritt im Wizard angezeigt.
 
-Für diese Interaktion werden verschiedene Komponenten eingesetzt (siehe dazu Abbildung \ref{fig:components}), von denen die Meisten zustandslos sind, lediglich die Komponente \verb|SetupProgress|, die in Listing \ref{lst:setup} zu sehen ist\footnotemark{}, verwaltet einen Zustand.
+Für diese Interaktion werden verschiedene Komponenten eingesetzt (siehe dazu Abbildung \ref{fig:components}), von denen die Meisten zustandslos sind, lediglich die Komponente \texttt{SetupProgress}, die in Listing \ref{lst:setup} zu sehen ist\footnotemark{}, verwaltet einen Zustand.
 
 \begin{figure}[h]
     \centering
@@ -236,8 +236,8 @@ Für diese Interaktion werden verschiedene Komponenten eingesetzt (siehe dazu Ab
 
 \footnotetext{Teile des Quellcodes, die für diesen Anwendungsfall nicht relevant sind, wurden gekürzt. Die gesamte Datei kann der beiliegenden CD entnommen werden}
 
-Im \textit{state} der Komponente \verb|SetupProgress| wird eine Zahl gespeichert die angibt, welche der angezeigten Optionen momentan aktiv ist (ist keine aktiv, wird der Wert auf \verb|false| gesetzt). Beim rendern der \verb|IconButton| Komponenten wird für jede Komponente abgeglichen, ob diese im \textit{state} als aktive Option gespeichert ist. Jede der \verb|IconButton|-Komponenten, die angezeigt wird, ruft über einen Callback die Funktion \verb|handleIconButtonClick(key)| auf, wenn der User auf diese klickt und übergibt einen Key, der wiederum in den \textit{state} der  \verb|SetupProgress| Komponente geschrieben wird. Durch das Aktualisieren des \textit{state} wird nun die \verb|render()| Funktion der Komponente erneut aufgerufen und die entsprechende \verb|IconButton| Komponente wird als aktiv markiert.
-Der  \verb|IconButton| Komponente selbst ist dabei der Kontext, in dem sie verwendet wird, nicht bekannt.
+Im \textit{state} der Komponente \texttt{SetupProgress} wird eine Zahl gespeichert die angibt, welche der angezeigten Optionen momentan aktiv ist (ist keine aktiv, wird der Wert auf \texttt{false} gesetzt). Beim rendern der \texttt{IconButton} Komponenten wird für jede Komponente abgeglichen, ob diese im \textit{state} als aktive Option gespeichert ist. Jede der \texttt{IconButton}-Komponenten, die angezeigt wird, ruft über einen Callback die Funktion \texttt{handle\-Icon\-Button\-Click\-(key)} auf, wenn der User auf diese klickt und übergibt einen Key, der wiederum in den \textit{state} der  \texttt{SetupProgress} Komponente geschrieben wird. Durch das Aktualisieren des \textit{state} wird nun die \texttt{render()} Funktion der Komponente erneut aufgerufen und die entsprechende \texttt{IconButton} Komponente wird als aktiv markiert.
+Der  \texttt{IconButton} Komponente selbst ist dabei der Kontext, in dem sie verwendet wird, nicht bekannt.
 
 
 \begin{lstlisting}[caption=Die Komponente \texttt{SetupProgress} in gekürzter Form, label=lst:setup]
@@ -382,7 +382,7 @@ Da die Anwendung keine Datenbank implementiert, werden diese Daten in eigenen Da
   }
 \end{lstlisting}
 
-Da die \textit{keys} im \verb|FONTS| Objekt dabei exakt den möglichen \textit{scopes} entsprechen\footnotemark{}, ist ein einfaches Ermitteln der benötigten Schriftfamilien, wie es in Listing \ref{lst:fonts_access} gezeigt wird, möglich.
+Da die \textit{keys} im \texttt{FONTS} Objekt dabei exakt den möglichen \textit{scopes} entsprechen\footnotemark{}, ist ein einfaches Ermitteln der benötigten Schriftfamilien, wie es in Listing \ref{lst:fonts_access} gezeigt wird, möglich.
 
 \footnotetext{Auch die verschiedenen \textit{scopes} sind Konstanten, die in einem Objekt gespeichert werden.}
 
@@ -413,7 +413,7 @@ Für jede Farbe müssen hier also verschiedene Entscheidungen getroffen werden. 
   \item Sowohl der \textit{Saturation}- als auch der \textit{Lightness}-Wert
 \end{itemize}
 
-Um hier dynamischere Ergebnisse liefern zu können, wird diese Entscheidung in der Funktion \verb|calculateMonochromaticColors|, die Listing \ref{lst:mono} zeigt, zufällig getroffen.
+Um hier dynamischere Ergebnisse liefern zu können, wird diese Entscheidung in der Funktion \texttt{calculateMonochromaticColors}, die Listing \ref{lst:mono} zeigt, zufällig getroffen.
 
 \begin{lstlisting}[caption=Berechnung eines Monochromatischen Farbschemas, label=lst:mono]
   /**
@@ -461,7 +461,7 @@ Um hier dynamischere Ergebnisse liefern zu können, wird diese Entscheidung in d
   }
 \end{lstlisting}
 
-Im nächsten Schritt müssen die Veränderungen in den bestimmten Werten vorgenommen werden, auch hier werden diese Werte zufällig gewählt. Um auszuschließen, dass die definierten Werte zu hell oder zu dunkel (also fast Schwarz oder fast Weiss) sind und damit sehr wenig Farbe aufweisen, wurden die Wertebereiche, in denen \textit{Lightness} und \textit{Saturation} verändert werden können, begrenzt. Dieser Vorgang findet in der Funktion \verb|changeValuesOfColor| statt (siehe Listing \ref{lst:hsl}).
+Im nächsten Schritt müssen die Veränderungen in den bestimmten Werten vorgenommen werden, auch hier werden diese Werte zufällig gewählt. Um auszuschließen, dass die definierten Werte zu hell oder zu dunkel (also fast Schwarz oder fast Weiss) sind und damit sehr wenig Farbe aufweisen, wurden die Wertebereiche, in denen \textit{Lightness} und \textit{Saturation} verändert werden können, begrenzt. Dieser Vorgang findet in der Funktion \texttt{changeValuesOfColor} statt (siehe Listing \ref{lst:hsl}).
 
 \begin{lstlisting}[caption=Setzen der HSL-Werte, label=lst:hsl]
   /**
@@ -499,7 +499,7 @@ Im nächsten Schritt müssen die Veränderungen in den bestimmten Werten vorgeno
 
 Nachdem die Farben festgelegt sind muss außerdem überprüft werden, ob  eine generierte Farbe a) zu ähnlich der Grundfarbe oder b) zu ähnlich einer anderen generierten Farbe ist.
 Als \textit{zu ähnlich} zueinander wurden hier zwei Farben definiert, der \textit{Saturation}- \textbf{und} \textit{Lightness}-Werte eine Differenz kleiner als 0.1 aufweisen. Farben, die nur in einem der Beiden Werte eine zu kleine Differenz aufweisen, werden nicht als zu ähnlich verstanden.
-Die Ähnlichkeit zweier Farben wird in  der Funktion \verb|colorsAreSimilar| in Listing \ref{lst:similar} deutlich. Die Funktion gibt dabei \verb|true| zurück, wenn die beiden übergebenen Werte zu ähnlich sind. Anstatt der betroffenen Farbe wird dann in der Funktion \verb|calculateMonochromaticColors| eine neue generiert.
+Die Ähnlichkeit zweier Farben wird in  der Funktion \texttt{colorsAreSimilar} in Listing \ref{lst:similar} deutlich. Die Funktion gibt dabei \texttt{true} zurück, wenn die beiden übergebenen Werte zu ähnlich sind. Anstatt der betroffenen Farbe wird dann in der Funktion \texttt{calculateMonochromaticColors} eine neue generiert.
 
 \begin{lstlisting}[caption=Überprüfen der Ähnlichkeit zweier Farben, label=lst:similar]
   /**
