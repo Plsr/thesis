@@ -1,6 +1,6 @@
 \chapter{Umsetzung der Anwendung}
 \thispagestyle{fancy}
-Im Folgenden soll die Umsetzung der Anwendung thematisiert werden. Umsetzung meint hier sowohl die Programmierung der Anwendung und alle Bereiche, die mit dieser zusammen hängen, als auch die visuelle Gestaltung. Dieses Kapitel geht auf Konzepte ein, die während der Gestaltung der Anwendung eine zentrale Rolle spielten und schildert das generelle Vorgehen. Es werden einige strukturelle Entscheidungen erläutert, die während der Umsetzung von Relevanz waren und einige konkrete Codebeispiele gezeigt, die als besonders interessant erachtet wurden.
+Im Folgenden soll die Umsetzung der Anwendung thematisiert werden. Umsetzung meint hier sowohl die Programmierung der Anwendung und alle Bereiche, die mit dieser zusammen hängen, als auch die visuelle Gestaltung. Dieses Kapitel geht auf Konzepte ein, die während der Gestaltung der Anwendung eine zentrale Rolle spielten und schildert das generelle Vorgehen. Es werden einige strukturelle Entscheidungen erläutert, die während der Umsetzung von Relevanz waren, und einige konkrete Codebeispiele gezeigt, die als besonders interessant erachtet wurden.
 
 \section{Gestaltung}
 Bereits in Kapitel \ref{sec:relevance} wird deutlich, welche zentrale Rolle die Gestaltung in jedwedem Projekt einnimmt. Auch das hier bearbeitete Projekt ist davon nicht ausgenommen. Um eine gute Benutzbarkeit des Tools zu gewährleisten, ist eine solide Gestaltung unabdingbar.\\
@@ -62,7 +62,7 @@ Um den Gedanken von innerhalb der Anwendung wiederverwendbaren Komponenten zu un
 
 Diese Gedanken wurden in der Gestaltung und Umsetzung des Projektes übernommen. Zunächst wurden die verschiedenen Abstände, aufbauend auf der von Curtis empfohlenen Basisgröße von \texttt{16px}, definiert. Aufbauend auf der Basisgröße wurden anschließend Abstufungen in beide Richtungen
 erstellt, die nach Kleidergrößen, von XS bis XXL, benannt wurden.
-Diese Abstufungen wurden in einer eigenen Datei als JavaScript-Objekt deklariert, so dass über die gesamte Anwendung hinweg diese festgelegten Größen verwendet werden können.
+Diese Abstufungen wurden in einer eigenen Datei als JavaScript-Objekt deklariert, sodass über die gesamte Anwendung hinweg diese festgelegten Größen verwendet werden können.
 
 \begin{figure}[h]
     \centering
@@ -124,7 +124,7 @@ Um diese Veränderung im Redux-Store möglich zu machen, muss zunächst eine \te
 
 \footnotetext{Es ist dabei möglich, dass mehr als eine Grundfarbe gespeichert wird, da für das Zielmedium Android insgesamt drei Abstufungen einer Grundfarbe benötigt werden.}
 
-\begin{lstlisting}[caption={Definition der \textit{action} zum setzen der Grundfarben}, label=lst:action]
+\begin{lstlisting}[caption={Definition der \textit{action} zum Setzen der Grundfarben}, label=lst:action]
   export const setBaseColors = (colors) => {
     return {
       type: SET_BASE_COLORS,
@@ -142,7 +142,7 @@ Um diese Veränderung im Redux-Store möglich zu machen, muss zunächst eine \te
     })
 \end{lstlisting}
 
-Die \textit{action} kann innerhalb der Anwendung durch den Aufruf der Methode \texttt{dispatch(setBaseColors(colors))} ausgelöst werden. Der Aufruf dieser Methode ist theoretisch direkt in der Komponente möglich, die den Button definiert, auf den der Nutzer klickt. Dieses Vorgehen wäre allerdings nicht mit den in Kapitel \ref{chap:component} definierten Anforderungen an eine Komponente konform. So könnte dieser Button nur an Stellen eingesetzt werden, an denen die Grundfarbe für den Bereich Farben im Redux-Store gesetzt werden soll (realistisch betrachtet würde diese Komponente also an genau einer Stelle eingesetzt werden).\\
+Die \textit{action} kann innerhalb der Anwendung durch den Aufruf der Methode \texttt{dispatch\-(set\-Base\-Colors\-(colors))} ausgelöst werden. Der Aufruf dieser Methode ist theoretisch direkt in der Komponente möglich, die den Button definiert, auf den der Nutzer klickt. Dieses Vorgehen wäre allerdings nicht mit den in Kapitel \ref{chap:component} definierten Anforderungen an eine Komponente konform. So könnte dieser Button nur an Stellen eingesetzt werden, an denen die Grundfarbe für den Bereich Farben im Redux-Store gesetzt werden soll (realistisch betrachtet würde diese Komponente also an genau einer Stelle eingesetzt werden).\\
 Um diesen Umstand zu vermeiden, wird die Methode als Referenz weiter gegeben (Abbildung \ref{fig:redux_flow} zeigt eine informelle Darstellung aller beteiligter Komponenten).
 
 \begin{figure}[h]
@@ -220,7 +220,7 @@ Kapitel \ref{chap:state_component} zeigt einen zentralen Aspekt der Umsetzung ei
 
 \subsection{State in Komponenten}
 \label{chap:state_component}
-Das Konzept des \textit{state} in React.js wurde bereits in Kapitel \ref{chap:stateless} angesprochen. Hier soll an einem konkreten Beispiel verdeutlicht werden, wie der \textit{state} genutzt werden kann, um auf Nutzereingaben zu reagieren und inwiefern sich der Zustand einer Komponente vom Zustand der gesamten Anwendung unterscheidet.
+Das Konzept des \textit{state} in React.js wurde bereits in Kapitel \ref{chap:stateless} angesprochen. Hier soll an einem konkreten Beispiel verdeutlicht werden, wie der \textit{state} genutzt werden kann, um auf Nutzereingaben zu reagieren, und inwiefern sich der Zustand einer Komponente vom Zustand der gesamten Anwendung unterscheidet.
 Als Beispiel wurde die Auswahl des Zielmediums durch den Nutzer im ersten Schritt der Anwendung gewählt, die in mehreren Schritten durchgeführt wird.
 Der Ablauf der Interaktion mit der Anwendung sieht dabei wie folgt aus:
 Die Anwendung präsentiert dem Nutzer drei Optionen, aus denen dieser wählen kann. Wählt der Nutzer eine der Optionen aus, gibt die Anwendung ihm eine visuelle Rückmeldung über die ausgewählte Option. Ist der Nutzer mit seiner Wahl zufrieden, bestätigt er diese durch einen Button und  ihm wir der nächste Schritt im Wizard angezeigt.
@@ -236,7 +236,7 @@ Für diese Interaktion werden verschiedene Komponenten eingesetzt (siehe dazu Ab
 
 \footnotetext{Teile des Quellcodes, die für diesen Anwendungsfall nicht relevant sind, wurden gekürzt. Die gesamte Datei kann der beiliegenden CD entnommen werden}
 
-Im \textit{state} der Komponente \texttt{SetupProgress} wird eine Zahl gespeichert die angibt, welche der angezeigten Optionen momentan aktiv ist (ist keine aktiv, wird der Wert auf \texttt{false} gesetzt). Beim rendern der \texttt{IconButton} Komponenten wird für jede Komponente abgeglichen, ob diese im \textit{state} als aktive Option gespeichert ist. Jede der \texttt{IconButton}-Komponenten, die angezeigt wird, ruft über einen Callback die Funktion \texttt{handle\-Icon\-Button\-Click\-(key)} auf, wenn der User auf diese klickt und übergibt einen Key, der wiederum in den \textit{state} der  \texttt{SetupProgress} Komponente geschrieben wird. Durch das Aktualisieren des \textit{state} wird nun die \texttt{render()} Funktion der Komponente erneut aufgerufen und die entsprechende \texttt{IconButton} Komponente wird als aktiv markiert.
+Im \textit{state} der Komponente \texttt{SetupProgress} wird eine Zahl gespeichert, die angibt, welche der angezeigten Optionen momentan aktiv ist (ist keine aktiv, wird der Wert auf \texttt{false} gesetzt). Beim Rendern der \texttt{IconButton} Komponenten wird für jede Komponente abgeglichen, ob diese im \textit{state} als aktive Option gespeichert ist. Jede der \texttt{IconButton}-Komponenten, die angezeigt wird, ruft über einen Callback die Funktion \texttt{handle\-Icon\-Button\-Click\-(key)} auf, wenn der User auf diese klickt und übergibt einen Key, der wiederum in den \textit{state} der  \texttt{SetupProgress} Komponente geschrieben wird. Durch das Aktualisieren des \textit{state} wird nun die \texttt{render()} Funktion der Komponente erneut aufgerufen und die entsprechende \texttt{IconButton} Komponente wird als aktiv markiert.
 Der  \texttt{IconButton} Komponente selbst ist dabei der Kontext, in dem sie verwendet wird, nicht bekannt.
 
 
@@ -348,7 +348,7 @@ Der  \texttt{IconButton} Komponente selbst ist dabei der Kontext, in dem sie ver
   export default SetupProgress
 \end{lstlisting}
 
-Der hier gezeigte Ablauf hätte sich auch durch die Verwendung des Redux-Stores realisieren lassen, jedoch ist die gewählte Option zunächst nicht für die gesamte Anwendung von Relevanz (so kann der Nutzer seine Auswahl zum Beispiel noch ändern). Erst wenn der Nutzer sich durch den Klick auf den \textit{Next Step} Button auf einen Wert festlegt, wird dieser auch der ganzen Anwendung, über den Redux-Store, bekannt gemacht.
+Der hier gezeigte Ablauf hätte sich auch durch die Verwendung des Redux-Stores realisieren lassen, jedoch ist die gewählte Option zunächst nicht für die gesamte Anwendung von Relevanz (so kann der Nutzer seine Auswahl zum Beispiel noch ändern). Erst wenn der Nutzer sich durch den Klick auf den \textit{Next Step} Button auf einen Wert festlegt, wird dieser auch der ganzen Anwendung über den Redux-Store bekannt gemacht.
 
 \subsection{Anzeige von Inhalten nach Scope}
 \label{chap:display_scope}
@@ -396,11 +396,11 @@ Da die \textit{keys} im \texttt{FONTS} Objekt dabei exakt den möglichen \textit
 \subsection{Erstellen von Farbkontrasten}
 \label{chap:colors_dev}
 Die grundlegende Logik zum Errechnen verschiedener Kontrasten wurde bereits im Praxisprojekt definiert. Im ersten Schritt muss die Grundfarbe hierfür in den HSL-Farbraum überführt werden. Für diese Umwandlung wurde in der Anwendung die Bibliothek tinycolor\footnotemark{} verwendet, die verschiedene Funktionen zur Arbeit mit Farben bereit stellt (unter anderem auch das Umwandeln in den HSL-Farbraum).
-Nach der Umwandlung in den HSL-Farbraum gibt die Bibliothek ein JavaScript-Objekt zurück, in dem \textit{Hue}, \textit{Saturation}, \textit{Lightness} und \textit{Alpha} als \textit{Key-Value}-Paare vorhanden sind, mit denen die Berechnungen für die Farbkontraste vorgenommen werden können. Die Bibliothek selbst bietet einige Funktionen zum Erstellen von Farbkontrasten, die Ergebnisse dieser Funktionen wurden für den Rahmen dieser Arbeit jedoch als nicht geeignet befunden.
+Nach der Umwandlung in den HSL-Farbraum gibt die Bibliothek ein JavaScript-Objekt zurück, in dem \textit{Hue}, \textit{Saturation}, \textit{Lightness} und \textit{Alpha} als \textit{Key-Value}-Paare vorhanden sind, mit denen die Berechnungen für die Farbkontraste vorgenommen werden können. Die Bibliothek selbst bietet einige Funktionen zum Erstellen von Farbkontrasten. Die Ergebnisse dieser Funktionen wurden für den Rahmen dieser Arbeit jedoch als nicht geeignet befunden.
 
 \footnotetext{\url{https://github.com/bgrins/TinyColor}, zuletzt abgerufen am 10.8.2017}
 
-Für einen Komplementär-Kontrast muss der \textit{Hue}-Wert der Grundfarbe um 180° verändert werden. Die Berechnung erwies sich mit Hilfe des HSL-JavaScript-Objektes als recht simpel, hier musste lediglich darauf geachtet werden, den einen Wert von 360 nicht zu überschreiten.
+Für einen Komplementär-Kontrast muss der \textit{Hue}-Wert der Grundfarbe um 180° verändert werden. Die Berechnung erwies sich mit Hilfe des HSL-JavaScript-Objektes als recht simpel, hier musste lediglich darauf geachtet werden, den einen Wert von 360° nicht zu überschreiten.
 Die Berechnung des triadischen Kontrastes gestaltet sich ähnlich, hier wurde der \textit{Hue}-Wert jedoch um 30° erhöht beziehungsweise verringert, um den gewünschten Effekt zu erzielen.
 
 Deutlich komplexer gestaltet die Generierung von monochromatischen Farbschemata, da die Farben hier in ihrem \textit{Hue}-Wert unverändert bleiben, jedoch in ihrem \textit{Saturation} und/oder ihrem \textit{Lightness}-Wert verändert werden können. Weiterhin werden für dieses Farbschema mehr Farben benötigt (die Anwendung arbeitet mit der Grundfarbe und drei veränderten Farben).
@@ -567,9 +567,9 @@ Aus diesem Grund wurde die Möglichkeit für die manuelle Erzeugung von PDF-Date
 
 \footnotetext{\url{https://github.com/MrRio/jsPDF}}
 
-Für den aktuellen Umfang der Anwendung ist diese Lösung praktikabel, bei einer Erweiterung des Funktionsumfangs muss diese Methode jedoch erneut, auf das Verhältnis von Aufwand und Nutzen hin evaluiert werden
+Für den aktuellen Umfang der Anwendung ist diese Lösung praktikabel, bei einer Erweiterung des Funktionsumfangs muss diese Methode jedoch erneut auf das Verhältnis von Aufwand und Nutzen hin evaluiert werden.
 
-Um dem Nutzer eine spätere Zuordnung der Datei zu vereinfachen, wird diese im Namen mit dem aktuellen Datum und der Uhrzeit versehen. Eine bessere Möglichkeit wäre, es dem Nutzer zu ermöglichen, sein Projekt zu beginn der Benutzung der Anwendung zu benennen.
+Um dem Nutzer eine spätere Zuordnung der Datei zu vereinfachen, wird diese im Namen mit dem aktuellen Datum und der Uhrzeit versehen. Eine bessere Möglichkeit wäre, es dem Nutzer zu ermöglichen, sein Projekt zu Beginn der Benutzung der Anwendung zu benennen.
 
 \begin{figure}[h]
     \centering
