@@ -1,11 +1,11 @@
 \chapter{Veröffentlichung der Anwendung}
 \thispagestyle{fancy}
 
-Der letzte Schritt, der für die Entwicklung einer marktfähigen Webanwendung von Bedeutung ist, ist deren Veröffentlichung. Dabei müssen in diesem Fall zwei Aspekte angesprochen werden: Zum Einen muss die Anwendung für den Endnutzer verfügbar sein, zum Anderen ist es aber auch Ziel dieser Arbeit, eine spätere Weiterentwicklung der Anwendung durch die Community zu ermöglichen. Daher muss auch der Quellcode der Anwendung zugänglich und Möglichkeiten zur Mitarbeit definiert sein.
+Der letzte Schritt, der für die Entwicklung einer marktfähigen Webanwendung von Bedeutung ist, ist deren Veröffentlichung. Dabei müssen in diesem Fall zwei Aspekte angesprochen werden: Zum Einen muss die Anwendung für den Endnutzer verfügbar sein, zum Anderen ist es aber auch Ziel dieser Arbeit, eine spätere Weiterentwicklung der Anwendung durch die Community zu ermöglichen. Daher muss auch der Quellcode der Anwendung zugänglich und die Möglichkeiten zur Mitarbeit definiert sein.
 
 \section{Ausliefern der Anwendung}
 \label{chap:hosting}
-Ein publizieren von Ressourcen und Anwendungen im World Wide Web suggeriert in der Regel die Verwendung eines Servers zum ausliefern dieser Ressourcen. Da es sich bei dieser Anwendung um eine \textit{Single Page Application} handelt, sind die technischen Ansprüche an einen solchen Server äußerst gering. Dieser muss lediglich in der Lage sein, zwei statische Dateien auszuliefern.
+Ein Publizieren von Ressourcen und Anwendungen im World Wide Web suggeriert in der Regel die Verwendung eines Servers zum Ausliefern dieser Ressourcen. Da es sich bei dieser Anwendung um eine \textit{Single Page Application} handelt, sind die technischen Ansprüche an einen solchen Server äußerst gering. Dieser muss lediglich in der Lage sein, zwei statische Dateien auszuliefern.
 Hier sollen zunächst drei Lösungsmöglichkeiten näher betrachtet werden:
 
 \begin{itemize}
@@ -18,7 +18,7 @@ Ein manuell verwalteter Server bietet von allen Möglichkeiten die flachste Lern
 Von Nachteil ist hierbei jedoch die niedrige Flexibilität. Jede neue Version der Anwendung muss manuell auf dem Server abgelegt oder wahlweise ein Automatismus hierfür entwickelt werden.
 
 Da der Quellcode der Anwendung auf Github veröffentlich wurde (siehe dazu auch Kapitel \ref{chap:contribution}), ist die Verwendung von \textit{Github Pages} eine naheliegende Option. Die Erweiterung der Plattform erlaubt es, den Quellcode eines bestimmten \textit{Branches} innerhalb eines \textit{Repository} statisch auszuliefern.\\
-Die Veröffentlichung einer neuen Version der Anwendung ist dabei sehr einfach, außerdem muss keine weitere Plattform in den Ablauf integriert werden. Während der Tests mit \textit{Github Pages} kam es jedoch zu Konflikten mit einer der verwendeten Bibliotheken. Auch wenn diese Konflikte lösbar waren, lassen diese doch auf mögliche Probleme in der Zukunft schließen.
+Die Veröffentlichung einer neuen Version der Anwendung ist dabei sehr einfach, außerdem muss keine weitere Plattform in den Ablauf integriert werden. Während der Tests mit \textit{Github Pages} kam es jedoch zu Konflikten mit einer der verwendeten Bibliotheken. Auch wenn diese Konflikte lösbar waren, lassen diese auf mögliche Probleme in der Zukunft schließen.
 
 \textit{Heroku} erlaubt die Veröffentlichung von komplexen Anwendungen mit wenig Konfiguration. Der Service ist dabei auf dynamische Backends spezialisiert und eigentlich nicht für das Ausliefern von statischen Dateien gedacht. \textit{Heroku} bietet jedoch von allen genannten Lösungen die einfachsten Möglichkeiten, Prozesse zu automatisieren und mit wachsender Größe der Anwendung zu skalieren.
 
@@ -53,33 +53,33 @@ Diese Anforderungen sollen in den folgenden Kapiteln näher ausgeführt werden.
 \subsection{Vereinfachung der Mitarbeit}
 \label{chap:contribution}
 Ziel muss es sein, den Aufwand, der zwischen dem Moment liegt, in dem eine Person sich für die Mitarbeit an der Weiterentwicklung des Projektes entscheidet und dem Moment, an dem diese tatsächlich etwas zur Entwicklung beitragen kann, so gering wie möglich zu gestalten.
-Dies bedeutet in erste Linie, dass diese Person über das Wissen verfügen muss, \textit{wo} und \textit{wie} sie mit der Mitarbeit beginnen kann.
+Dies bedeutet in erster Linie, dass diese Person über das Wissen verfügen muss, \textit{wo} und \textit{wie} sie mit der Mitarbeit beginnen kann.
 
-Bereits im vorhergehenden Abschnitt wurde deutlich, dass Personen die an einer Anwendung mitarbeiten zuvor häufig Personen sind, die die Anwendung auch benutzen. Um diese Personengruppe ansprechen zu können, wird im letzten Schritt der Anwendung auf das Github-Repository verwiesen und erläutert, dass dort eine Mitarbeit an der Weiterentwicklung der Anwendung möglich ist. Jeder Nutzer der Anwendung verfügt somit über das Wissen, \textit{wo} eine Mitarbeit möglich ist.
+Bereits im vorhergehenden Abschnitt wurde deutlich, dass Personen, die an einer Anwendung mitarbeiten, zuvor häufig Personen sind, die die Anwendung auch benutzen. Um diese Personengruppe ansprechen zu können, wird im letzten Schritt der Anwendung auf das Github-Repository verwiesen und erläutert, dass dort eine Mitarbeit an der Weiterentwicklung der Anwendung möglich ist. Jeder Nutzer der Anwendung verfügt somit über das Wissen, \textit{wo} eine Mitarbeit möglich ist.
 
-Um die Frage, \textit{wie} eine Mitarbeit aussehen kann zu beantworten, bietet die Plattform Github selbst einige Hilfsmittel\footnotemark{}.
+Um die Frage, \textit{wie} eine Mitarbeit aussehen kann, zu beantworten, bietet die Plattform Github selbst einige Hilfsmittel\footnotemark{}.
 Eine erste Erklärung gibt die Datei \verb|README.md|, in der sich generelle Informationen zum Projekt und dessen Ausführung finden, aber auch eine Erklärung, auf welche Arten eine Mitarbeit am Projekt erfolgen (zum Beispiel durch Programmierung, Arbeit konzeptioneller Art oder das Melden von Fehlern innerhalb der Anwendung) und an welcher Stelle der Prozess der Mitarbeit begonnen werden kann.
 
 
 \footnotetext{Siehe hierzu \url{https://help.github.com/articles/helping-people-contribute-to-your-project/}, zuletzt abgerufen am 13.08.2017}
 
-Außerdem wurden Vorlagen zum erstellen von Issues\footnotemark{}. und Pull Requests geschrieben, die eine Hilfestellung zu den Inhalten bieten, die wünschenswert sind.\\
+Außerdem wurden Vorlagen zum Erstellen von Issues\footnotemark{} und Pull Requests geschrieben, die eine Hilfestellung zu den Inhalten bieten, die wünschenswert sind.\\
 Die Inhalte dieser Dateien können der CD entnommen werden, die dieser Arbeit beiliegt.
 
 \footnotetext{Ein \textit{Issue} kann genutzt werden, um Probleme oder Verbesserungen an einer zentralen Stelle zu diskutieren}
 
 \subsection{Sicherung der Code-Qualität}
-Innerhalb von Programmiersprachen können Befehle auf unterschiedliche Arten formatiert werden. Da bei einer Weiterentwicklung der Anwendung verschiedene Personen mit verschiedenen Hintergründen beteiligt sein können ist anzunehmen, dass auch verschiedene Präferenzen für die Formatierung von Code bestehen werden.
-Häufige Stilwechsel können für die Lesbarkeit des Quellcodes, gerade für Personen, die sich zum ersten Mal mit diesem befassen, jedoch nachteilig sein. Ein einheitlicher Stil innerhalb des Quellcodes ist daher erstrebenswert. Jedoch kann nicht davon ausgegangen werden, dass sich alle Personen, die an der Mitarbeit der Anwendung beteiligt sind, lange mit dieser befassen. Unter umständen wollen diese nur einen kleinen Fehler beheben und sich nicht lange mit Richtlinien für die Formatierung des Codes auseinandersetzen.
+Innerhalb von Programmiersprachen können Befehle auf unterschiedliche Arten formatiert werden. Da bei einer Weiterentwicklung der Anwendung verschiedene Personen mit verschiedenen Hintergründen beteiligt sein können, ist anzunehmen, dass auch verschiedene Präferenzen für die Formatierung von Code bestehen werden.
+Häufige Stilwechsel können für die Lesbarkeit des Quellcodes, gerade für Personen, die sich zum ersten Mal mit diesem befassen, jedoch nachteilig sein. Ein einheitlicher Stil innerhalb des Quellcodes ist daher erstrebenswert. Jedoch kann nicht davon ausgegangen werden, dass sich alle Personen, die an der Mitarbeit der Anwendung beteiligt sind, lange mit dieser befassen. Unter Umständen wollen diese nur einen kleinen Fehler beheben und sich nicht lange mit Richtlinien für die Formatierung des Codes auseinandersetzen.
 
 Aus diesem Grund wurde ein \textit{Linter} in die Anwendung integriert. Dieser analysiert den Quellcode auf die Einhaltung von vorher definierten Regeln. Zu diesen Regeln gehören beispielsweise die Überprüfung der Einrückung oder die Schreibweise von Funktionen.
 Wird währen der Entwicklung gegen diese Regeln verstoßen, gibt der \textit{Linter} eine Fehlermeldung aus. Kleinere Fehler, wie zum Beispiel das inkorrekte Einrücken werden dabei automatisch korrigiert.
 
-Um den Zustand des Codes außerdem an einer zentralen Stelle überprüfen zu können, wurde der Service \textit{Travis CI}\footnotemark{} in das Repository eingebunden. Dieser erlaubt das ausführen von bestimmten Skripten bei erstellen eines neuen Pull Request und das anzeigen der Ergebnisse dieser Skripte. So kann die Einhaltung der definierten Regeln auf der Plattform Github automatisch überprüft werden.
+Um den Zustand des Codes außerdem an einer zentralen Stelle überprüfen zu können, wurde der Service \textit{Travis CI}\footnotemark{} in das Repository eingebunden. Dieser erlaubt das Ausführen von bestimmten Skripten beim erstellen eines neuen Pull Requests und das Anzeigen der Ergebnisse dieser Skripte. So kann die Einhaltung der definierten Regeln auf der Plattform Github automatisch überprüft werden.
 
 \footnotetext{\url{https://travis-ci.org/}}
 
 \section{Vermarktung}
-Im Kapitel Weiterentwicklung wurde die Rolle des Bekanntheitsgrades einer Anwendung bereits verdeutlicht. Obwohl die Bekanntmachung der Anwendung nicht explizit Teil dieser Arbeit ist, soll dieser Bereich trotzdem kurz angesprochen werden.\\
+In Kapitel \ref{chap:public} wurde die Rolle des Bekanntheitsgrades einer Anwendung bereits verdeutlicht. Obwohl die Bekanntmachung der Anwendung nicht explizit Teil dieser Arbeit ist, soll dieser Bereich trotzdem kurz angesprochen werden.\\
 Aufgrund der Zielgruppe ist die naheliegendste und erfolgsversprechendste Strategie eine Bekanntmachung direkt an der Technischen Hochschule Köln, vorrangig am Campus Gummersbach. Hier bieten sich verschiedene Möglichkeiten im Internet an, aber auch Veranstaltungen am Campus selbst. Vor allem der \textit{Medieninformatik Showcase} eignet sich hier.
 Im weiteren Rahmen eigenen sich aber auch Informelle Vorträge oder sogenannte \textit{Meetups} für eine Vorstellung der Anwendung.
